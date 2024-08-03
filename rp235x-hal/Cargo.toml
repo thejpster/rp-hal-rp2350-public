@@ -1,0 +1,262 @@
+[package]
+name = "rp235x-hal"
+version = "0.1.0"
+authors = ["The rp-rs Developers"]
+edition = "2021"
+homepage = "https://github.com/rp-rs/rp-hal"
+description = "A Rust Embeded-HAL impl for the RP2350 microcontroller"
+license = "MIT OR Apache-2.0"
+rust-version = "1.77"
+repository = "https://github.com/rp-rs/rp-hal"
+categories = ["embedded", "hardware-support", "no-std", "no-std::no-alloc"]
+keywords = ["embedded", "hal", "raspberry-pi", "rp2350", "embedded-hal"]
+
+[package.metadata.docs.rs]
+features = ["rt", "defmt", "rtic-monotonic"]
+targets = ["thumbv8m.main-none-eabihf"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bitfield = { version = "0.14.0" }
+critical-section = { version = "1.0.0" }
+defmt = { version = ">=0.2.0, <0.4", optional = true }
+embedded_hal_0_2 = { package = "embedded-hal", version = "0.2.5", features = [
+  "unproven",
+] }
+embedded-dma = "0.2.0"
+embedded-hal = "1.0.0"
+embedded-hal-async = "1.0.0"
+embedded-hal-nb = "1.0.0"
+embedded-io = "0.6.1"
+frunk = { version = "0.4.1", default-features = false }
+fugit = "0.3.6"
+gcd = ">=2.1,<3.0"
+i2c-write-iter = { version = "1.0.0", features = ["async"], optional = true }
+nb = "1.0"
+paste = "1.0"
+pio = "0.2.0"
+rand_core = "0.6.3"
+rp235x-hal-macros = { version = "0.1.0", path = "../rp235x-hal-macros" }
+rp235x-pac = { path = "../rp235x-pac", features = ["critical-section", "rt"] }
+rtic-monotonic = { version = "1.0.0", optional = true }
+sha2-const-stable = "0.1"
+vcell = "0.1"
+void = { version = "1.0.2", default-features = false }
+
+[target.'thumbv8m.main-none-eabihf'.dependencies]
+cortex-m = "0.7.2"
+cortex-m-rt = "0.7"
+
+[target.riscv32imac-unknown-none-elf.dependencies]
+riscv = { version = "0.11" }
+riscv-rt = "0.12"
+
+[dev-dependencies]
+panic-halt = "0.2.0"
+hd44780-driver = "0.4.0"
+pio-proc = "0.2.0"
+dht-sensor = "0.2.1"
+rand = { version = "0.8.5", default-features = false }
+nostd_async = { version = "0.6.1", features = ["cortex_m"] }
+futures = { version = "0.3.30", default-features = false, features = [
+  "async-await",
+] }
+defmt-rtt = "0.4.0"
+defmt = "0.3"
+embedded-alloc = "0.5.1"
+
+[target.'thumbv8m.main-none-eabihf'.dev-dependencies]
+cortex-m-rtic = "1.1.4"
+
+[target.riscv32imac-unknown-none-elf.dev-dependencies]
+# None
+
+[features]
+# Enable the boot-up code from the arch runtime
+rt = ["rp235x-pac/rt"]
+
+# Memoize(cache) ROM function pointers on first use to improve performance
+rom-func-cache = []
+
+# Disable automatic mapping of language features (like floating point math) to ROM functions
+disable-intrinsics = []
+
+# critical section that is safe for multicore use
+critical-section-impl = ["critical-section/restore-state-u8"]
+
+# Implement `defmt::Format` for several types.
+defmt = ["dep:defmt"]
+
+# Implement `rtic_monotonic::Monotonic` based on the RP235x timer peripheral
+rtic-monotonic = ["dep:rtic-monotonic"]
+
+# Implement `i2c-write-iter` traits
+i2c-write-iter = ["dep:i2c-write-iter"]
+
+# Use DCP to accelerate some (but not all) f64 operations.
+#
+# If you really want to save every last micro-amp, and know you aren't doing any
+# f64 operations, you can disable this feature (which is on by default) and then
+# manually disable the DCP by either clearing the bits we set for you in the
+# CPACR register, or changing the #[entry] macro to not set those bits.
+#
+# Almost everyone will want this on, but we let the BSPs make that choice.
+dcp-fast-f64 = []
+
+# Add a binary-info header block containing picotool-compatible metadata.
+#
+# Takes up a little flash space, but picotool can then report the name of your
+# program and other details.
+binary-info = ["rt"]
+
+[[example]]
+# irq example uses cortex-m-rt::interrupt, need rt feature for that
+name = "gpio_irq_example"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+# pwm irq input example uses cortex-m-rt::interrupt, need rt feature for that
+name = "pwm_irq_input"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+# vector_table example uses cortex-m-rt::interrupt, need rt feature for that
+name = "vector_table"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+# adc_fifo_irq example uses cortex-m-rt::interrupt, need rt feature for that
+name = "adc_fifo_irq"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+# adc_fifo_dma example uses cortex-m-rt::interrupt, need rt feature for that
+name = "adc_fifo_dma"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "adc"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "adc_fifo_poll"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "alloc"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "blinky"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+# Boot metadata doesn't work without 'rt' as the default non-rt vector table
+# has too many entries in it.
+name = "binary_info_demo"
+required-features = ["critical-section-impl", "binary-info"]
+
+[[example]]
+name = "dht11"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "gpio_in_out"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "i2c"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "i2c_async"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "i2c_async_cancelled"
+required-features = ["critical-section-impl", "defmt"]
+
+[[example]]
+name = "lcd_display"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "mem_to_mem_dma"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "multicore_fifo_blink"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "multicore_polyblink"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pio_blink"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pio_dma"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pio_proc_blink"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pio_side_set"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pio_synchronized"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "powman_test"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pwm_blink"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "pwm_blink_embedded_hal_1"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "rom_funcs"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "rosc_as_system_clock"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "spi"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "spi_dma"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "uart"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "uart_dma"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "watchdog"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "gpio_dyn_pin_array"
+required-features = ["critical-section-impl", "rt"]
+
+[[example]]
+name = "float_test"
+required-features = ["critical-section-impl", "rt"]

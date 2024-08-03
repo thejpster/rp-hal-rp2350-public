@@ -1,0 +1,402 @@
+_svd: "./rp235x.svd"
+
+DMA:
+  CH0_CTRL_TRIG:
+    _modify:
+      "CHAIN_TO":
+        description: "When this channel completes, it will trigger the channel indicated by CHAIN_TO. Disable by setting CHAIN_TO = _(this channel)_. \\n
+        Reset value is 0, which means for channels 1 and above the default will be to chain to channel 0 - set this field to avoid this behaviour."
+  CH0_AL1_CTRL:
+    _modify:
+      "CHAIN_TO":
+        description: "When this channel completes, it will trigger the channel indicated by CHAIN_TO. Disable by setting CHAIN_TO = _(this channel)_. \\n
+        Reset value is 0, which means for channels 1 and above the default will be to chain to channel 0 - set this field to avoid this behaviour."
+  CH0_AL2_CTRL:
+    _modify:
+      "CHAIN_TO":
+        description: "When this channel completes, it will trigger the channel indicated by CHAIN_TO. Disable by setting CHAIN_TO = _(this channel)_. \\n
+        Reset value is 0, which means for channels 1 and above the default will be to chain to channel 0 - set this field to avoid this behaviour."
+  CH0_AL3_CTRL:
+    _modify:
+      "CHAIN_TO":
+        description: "When this channel completes, it will trigger the channel indicated by CHAIN_TO. Disable by setting CHAIN_TO = _(this channel)_. \\n
+        Reset value is 0, which means for channels 1 and above the default will be to chain to channel 0 - set this field to avoid this behaviour."
+
+  "CH*_CTRL*":
+    "TREQ_SEL":
+      # The original enum only contains the values for the timers here
+      _replace_enum:
+        PIO0_TX0: [0, "Select PIO0's TX FIFO 0 as TREQ"]
+        PIO0_TX1: [1, "Select PIO0's TX FIFO 1 as TREQ"]
+        PIO0_TX2: [2, "Select PIO0's TX FIFO 2 as TREQ"]
+        PIO0_TX3: [3, "Select PIO0's TX FIFO 3 as TREQ"]
+        PIO0_RX0: [4, "Select PIO0's RX FIFO 0 as TREQ"]
+        PIO0_RX1: [5, "Select PIO0's RX FIFO 1 as TREQ"]
+        PIO0_RX2: [6, "Select PIO0's RX FIFO 2 as TREQ"]
+        PIO0_RX3: [7, "Select PIO0's RX FIFO 3 as TREQ"]
+        PIO1_TX0: [8, "Select PIO1's TX FIFO 0 as TREQ"]
+        PIO1_TX1: [9, "Select PIO1's TX FIFO 1 as TREQ"]
+        PIO1_TX2: [10, "Select PIO1's TX FIFO 2 as TREQ"]
+        PIO1_TX3: [11, "Select PIO1's TX FIFO 3 as TREQ"]
+        PIO1_RX0: [12, "Select PIO1's RX FIFO 0 as TREQ"]
+        PIO1_RX1: [13, "Select PIO1's RX FIFO 1 as TREQ"]
+        PIO1_RX2: [14, "Select PIO1's RX FIFO 2 as TREQ"]
+        PIO1_RX3: [15, "Select PIO1's RX FIFO 3 as TREQ"]
+        PIO2_TX0: [16, "Select PIO2's TX FIFO 0 as TREQ"]
+        PIO2_TX1: [17, "Select PIO2's TX FIFO 1 as TREQ"]
+        PIO2_TX2: [18, "Select PIO2's TX FIFO 2 as TREQ"]
+        PIO2_TX3: [19, "Select PIO2's TX FIFO 3 as TREQ"]
+        PIO2_RX0: [20, "Select PIO2's RX FIFO 0 as TREQ"]
+        PIO2_RX1: [21, "Select PIO2's RX FIFO 1 as TREQ"]
+        PIO2_RX2: [22, "Select PIO2's RX FIFO 2 as TREQ"]
+        PIO2_RX3: [23, "Select PIO2's RX FIFO 3 as TREQ"]
+        SPI0_TX: [24, "Select SPI0's TX FIFO as TREQ"]
+        SPI0_RX: [25, "Select SPI0's RX FIFO as TREQ"]
+        SPI1_TX: [26, "Select SPI1's TX FIFO as TREQ"]
+        SPI1_RX: [27, "Select SPI1's RX FIFO as TREQ"]
+        UART0_TX: [28, "Select UART0's TX FIFO as TREQ"]
+        UART0_RX: [29, "Select UART0's RX FIFO as TREQ"]
+        UART1_TX: [30, "Select UART1's TX FIFO as TREQ"]
+        UART1_RX: [31, "Select UART1's RX FIFO as TREQ"]
+        PWM_WRAP0: [32, "Select PWM Counter 0's Wrap Value as TREQ"]
+        PWM_WRAP1: [33, "Select PWM Counter 1's Wrap Value as TREQ"]
+        PWM_WRAP2: [34, "Select PWM Counter 2's Wrap Value as TREQ"]
+        PWM_WRAP3: [35, "Select PWM Counter 3's Wrap Value as TREQ"]
+        PWM_WRAP4: [36, "Select PWM Counter 4's Wrap Value as TREQ"]
+        PWM_WRAP5: [37, "Select PWM Counter 5's Wrap Value as TREQ"]
+        PWM_WRAP6: [38, "Select PWM Counter 6's Wrap Value as TREQ"]
+        PWM_WRAP7: [39, "Select PWM Counter 7's Wrap Value as TREQ"]
+        PWM_WRAP8: [40, "Select PWM Counter 8's Wrap Value as TREQ"]
+        PWM_WRAP9: [41, "Select PWM Counter 9's Wrap Value as TREQ"]
+        PWM_WRAP10: [42, "Select PWM Counter 10's Wrap Value as TREQ"]
+        PWM_WRAP11: [43, "Select PWM Counter 11's Wrap Value as TREQ"]
+        I2C0_TX: [44, "Select I2C0's TX FIFO as TREQ"]
+        I2C0_RX: [45, "Select I2C0's RX FIFO as TREQ"]
+        I2C1_TX: [46, "Select I2C1's TX FIFO as TREQ"]
+        I2C1_RX: [47, "Select I2C1's RX FIFO as TREQ"]
+        ADC: [48, "Select ADC as TREQ"]
+        XIP_STREAM: [49, "Select XIP_STREAM as TREQ"]
+        XIP_QMITX: [50, "Select XIP_QMI's TX FIFO as TREQ"]
+        XIP_QMIRX: [51, "Select XIP_QMI's RX FIFO as TREQ"]
+        HSTX: [52, "Select HSTX as TREQ"]
+        CORESIGHT: [53, "Select CORESIGHT as TREQ"]
+        SHA256: [54, "Select SHA256 as TREQ"]
+        TIMER0: [59, "Select Timer 0 as TREQ"]
+        TIMER1: [60, "Select Timer 1 as TREQ"]
+        TIMER2: [61, "Select Timer 2 as TREQ (Optional)"]
+        TIMER3: [62, "Select Timer 3 as TREQ (Optional)"]
+        PERMANENT: [63, "Permanent request, for unpaced transfers."]
+
+  _delete:
+    - "CH*_AL1_CTRL"
+    - "CH*_AL2_CTRL"
+    - "CH*_AL3_CTRL"
+  _copy:
+    "CH0_AL1_CTRL":
+      _from: "CH0_CTRL_TRIG"
+      addressOffset: 0x10
+    "CH0_AL2_CTRL":
+      _from: "CH0_CTRL_TRIG"
+      addressOffset: 0x20
+    "CH0_AL3_CTRL":
+      _from: "CH0_CTRL_TRIG"
+      addressOffset: 0x30
+    "CH1_AL1_CTRL":
+      _from: "CH1_CTRL_TRIG"
+      addressOffset: 0x50
+    "CH1_AL2_CTRL":
+      _from: "CH1_CTRL_TRIG"
+      addressOffset: 0x60
+    "CH1_AL3_CTRL":
+      _from: "CH1_CTRL_TRIG"
+      addressOffset: 0x70
+    "CH2_AL1_CTRL":
+      _from: "CH2_CTRL_TRIG"
+      addressOffset: 0x90
+    "CH2_AL2_CTRL":
+      _from: "CH2_CTRL_TRIG"
+      addressOffset: 0xa0
+    "CH2_AL3_CTRL":
+      _from: "CH2_CTRL_TRIG"
+      addressOffset: 0xb0
+    "CH3_AL1_CTRL":
+      _from: "CH3_CTRL_TRIG"
+      addressOffset: 0xd0
+    "CH3_AL2_CTRL":
+      _from: "CH3_CTRL_TRIG"
+      addressOffset: 0xe0
+    "CH3_AL3_CTRL":
+      _from: "CH3_CTRL_TRIG"
+      addressOffset: 0xf0
+    "CH4_AL1_CTRL":
+      _from: "CH4_CTRL_TRIG"
+      addressOffset: 0x110
+    "CH4_AL2_CTRL":
+      _from: "CH4_CTRL_TRIG"
+      addressOffset: 0x120
+    "CH4_AL3_CTRL":
+      _from: "CH4_CTRL_TRIG"
+      addressOffset: 0x130
+    "CH5_AL1_CTRL":
+      _from: "CH5_CTRL_TRIG"
+      addressOffset: 0x150
+    "CH5_AL2_CTRL":
+      _from: "CH5_CTRL_TRIG"
+      addressOffset: 0x160
+    "CH5_AL3_CTRL":
+      _from: "CH5_CTRL_TRIG"
+      addressOffset: 0x170
+    "CH6_AL1_CTRL":
+      _from: "CH6_CTRL_TRIG"
+      addressOffset: 0x190
+    "CH6_AL2_CTRL":
+      _from: "CH6_CTRL_TRIG"
+      addressOffset: 0x1a0
+    "CH6_AL3_CTRL":
+      _from: "CH6_CTRL_TRIG"
+      addressOffset: 0x1b0
+    "CH7_AL1_CTRL":
+      _from: "CH7_CTRL_TRIG"
+      addressOffset: 0x1d0
+    "CH7_AL2_CTRL":
+      _from: "CH7_CTRL_TRIG"
+      addressOffset: 0x1e0
+    "CH7_AL3_CTRL":
+      _from: "CH7_CTRL_TRIG"
+      addressOffset: 0x1f0
+    "CH8_AL1_CTRL":
+      _from: "CH8_CTRL_TRIG"
+      addressOffset: 0x210
+    "CH8_AL2_CTRL":
+      _from: "CH8_CTRL_TRIG"
+      addressOffset: 0x220
+    "CH8_AL3_CTRL":
+      _from: "CH8_CTRL_TRIG"
+      addressOffset: 0x230
+    "CH9_AL1_CTRL":
+      _from: "CH9_CTRL_TRIG"
+      addressOffset: 0x250
+    "CH9_AL2_CTRL":
+      _from: "CH9_CTRL_TRIG"
+      addressOffset: 0x260
+    "CH9_AL3_CTRL":
+      _from: "CH9_CTRL_TRIG"
+      addressOffset: 0x270
+    "CH10_AL1_CTRL":
+      _from: "CH10_CTRL_TRIG"
+      addressOffset: 0x290
+    "CH10_AL2_CTRL":
+      _from: "CH10_CTRL_TRIG"
+      addressOffset: 0x2a0
+    "CH10_AL3_CTRL":
+      _from: "CH10_CTRL_TRIG"
+      addressOffset: 0x2b0
+    "CH11_AL1_CTRL":
+      _from: "CH11_CTRL_TRIG"
+      addressOffset: 0x2d0
+    "CH11_AL2_CTRL":
+      _from: "CH11_CTRL_TRIG"
+      addressOffset: 0x2e0
+    "CH11_AL3_CTRL":
+      _from: "CH11_CTRL_TRIG"
+      addressOffset: 0x2f0
+    "CH12_AL1_CTRL":
+      _from: "CH12_CTRL_TRIG"
+      addressOffset: 0x310
+    "CH12_AL2_CTRL":
+      _from: "CH12_CTRL_TRIG"
+      addressOffset: 0x320
+    "CH12_AL3_CTRL":
+      _from: "CH12_CTRL_TRIG"
+      addressOffset: 0x330
+    "CH13_AL1_CTRL":
+      _from: "CH13_CTRL_TRIG"
+      addressOffset: 0x350
+    "CH13_AL2_CTRL":
+      _from: "CH13_CTRL_TRIG"
+      addressOffset: 0x360
+    "CH13_AL3_CTRL":
+      _from: "CH13_CTRL_TRIG"
+      addressOffset: 0x370
+    "CH14_AL1_CTRL":
+      _from: "CH14_CTRL_TRIG"
+      addressOffset: 0x390
+    "CH14_AL2_CTRL":
+      _from: "CH14_CTRL_TRIG"
+      addressOffset: 0x3a0
+    "CH14_AL3_CTRL":
+      _from: "CH14_CTRL_TRIG"
+      addressOffset: 0x3b0
+    "CH15_AL1_CTRL":
+      _from: "CH15_CTRL_TRIG"
+      addressOffset: 0x3d0
+    "CH15_AL2_CTRL":
+      _from: "CH15_CTRL_TRIG"
+      addressOffset: 0x3e0
+    "CH15_AL3_CTRL":
+      _from: "CH15_CTRL_TRIG"
+      addressOffset: 0x3f0
+
+  _cluster:
+    "CH%s":
+      "CH?_READ_ADDR,CH??_READ_ADDR": {}
+      "CH?_WRITE_ADDR,CH??_WRITE_ADDR": {}
+      "CH?_TRANS_COUNT,CH??_TRANS_COUNT": {}
+      "CH?_CTRL_TRIG,CH??_CTRL_TRIG": {}
+      "CH?_AL1_CTRL,CH??_AL1_CTRL": {}
+      "CH?_AL1_READ_ADDR,CH??_AL1_READ_ADDR": {}
+      "CH?_AL1_WRITE_ADDR,CH??_AL1_WRITE_ADDR": {}
+      "CH?_AL1_TRANS_COUNT_TRIG,CH??_AL1_TRANS_COUNT_TRIG": {}
+      "CH?_AL2_CTRL,CH??_AL2_CTRL": {}
+      "CH?_AL2_TRANS_COUNT,CH??_AL2_TRANS_COUNT": {}
+      "CH?_AL2_READ_ADDR,CH??_AL2_READ_ADDR": {}
+      "CH?_AL2_WRITE_ADDR_TRIG,CH??_AL2_WRITE_ADDR_TRIG": {}
+      "CH?_AL3_CTRL,CH??_AL3_CTRL": {}
+      "CH?_AL3_WRITE_ADDR,CH??_AL3_WRITE_ADDR": {}
+      "CH?_AL3_TRANS_COUNT,CH??_AL3_TRANS_COUNT": {}
+      "CH?_AL3_READ_ADDR_TRIG,CH??_AL3_READ_ADDR_TRIG": {}
+
+PIO0:
+  _array:
+    "INSTR_MEM*": {}
+    "TXF*": {}
+    "RXF?": {}
+    "RXF0_PUTGET?": {}
+    "RXF1_PUTGET?": {}
+    "RXF2_PUTGET?": {}
+    "RXF3_PUTGET?": {}
+
+  _cluster:
+    "SM%s":
+      "SM*_CLKDIV": {}
+      "SM*_EXECCTRL": {}
+      "SM*_SHIFTCTRL": {}
+      "SM*_ADDR": {}
+      "SM*_INSTR": {}
+      "SM*_PINCTRL": {}
+
+    "SM_IRQ%s":
+      "IRQ*_INTE": {}
+      "IRQ*_INTF": {}
+      "IRQ*_INTS": {}
+
+PWM:
+  "CH*_TOP":
+    _modify:
+      "CH0_TOP":
+        name: "TOP"
+
+  "CH*_CTR":
+    _modify:
+      "CH0_CTR":
+        name: "CTR"
+
+  _cluster:
+    "CH%s":
+      "CH*_CC":
+        name: "CC"
+      "CH*_CSR":
+        name: "CSR"
+      "CH*_CTR":
+        name: "CTR"
+      "CH*_DIV":
+        name: "DIV"
+      "CH*_TOP":
+        name: "TOP"
+
+IO_BANK0:
+  # Can't array registers unless they have the same number of fields, so add "pseudo" GPIO here
+  _array:
+    "INTR*": {}
+    "PROC0_INTE*": {}
+    "PROC0_INTF*": {}
+    "PROC0_INTS*": {}
+    "PROC1_INTE*": {}
+    "PROC1_INTF*": {}
+    "PROC1_INTS*": {}
+    "DORMANT_WAKE_INTE*": {}
+    "DORMANT_WAKE_INTF*": {}
+    "DORMANT_WAKE_INTS*": {}
+
+  "GPIO*_CTRL":
+    _modify:
+      FUNCSEL:
+        description: "0-31 -> selects pin function according to the GPIO table. Not all options are valid for all GPIO pins."
+    FUNCSEL:
+      _replace_enum:
+        jtag: [0, "Connect to JTAG peripheral"]
+        spi: [1, "Connect to matching SPI peripheral"]
+        uart: [2, "Connect to matching UART peripheral"]
+        i2c: [3, "Connect to matching I2C peripheral"]
+        pwm: [4, "Connect to matching PWM peripheral"]
+        sio: [5, "Use as a GPIO pin (connect to SIO peripheral)"]
+        pio0: [6, "Connect to PIO0 peripheral"]
+        pio1: [7, "Connect to PIO1 peripheral"]
+        pio2: [8, "Connect to PIO2 peripheral"]
+        gpck: [9, "Connect to GPCK peripheral"]
+        usb: [10, "Connect to USB peripheral "]
+        uart_aux: [11, "Connect to matching UART_AUX peripheral "]
+        "null": [31, "Connect to nothing"]
+
+  _cluster:
+    "GPIO%s":
+      "GPIO*_STATUS": {}
+      "GPIO*_CTRL": {}
+
+SPI0:
+  SSPCR0:
+    _modify:
+      FRF:
+        description: "Frame format."
+    FRF:
+      _replace_enum:
+        Motorola: [0, "Motorola SPI frame format"]
+        Texas_Instruments: [1, "Texas Instruments synchronous serial frame format"]
+        National_Semiconductor_Microwire: [2, "National Semiconductor Microwire frame format"]
+
+IO_QSPI:
+  _cluster:
+    "GPIO_QSPI%s":
+      "GPIO_QSPI_*_STATUS":
+        name: "GPIO_STATUS"
+      "GPIO_QSPI_*_CTRL":
+        name: "GPIO_CTRL"
+
+PADS_BANK0:
+  _array:
+    "GPIO*": {}
+
+USBCTRL_REGS:
+  SIE_STATUS:
+    LINE_STATE:
+      SE0: [0, "SE0"]
+      J: [1, "J"]
+      K: [2, "K"]
+      SE1: [3, "SE1"]
+
+  # The ADDR_ENDP* registers collected into the array HOST_ADDR_ENDP.
+  # This renaming is necessary to avoid collision with the "ADDR_ENDP" register used in device mode.
+  _array:
+    "ADDR_ENDP[123456789],ADDR_ENDP1[012345]":
+      name: "HOST_ADDR_ENDP%s"
+      description: "Interrupt endpoints. Only valid in HOST mode."
+
+SIO:
+  _modify:
+    "SPINLOCK[0123456789],SPINLOCK[12][0123456789],SPINLOCK3[01]":
+      access: "read-write" 
+  _array:
+    "SPINLOCK[0123456789],SPINLOCK[12][0123456789],SPINLOCK3[01]":
+      _start_from_zero: true
+      description: _original
+      name: SPINLOCK%s
+
+TICKS:
+  _cluster:
+    "TICK%s":
+      "*_CTRL":
+        name: "CTRL"
+      "*_CYCLES":
+        name: "CYCLES"
+      "*_COUNT":
+        name: "COUNT"

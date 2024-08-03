@@ -1,0 +1,26 @@
+on: [push, pull_request]
+name: Clippy check
+jobs:
+  clippy_check:
+    name: Run Clippy
+    runs-on: ubuntu-20.04
+    env:
+      RUSTFLAGS: "-D warnings"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv8m.main-none-eabihf,riscv32imac-unknown-none-elf
+          components: clippy
+      - name: Run clippy on examples for Arm
+        run: |
+          cargo clippy --workspace --examples --target=thumbv8m.main-none-eabihf -- -Dwarnings 
+      - name: Run clippy on examples for Arm with all features
+        run: |
+          cargo clippy --workspace --examples --all-features --target=thumbv8m.main-none-eabihf -- -Dwarnings 
+      - name: Run clippy on HAL for RISC-V
+        run: |
+          cargo clippy --workspace --target=riscv32imac-unknown-none-elf -- -Dwarnings 
+      - name: Run clippy on HAL for RISC-V with all features
+        run: |
+          cargo clippy --workspace --all-features --target=riscv32imac-unknown-none-elf -- -Dwarnings 

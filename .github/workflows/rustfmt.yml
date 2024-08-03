@@ -1,0 +1,15 @@
+on: [push, pull_request]
+name: Code formatting check
+jobs:
+  fmt:
+    name: Rustfmt
+    runs-on: ubuntu-20.04
+    env:
+      RUSTFLAGS: "-D warnings"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: |
+          cargo fmt -- --check

@@ -1,0 +1,224 @@
+#[doc = "Register `MEMPOWERDOWN` reader"]
+pub type R = crate::R<MEMPOWERDOWN_SPEC>;
+#[doc = "Register `MEMPOWERDOWN` writer"]
+pub type W = crate::W<MEMPOWERDOWN_SPEC>;
+#[doc = "Field `SRAM0` reader - "]
+pub type SRAM0_R = crate::BitReader;
+#[doc = "Field `SRAM0` writer - "]
+pub type SRAM0_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM1` reader - "]
+pub type SRAM1_R = crate::BitReader;
+#[doc = "Field `SRAM1` writer - "]
+pub type SRAM1_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM2` reader - "]
+pub type SRAM2_R = crate::BitReader;
+#[doc = "Field `SRAM2` writer - "]
+pub type SRAM2_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM3` reader - "]
+pub type SRAM3_R = crate::BitReader;
+#[doc = "Field `SRAM3` writer - "]
+pub type SRAM3_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM4` reader - "]
+pub type SRAM4_R = crate::BitReader;
+#[doc = "Field `SRAM4` writer - "]
+pub type SRAM4_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM5` reader - "]
+pub type SRAM5_R = crate::BitReader;
+#[doc = "Field `SRAM5` writer - "]
+pub type SRAM5_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM6` reader - "]
+pub type SRAM6_R = crate::BitReader;
+#[doc = "Field `SRAM6` writer - "]
+pub type SRAM6_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM7` reader - "]
+pub type SRAM7_R = crate::BitReader;
+#[doc = "Field `SRAM7` writer - "]
+pub type SRAM7_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM8` reader - "]
+pub type SRAM8_R = crate::BitReader;
+#[doc = "Field `SRAM8` writer - "]
+pub type SRAM8_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `SRAM9` reader - "]
+pub type SRAM9_R = crate::BitReader;
+#[doc = "Field `SRAM9` writer - "]
+pub type SRAM9_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `USB` reader - "]
+pub type USB_R = crate::BitReader;
+#[doc = "Field `USB` writer - "]
+pub type USB_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `ROM` reader - "]
+pub type ROM_R = crate::BitReader;
+#[doc = "Field `ROM` writer - "]
+pub type ROM_W<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `BOOTRAM` reader - "]
+pub type BOOTRAM_R = crate::BitReader;
+#[doc = "Field `BOOTRAM` writer - "]
+pub type BOOTRAM_W<'a, REG> = crate::BitWriter<'a, REG>;
+impl R {
+    #[doc = "Bit 0"]
+    #[inline(always)]
+    pub fn sram0(&self) -> SRAM0_R {
+        SRAM0_R::new((self.bits & 1) != 0)
+    }
+    #[doc = "Bit 1"]
+    #[inline(always)]
+    pub fn sram1(&self) -> SRAM1_R {
+        SRAM1_R::new(((self.bits >> 1) & 1) != 0)
+    }
+    #[doc = "Bit 2"]
+    #[inline(always)]
+    pub fn sram2(&self) -> SRAM2_R {
+        SRAM2_R::new(((self.bits >> 2) & 1) != 0)
+    }
+    #[doc = "Bit 3"]
+    #[inline(always)]
+    pub fn sram3(&self) -> SRAM3_R {
+        SRAM3_R::new(((self.bits >> 3) & 1) != 0)
+    }
+    #[doc = "Bit 4"]
+    #[inline(always)]
+    pub fn sram4(&self) -> SRAM4_R {
+        SRAM4_R::new(((self.bits >> 4) & 1) != 0)
+    }
+    #[doc = "Bit 5"]
+    #[inline(always)]
+    pub fn sram5(&self) -> SRAM5_R {
+        SRAM5_R::new(((self.bits >> 5) & 1) != 0)
+    }
+    #[doc = "Bit 6"]
+    #[inline(always)]
+    pub fn sram6(&self) -> SRAM6_R {
+        SRAM6_R::new(((self.bits >> 6) & 1) != 0)
+    }
+    #[doc = "Bit 7"]
+    #[inline(always)]
+    pub fn sram7(&self) -> SRAM7_R {
+        SRAM7_R::new(((self.bits >> 7) & 1) != 0)
+    }
+    #[doc = "Bit 8"]
+    #[inline(always)]
+    pub fn sram8(&self) -> SRAM8_R {
+        SRAM8_R::new(((self.bits >> 8) & 1) != 0)
+    }
+    #[doc = "Bit 9"]
+    #[inline(always)]
+    pub fn sram9(&self) -> SRAM9_R {
+        SRAM9_R::new(((self.bits >> 9) & 1) != 0)
+    }
+    #[doc = "Bit 10"]
+    #[inline(always)]
+    pub fn usb(&self) -> USB_R {
+        USB_R::new(((self.bits >> 10) & 1) != 0)
+    }
+    #[doc = "Bit 11"]
+    #[inline(always)]
+    pub fn rom(&self) -> ROM_R {
+        ROM_R::new(((self.bits >> 11) & 1) != 0)
+    }
+    #[doc = "Bit 12"]
+    #[inline(always)]
+    pub fn bootram(&self) -> BOOTRAM_R {
+        BOOTRAM_R::new(((self.bits >> 12) & 1) != 0)
+    }
+}
+impl W {
+    #[doc = "Bit 0"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram0(&mut self) -> SRAM0_W<MEMPOWERDOWN_SPEC> {
+        SRAM0_W::new(self, 0)
+    }
+    #[doc = "Bit 1"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram1(&mut self) -> SRAM1_W<MEMPOWERDOWN_SPEC> {
+        SRAM1_W::new(self, 1)
+    }
+    #[doc = "Bit 2"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram2(&mut self) -> SRAM2_W<MEMPOWERDOWN_SPEC> {
+        SRAM2_W::new(self, 2)
+    }
+    #[doc = "Bit 3"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram3(&mut self) -> SRAM3_W<MEMPOWERDOWN_SPEC> {
+        SRAM3_W::new(self, 3)
+    }
+    #[doc = "Bit 4"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram4(&mut self) -> SRAM4_W<MEMPOWERDOWN_SPEC> {
+        SRAM4_W::new(self, 4)
+    }
+    #[doc = "Bit 5"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram5(&mut self) -> SRAM5_W<MEMPOWERDOWN_SPEC> {
+        SRAM5_W::new(self, 5)
+    }
+    #[doc = "Bit 6"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram6(&mut self) -> SRAM6_W<MEMPOWERDOWN_SPEC> {
+        SRAM6_W::new(self, 6)
+    }
+    #[doc = "Bit 7"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram7(&mut self) -> SRAM7_W<MEMPOWERDOWN_SPEC> {
+        SRAM7_W::new(self, 7)
+    }
+    #[doc = "Bit 8"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram8(&mut self) -> SRAM8_W<MEMPOWERDOWN_SPEC> {
+        SRAM8_W::new(self, 8)
+    }
+    #[doc = "Bit 9"]
+    #[inline(always)]
+    #[must_use]
+    pub fn sram9(&mut self) -> SRAM9_W<MEMPOWERDOWN_SPEC> {
+        SRAM9_W::new(self, 9)
+    }
+    #[doc = "Bit 10"]
+    #[inline(always)]
+    #[must_use]
+    pub fn usb(&mut self) -> USB_W<MEMPOWERDOWN_SPEC> {
+        USB_W::new(self, 10)
+    }
+    #[doc = "Bit 11"]
+    #[inline(always)]
+    #[must_use]
+    pub fn rom(&mut self) -> ROM_W<MEMPOWERDOWN_SPEC> {
+        ROM_W::new(self, 11)
+    }
+    #[doc = "Bit 12"]
+    #[inline(always)]
+    #[must_use]
+    pub fn bootram(&mut self) -> BOOTRAM_W<MEMPOWERDOWN_SPEC> {
+        BOOTRAM_W::new(self, 12)
+    }
+}
+#[doc = "Control PD pins to memories.  
+ Set high to put memories to a low power state. In this state the memories will retain contents but not be accessible  
+ Use with caution  
+
+You can [`read`](crate::Reg::read) this register and get [`mempowerdown::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`mempowerdown::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct MEMPOWERDOWN_SPEC;
+impl crate::RegisterSpec for MEMPOWERDOWN_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [`mempowerdown::R`](R) reader structure"]
+impl crate::Readable for MEMPOWERDOWN_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`mempowerdown::W`](W) writer structure"]
+impl crate::Writable for MEMPOWERDOWN_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
+#[doc = "`reset()` method sets MEMPOWERDOWN to value 0"]
+impl crate::Resettable for MEMPOWERDOWN_SPEC {
+    const RESET_VALUE: u32 = 0;
+}

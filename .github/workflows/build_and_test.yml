@@ -1,0 +1,129 @@
+on: [push, pull_request]
+name: Build and Test check
+jobs:
+  rp235x-hal-builds:
+    name: Build rp235x-hal's features
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          target: thumbv8m.main-none-eabihf,riscv32imac-unknown-none-elf
+      - name: Install cargo-hack
+        run: |
+          curl -sSL https://github.com/taiki-e/cargo-hack/releases/download/v0.5.28/cargo-hack-x86_64-unknown-linux-gnu.tar.gz | tar xvzf - -C ~/.cargo/bin
+      - name: Build rp235x-hal's workspace (without the examples) for Arm
+        run: |
+          cargo hack build --optional-deps --each-feature --target=thumbv8m.main-none-eabihf
+      - name: Build rp235x-hal's workspace (without the examples) for RISC-V
+        run: |
+          cargo hack build --optional-deps --each-feature --target=riscv32imac-unknown-none-elf
+  rp235x-examples-builds:
+    name: Build rp235x-hal's examples
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          target: thumbv8m.main-none-eabihf,riscv32imac-unknown-none-elf
+      - name: Install cargo-hack
+        run: |
+          curl -sSL https://github.com/taiki-e/cargo-hack/releases/download/v0.5.28/cargo-hack-x86_64-unknown-linux-gnu.tar.gz | tar xvzf - -C ~/.cargo/bin
+      - name: Build workspace
+        run: |
+          cargo hack build --examples --optional-deps --each-feature --target=thumbv8m.main-none-eabihf
+      - name: Build select RISC-V examples
+        run: |
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example adc
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example adc_fifo_dma
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example adc_fifo_poll
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example alloc
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example binary_info_demo
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example blinky
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example dht11
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example gpio_dyn_pin_array
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example gpio_in_out
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example i2c
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example lcd_display
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example mem_to_mem_dma
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pio_blink
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pio_dma
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pio_proc_blink
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pio_side_set
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pio_synchronized
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pwm_blink
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example pwm_blink_embedded_hal_1
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example rom_funcs
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example rosc_as_system_clock
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example spi_dma
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example uart
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example uart_dma
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example watchdog
+  rp235x-tests:
+    name: Execute rp235x host-runable tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          target: thumbv8m.main-none-eabihf,riscv32imac-unknown-none-elf
+      - name: Install cargo-hack
+        run: |
+          curl -sSL https://github.com/taiki-e/cargo-hack/releases/download/v0.5.28/cargo-hack-x86_64-unknown-linux-gnu.tar.gz | tar xvzf - -C ~/.cargo/bin
+      - name: Test
+        run: |
+          cargo hack test -p rp235x-hal --tests --optional-deps --each-feature --features critical-section-impl
+      - name: Test docs
+        run: |
+          cargo hack test -p rp235x-hal --doc --optional-deps --each-feature --features critical-section-impl
+      - name: Test macros
+        run: |
+          cargo hack test -p rp235x-hal-macros --tests --optional-deps --each-feature
+      - name: Test macro docs
+        run: |
+          cargo hack test -p rp235x-hal-macros --doc --optional-deps --each-feature
+      - name: Clean
+        run: |
+          cargo clean
+  rp235x-udeps:
+    name: Check rp235x-hal for unused dependencies
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2024-07-05
+          target: thumbv8m.main-none-eabihf,riscv32imac-unknown-none-elf
+      - name: Install cargo-hack
+        run: |
+          curl -sSL https://github.com/taiki-e/cargo-hack/releases/download/v0.5.28/cargo-hack-x86_64-unknown-linux-gnu.tar.gz | tar xvzf - -C ~/.cargo/bin
+      - name: Install cargo-udeps
+        run: |
+          curl -sSL https://github.com/est31/cargo-udeps/releases/download/v0.1.49/cargo-udeps-v0.1.49-x86_64-unknown-linux-gnu.tar.gz | tar xvzf - --strip-components=2 -C ~/.cargo/bin ./cargo-udeps-v0.1.49-x86_64-unknown-linux-gnu/cargo-udeps
+      - name: Check unused deps on Arm
+        run: |
+          cargo hack udeps --optional-deps --each-feature --target=thumbv8m.main-none-eabihf
+      - name: Check unused deps on RISC-V
+        run: |
+          cargo hack udeps --optional-deps --each-feature --target=riscv32imac-unknown-none-elf
+  rp235x-msrv:
+    name: Verify RP2350 build on MSRV
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.77
+          target: thumbv8m.main-none-eabihf,riscv32imac-unknown-none-elf
+      - name: Install cargo-hack
+        run: |
+          curl -sSL https://github.com/taiki-e/cargo-hack/releases/download/v0.5.28/cargo-hack-x86_64-unknown-linux-gnu.tar.gz | tar xvzf - -C ~/.cargo/bin
+      - name: Use older version of regex
+        run: |
+          cargo update -p regex --precise 1.9.3
+      - name: Verify MSRV on Arm
+        run: |
+          cargo hack build --examples --optional-deps --each-feature --target=thumbv8m.main-none-eabihf
+      - name: Verify MSRV on RISC-V
+        run: |
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example blinky

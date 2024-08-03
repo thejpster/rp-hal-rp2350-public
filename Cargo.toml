@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = [
+    "rp235x-hal",
+    "rp235x-pac",
+    "rp235x-hal-macros",
+]
+
+[patch.'https://github.com/rp-rs/rp-hal.git']
+rp235x-hal = { path = "./rp235x-hal" }
+
+[patch.crates-io]
+rp235x-hal = { path = "./rp235x-hal" }
+
+[profile.dev]
+opt-level = 1
