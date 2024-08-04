@@ -152,9 +152,11 @@ name = "blinky"
 required-features = ["critical-section-impl", "rt"]
 
 [[example]]
-# Boot metadata doesn't work without 'rt' as the default non-rt vector table
-# has too many entries in it.
 name = "binary_info_demo"
+required-features = ["critical-section-impl", "binary-info"]
+
+[[example]]
+name = "block_loop"
 required-features = ["critical-section-impl", "binary-info"]
 
 [[example]]

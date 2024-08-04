@@ -40,6 +40,7 @@ jobs:
           cargo build --all-features --target=riscv32imac-unknown-none-elf --example alloc
           cargo build --all-features --target=riscv32imac-unknown-none-elf --example binary_info_demo
           cargo build --all-features --target=riscv32imac-unknown-none-elf --example blinky
+          cargo build --all-features --target=riscv32imac-unknown-none-elf --example block_loop
           cargo build --all-features --target=riscv32imac-unknown-none-elf --example dht11
           cargo build --all-features --target=riscv32imac-unknown-none-elf --example gpio_dyn_pin_array
           cargo build --all-features --target=riscv32imac-unknown-none-elf --example gpio_in_out

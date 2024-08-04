@@ -6,7 +6,103 @@
 //! firmware image. The `PARTITION_TABLE` Block (here the `PartitionTable` type)
 //! tells the ROM how to divide the flash space up into partitions.
 
-/// The smallest block we can have - it has one item in it.
+// These all have a 1 byte size
+
+/// An item ID for encoding a Vector Table address
+pub const ITEM_1BS_VECTOR_TABLE: u8 = 0x03;
+
+/// An item ID for encoding a Rolling Window Delta
+pub const ITEM_1BS_ROLLING_WINDOW_DELTA: u8 = 0x05;
+
+/// An item ID for encoding a Signature
+pub const ITEM_1BS_SIGNATURE: u8 = 0x09;
+
+/// An item ID for encoding a Salt
+pub const ITEM_1BS_SALT: u8 = 0x0c;
+
+/// An item ID for encoding an Image Type
+pub const ITEM_1BS_IMAGE_TYPE: u8 = 0x42;
+
+/// An item ID for encoding the image's Entry Point
+pub const ITEM_1BS_ENTRY_POINT: u8 = 0x44;
+
+/// An item ID for encoding the definition of a Hash
+pub const ITEM_2BS_HASH_DEF: u8 = 0x47;
+
+/// An item ID for encoding a Version
+pub const ITEM_1BS_VERSION: u8 = 0x48;
+
+/// An item ID for encoding a Hash
+pub const ITEM_1BS_HASH_VALUE: u8 = 0x4b;
+
+// These all have a 2-byte size
+
+/// An item ID for encoding a Load Map
+pub const ITEM_2BS_LOAD_MAP: u8 = 0x06;
+
+/// An item ID for encoding a Partition Table
+pub const ITEM_2BS_PARTITION_TABLE: u8 = 0x0a;
+
+/// An item ID for encoding a placeholder entry that is ignored
+///
+/// Allows a Block to not be empty.
+pub const ITEM_2BS_IGNORED: u8 = 0xfe;
+
+/// An item ID for encoding the special last item in a Block
+///
+/// It records how long the Block is.
+pub const ITEM_2BS_LAST: u8 = 0xff;
+
+// Options for ITEM_1BS_IMAGE_TYPE
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark an image as invalid
+pub const IMAGE_TYPE_INVALID: u16 = 0x0000;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark an image as an executable
+pub const IMAGE_TYPE_EXE: u16 = 0x0001;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark an image as data
+pub const IMAGE_TYPE_DATA: u16 = 0x0002;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU security mode as unspecified
+pub const IMAGE_TYPE_EXE_TYPE_SECURITY_UNSPECIFIED: u16 = 0x0000;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU security mode as Non Secure
+pub const IMAGE_TYPE_EXE_TYPE_SECURITY_NS: u16 = 0x0010;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU security mode as Non Secure
+pub const IMAGE_TYPE_EXE_TYPE_SECURITY_S: u16 = 0x0020;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU type as Arm
+pub const IMAGE_TYPE_EXE_CPU_ARM: u16 = 0x0000;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU type as RISC-V
+pub const IMAGE_TYPE_EXE_CPU_RISCV: u16 = 0x0100;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU as an RP2040
+pub const IMAGE_TYPE_EXE_CHIP_RP2040: u16 = 0x0000;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the CPU as an RP2350
+pub const IMAGE_TYPE_EXE_CHIP_RP2350: u16 = 0x1000;
+
+/// A [`ITEM_1BS_IMAGE_TYPE`] value bitmask to mark the image as Try Before You Buy.
+///
+/// This means the image must be marked as 'Bought' with the ROM before the
+/// watchdog times out the trial period, otherwise it is erased and the previous
+/// image will be booted.
+pub const IMAGE_TYPE_TBYB: u16 = 0x8000;
+
+/// This is the magic Block Start value.
+///
+/// The Pico-SDK calls it `PICOBIN_BLOCK_MARKER_START`
+const BLOCK_MARKER_START: u32 = 0xffffded3;
+
+/// This is the magic Block END value.
+///
+/// The Pico-SDK calls it `PICOBIN_BLOCK_MARKER_END`
+const BLOCK_MARKER_END: u32 = 0xab123579;
+
+/// An Image Definition has one item in it - an [`ITEM_1BS_IMAGE_TYPE`]
 pub type ImageDef = Block<1>;
 
 /// A Block as understood by the Boot ROM.
@@ -22,173 +118,46 @@ pub struct Block<const N: usize> {
     marker_start: u32,
     items: [u32; N],
     length: u32,
-    offset: u32,
+    offset: *const u32,
     marker_end: u32,
 }
 
-#[allow(missing_docs)]
+unsafe impl<const N: usize> Sync for Block<N> {}
+
 impl<const N: usize> Block<N> {
-    // These all have a 1 byte size
-
-    pub const ITEM_1BS_VECTOR_TABLE: u8 = 0x03;
-    pub const ITEM_1BS_ROLLING_WINDOW_DELTA: u8 = 0x05;
-    pub const ITEM_1BS_SIGNATURE: u8 = 0x09;
-    pub const ITEM_1BS_SALT: u8 = 0x0c;
-    pub const ITEM_1BS_NEXT_BLOCK_OFFSET: u8 = 0x41;
-    pub const ITEM_1BS_IMAGE_TYPE: u8 = 0x42;
-    pub const ITEM_1BS_ENTRY_POINT: u8 = 0x44;
-    pub const ITEM_2BS_HASH_DEF: u8 = 0x47;
-    pub const ITEM_1BS_VERSION: u8 = 0x48;
-    pub const ITEM_1BS_HASH_VALUE: u8 = 0x4b;
-
-    // These all have a 2-byte size
-
-    pub const ITEM_2BS_LOAD_MAP: u8 = 0x06;
-    pub const ITEM_2BS_PARTITION_TABLE: u8 = 0x0a;
-    pub const ITEM_2BS_IGNORED: u8 = 0xfe;
-    pub const ITEM_2BS_LAST: u8 = 0xff;
-
-    // Options for ITEM_1BS_IMAGE_TYPE
-
-    pub const IMAGE_TYPE_INVALID: u16 = 0x0000;
-    pub const IMAGE_TYPE_EXE: u16 = 0x0001;
-    pub const IMAGE_TYPE_DATA: u16 = 0x0002;
-    pub const IMAGE_TYPE_EXE_TYPE_SECURITY_UNSPECIFIED: u16 = 0x0000;
-    pub const IMAGE_TYPE_EXE_TYPE_SECURITY_NS: u16 = 0x0010;
-    pub const IMAGE_TYPE_EXE_TYPE_SECURITY_S: u16 = 0x0020;
-    pub const IMAGE_TYPE_EXE_CPU_ARM: u16 = 0x0000;
-    pub const IMAGE_TYPE_EXE_CPU_RISCV: u16 = 0x0100;
-    pub const IMAGE_TYPE_EXE_CHIP_RP2040: u16 = 0x0000;
-    pub const IMAGE_TYPE_EXE_CHIP_RP2350: u16 = 0x1000;
-    pub const IMAGE_TYPE_TBYB: u16 = 0x8000;
-
-    /// This is the magic ROM value the Pico-SDK calls
-    /// `PICOBIN_BLOCK_MARKER_START`
-    const BLOCK_MARKER_START: u32 = 0xffffded3;
-
-    /// This is the magic ROM value the Pico-SDK calls
-    /// `PICOBIN_BLOCK_MARKER_END`
-    const BLOCK_MARKER_END: u32 = 0xab123579;
-
     /// Construct a new Binary Block, with the given items.
     ///
     /// The length, and the Start and End markers are added automatically. The
     /// Block Loop pointer initially points to itself.
     pub const fn new(items: [u32; N]) -> Block<N> {
         Block {
-            marker_start: Self::BLOCK_MARKER_START,
+            marker_start: BLOCK_MARKER_START,
             items,
-            length: Self::make_length(N as u16),
+            length: item_last(N as u16),
             // offset from this block to next block in loop. By default
             // we form a Block Loop with a single Block in it.
-            offset: 0x0000_0000,
-            marker_end: Self::BLOCK_MARKER_END,
+            offset: core::ptr::null(),
+            marker_end: BLOCK_MARKER_END,
         }
     }
 
-    /// Change the Block Loop offset pointer.
-    pub const fn with_offset(self, offset: u32) -> Block<N> {
+    /// Change the Block Loop offset value.
+    ///
+    /// This method isn't that useful because you can't evaluate the difference
+    /// between two pointers in a const context as the addresses aren't assigned
+    /// until long after the const evaluator has run.
+    ///
+    /// If you think you need this method, you might want to set a unique random
+    /// value here and swap it for the real offset as a post-processing step.
+    pub const fn with_offset(self, offset: *const u32) -> Block<N> {
         Block { offset, ..self }
-    }
-
-    /// Make a word containing a 1 byte length.
-    ///
-    /// The `command` arg should contain `1BS`
-    pub const fn make_1bs_item(value: u16, length: u8, command: u8) -> u32 {
-        ((value as u32) << 16) | ((length as u32) << 8) | (command as u32)
-    }
-
-    /// Make a word containing a 2 byte length.
-    ///
-    /// The `command` arg should contain `2BS`
-    pub const fn make_2bs_item(value: u8, length: u16, command: u8) -> u32 {
-        ((value as u32) << 24) | ((length as u32) << 8) | (command as u32)
-    }
-
-    /// Create Image Type item, of type INVALID.
-    pub const fn make_image_type_invalid() -> u32 {
-        let value = Self::IMAGE_TYPE_INVALID;
-        Self::make_1bs_item(value, 1, Self::ITEM_1BS_IMAGE_TYPE)
-    }
-
-    /// Create Image Type item, of type DATA.
-    pub const fn make_image_type_data() -> u32 {
-        let value = Self::IMAGE_TYPE_DATA;
-        Self::make_1bs_item(value, 1, Self::ITEM_1BS_IMAGE_TYPE)
-    }
-
-    /// Create Image Type item, of type EXE.
-    pub const fn make_image_type_exe(security: Security, arch: Architecture) -> u32 {
-        let mut value = Self::IMAGE_TYPE_EXE | Self::IMAGE_TYPE_EXE_CHIP_RP2350;
-
-        match arch {
-            Architecture::Arm => {
-                value |= Self::IMAGE_TYPE_EXE_CPU_ARM;
-            }
-            Architecture::Riscv => {
-                value |= Self::IMAGE_TYPE_EXE_CPU_RISCV;
-            }
-        }
-
-        match security {
-            Security::Unspecified => value |= Self::IMAGE_TYPE_EXE_TYPE_SECURITY_UNSPECIFIED,
-            Security::NonSecure => value |= Self::IMAGE_TYPE_EXE_TYPE_SECURITY_NS,
-            Security::Secure => value |= Self::IMAGE_TYPE_EXE_TYPE_SECURITY_S,
-        }
-
-        Self::make_1bs_item(value, 1, Self::ITEM_1BS_IMAGE_TYPE)
-    }
-
-    /// Create a Block Length item.
-    pub const fn make_length(length: u16) -> u32 {
-        Self::make_2bs_item(0, length, Self::ITEM_2BS_LAST)
-    }
-
-    /// Create a Vector Table item.
-    ///
-    /// This is only allowed on Arm systems.
-    pub const fn make_vector_table(table_ptr: u32) -> [u32; 2] {
-        [
-            Self::make_1bs_item(0, 2, Self::ITEM_1BS_VECTOR_TABLE),
-            table_ptr,
-        ]
-    }
-
-    /// Create an Entry Point item.
-    pub const fn make_entry_point(entry_point: u32, initial_sp: u32) -> [u32; 3] {
-        [
-            Self::make_1bs_item(0, 3, Self::ITEM_1BS_ENTRY_POINT),
-            entry_point,
-            initial_sp,
-        ]
-    }
-
-    /// Create an Rolling Window item.
-    ///
-    /// The delta is the number of bytes into the image that 0x10000000 should
-    /// be mapped.
-    pub const fn make_rolling_window(delta: u32) -> [u32; 2] {
-        [
-            Self::make_1bs_item(0, 3, Self::ITEM_1BS_ROLLING_WINDOW_DELTA),
-            delta,
-        ]
     }
 }
 
 impl Block<0> {
     /// Construct an empty block.
     pub const fn empty() -> Block<0> {
-        Block {
-            // This is the magic ROM value the Pico-SDK calls PICOBIN_BLOCK_MARKER_START
-            marker_start: 0xffffded3,
-            items: [],
-            length: Self::make_length(0),
-            // offset from this block to next block in loop. By default
-            // we form a Block Loop with a single Block in it.
-            offset: 0x0000_0000,
-            // This is the magic ROM value the Pico-SDK calls PICOBIN_BLOCK_MARKER_END
-            marker_end: 0xab123579,
-        }
+        Block::new([])
     }
 
     /// Make the block one word larger
@@ -215,7 +184,7 @@ impl ImageDef {
     /// Construct a new IMAGE_DEF Block, for an EXE with the given security and
     /// architecture.
     pub const fn arch_exe(security: Security, architecture: Architecture) -> Self {
-        Self::new([Self::make_image_type_exe(security, architecture)])
+        Self::new([item_image_type_exe(security, architecture)])
     }
 
     /// Construct a new IMAGE_DEF Block, for an EXE with the given security.
@@ -428,10 +397,10 @@ impl PartitionTable {
     /// At a minimum you need to call [`Self::add_partition_item`].
     pub const fn new() -> PartitionTable {
         let mut contents = [0; PARTITION_TABLE_MAX_ITEMS];
-        contents[0] = Block::<0>::BLOCK_MARKER_START;
-        contents[1] = Block::<0>::make_length(0);
+        contents[0] = BLOCK_MARKER_START;
+        contents[1] = item_last(0);
         contents[2] = 0;
-        contents[3] = Block::<0>::BLOCK_MARKER_END;
+        contents[3] = BLOCK_MARKER_END;
         PartitionTable {
             contents,
             num_items: 0,
@@ -510,16 +479,13 @@ impl PartitionTable {
         }
 
         let len = idx - header_idx;
-        new_table.contents[header_idx] = Block::<0>::make_2bs_item(
-            partitions.len() as u8,
-            len as u16,
-            Block::<0>::ITEM_2BS_PARTITION_TABLE,
-        );
+        new_table.contents[header_idx] =
+            item_generic_2bs(partitions.len() as u8, len as u16, ITEM_2BS_PARTITION_TABLE);
 
         // 7. New Footer
-        new_table.contents[idx] = Block::<0>::make_length(idx as u16 - 1);
+        new_table.contents[idx] = item_last(idx as u16 - 1);
         new_table.contents[idx + 1] = 0;
-        new_table.contents[idx + 2] = Block::<0>::BLOCK_MARKER_END;
+        new_table.contents[idx + 2] = BLOCK_MARKER_END;
 
         // ignore the header
         new_table.num_items = idx - 1;
@@ -537,15 +503,15 @@ impl PartitionTable {
         }
 
         // 1. add item
-        new_table.contents[idx] = Block::<0>::make_2bs_item(0, 2, Block::<0>::ITEM_1BS_VERSION);
+        new_table.contents[idx] = item_generic_2bs(0, 2, ITEM_1BS_VERSION);
         idx += 1;
         new_table.contents[idx] = (major as u32) << 16 | minor as u32;
         idx += 1;
 
         // 2. New Footer
-        new_table.contents[idx] = Block::<0>::make_length(idx as u16 - 1);
+        new_table.contents[idx] = item_last(idx as u16 - 1);
         new_table.contents[idx + 1] = 0;
-        new_table.contents[idx + 2] = Block::<0>::BLOCK_MARKER_END;
+        new_table.contents[idx + 2] = BLOCK_MARKER_END;
 
         // ignore the header
         new_table.num_items = idx - 1;
@@ -566,7 +532,7 @@ impl PartitionTable {
         }
 
         // 1. HASH_DEF says what is hashed
-        new_table.contents[idx] = Block::<0>::make_2bs_item(1, 2, Block::<0>::ITEM_2BS_HASH_DEF);
+        new_table.contents[idx] = item_generic_2bs(1, 2, ITEM_2BS_HASH_DEF);
         idx += 1;
         // we're hashing all the previous contents - including this line.
         new_table.contents[idx] = (idx + 1) as u32;
@@ -579,7 +545,7 @@ impl PartitionTable {
         let hash: [u8; 32] = sha2_const_stable::Sha256::new().update(input).finalize();
 
         // 2. HASH_VALUE contains the hash
-        new_table.contents[idx] = Block::<0>::make_2bs_item(0, 9, Block::<0>::ITEM_1BS_HASH_VALUE);
+        new_table.contents[idx] = item_generic_2bs(0, 9, ITEM_1BS_HASH_VALUE);
         idx += 1;
 
         let mut hash_idx = 0;
@@ -595,9 +561,9 @@ impl PartitionTable {
         }
 
         // 3. New Footer
-        new_table.contents[idx] = Block::<0>::make_length(idx as u16 - 1);
+        new_table.contents[idx] = item_last(idx as u16 - 1);
         new_table.contents[idx + 1] = 0;
-        new_table.contents[idx + 2] = Block::<0>::BLOCK_MARKER_END;
+        new_table.contents[idx + 2] = BLOCK_MARKER_END;
 
         // ignore the header
         new_table.num_items = idx - 1;
@@ -705,6 +671,88 @@ pub enum Security {
     NonSecure,
     /// Start in Secure mode
     Secure,
+}
+
+/// Make an item containing a tag, 1 byte length and two extra bytes.
+///
+/// The `command` arg should contain `1BS`
+pub const fn item_generic_1bs(value: u16, length: u8, command: u8) -> u32 {
+    ((value as u32) << 16) | ((length as u32) << 8) | (command as u32)
+}
+
+/// Make an item containing a tag, 2 byte length and one extra byte.
+///
+/// The `command` arg should contain `2BS`
+pub const fn item_generic_2bs(value: u8, length: u16, command: u8) -> u32 {
+    ((value as u32) << 24) | ((length as u32) << 8) | (command as u32)
+}
+
+/// Create Image Type item, of type IGNORED.
+pub const fn item_ignored() -> u32 {
+    item_generic_2bs(0, 1, ITEM_2BS_IGNORED)
+}
+
+/// Create Image Type item, of type INVALID.
+pub const fn item_image_type_invalid() -> u32 {
+    let value = IMAGE_TYPE_INVALID;
+    item_generic_1bs(value, 1, ITEM_1BS_IMAGE_TYPE)
+}
+
+/// Create Image Type item, of type DATA.
+pub const fn item_image_type_data() -> u32 {
+    let value = IMAGE_TYPE_DATA;
+    item_generic_1bs(value, 1, ITEM_1BS_IMAGE_TYPE)
+}
+
+/// Create Image Type item, of type EXE.
+pub const fn item_image_type_exe(security: Security, arch: Architecture) -> u32 {
+    let mut value = IMAGE_TYPE_EXE | IMAGE_TYPE_EXE_CHIP_RP2350;
+
+    match arch {
+        Architecture::Arm => {
+            value |= IMAGE_TYPE_EXE_CPU_ARM;
+        }
+        Architecture::Riscv => {
+            value |= IMAGE_TYPE_EXE_CPU_RISCV;
+        }
+    }
+
+    match security {
+        Security::Unspecified => value |= IMAGE_TYPE_EXE_TYPE_SECURITY_UNSPECIFIED,
+        Security::NonSecure => value |= IMAGE_TYPE_EXE_TYPE_SECURITY_NS,
+        Security::Secure => value |= IMAGE_TYPE_EXE_TYPE_SECURITY_S,
+    }
+
+    item_generic_1bs(value, 1, ITEM_1BS_IMAGE_TYPE)
+}
+
+/// Create a Block Last item.
+pub const fn item_last(length: u16) -> u32 {
+    item_generic_2bs(0, length, ITEM_2BS_LAST)
+}
+
+/// Create a Vector Table item.
+///
+/// This is only allowed on Arm systems.
+pub const fn item_vector_table(table_ptr: u32) -> [u32; 2] {
+    [item_generic_1bs(0, 2, ITEM_1BS_VECTOR_TABLE), table_ptr]
+}
+
+/// Create an Entry Point item.
+pub const fn item_entry_point(entry_point: u32, initial_sp: u32) -> [u32; 3] {
+    [
+        item_generic_1bs(0, 3, ITEM_1BS_ENTRY_POINT),
+        entry_point,
+        initial_sp,
+    ]
+}
+
+/// Create an Rolling Window item.
+///
+/// The delta is the number of bytes into the image that 0x10000000 should
+/// be mapped.
+pub const fn item_rolling_window(delta: u32) -> [u32; 2] {
+    [item_generic_1bs(0, 3, ITEM_1BS_ROLLING_WINDOW_DELTA), delta]
 }
 
 #[cfg(test)]
