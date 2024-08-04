@@ -116,6 +116,7 @@ SECTIONS
     *(.trap.rust);
     *(.text.abort);
     *(.text .text.*);
+    . = ALIGN(4);
   } > FLASH
 
   /* ### Picotool 'Binary Info' Entries
