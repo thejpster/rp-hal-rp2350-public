@@ -110,6 +110,7 @@ SECTIONS
     KEEP(*(.init));
     KEEP(*(.init.rust));
     . = ALIGN(4);
+    __start_block_addr = .;
     KEEP(*(.start_block));
     . = ALIGN(4);
     *(.trap);
@@ -172,6 +173,7 @@ SECTIONS
 
   .end_block : ALIGN(4)
   {
+      __end_block_addr = .;
       KEEP(*(.end_block));
   } > FLASH
 
@@ -204,6 +206,10 @@ SECTIONS
   .eh_frame (INFO) : { KEEP(*(.eh_frame)) }
   .eh_frame_hdr (INFO) : { *(.eh_frame_hdr) }
 }
+
+PROVIDE(start_to_end = __end_block_addr - __start_block_addr);
+PROVIDE(end_to_start = __start_block_addr - __end_block_addr);
+
 
 /* Do not exceed this mark in the error messages above                                    | */
 ASSERT(ORIGIN(FLASH) % 4 == 0, "
