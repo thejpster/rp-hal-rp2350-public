@@ -66,4 +66,4 @@ SECTIONS {
         KEEP(*(.end_block));
     } > FLASH
 
-} INSERT AFTER .bss;
+} INSERT AFTER .uninit;
