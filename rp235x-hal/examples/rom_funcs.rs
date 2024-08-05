@@ -305,32 +305,29 @@ where
     _ = writeln!(uart, "\tSupported Flags: {:#06x}", buffer[0]);
     let partition_count = buffer[1] & 0xFF;
     let has_partition_table = (buffer[1] & (1 << 8)) != 0;
-    let unpart_loc = buffer[2];
-    let unpart_flags = buffer[3];
-    let secure_readable = unpart_flags & 0x0400_0000 != 0;
-    let secure_writable = unpart_flags & 0x0800_0000 != 0;
-    let ns_readable = unpart_flags & 0x1000_0000 != 0;
-    let ns_writable = unpart_flags & 0x2000_0000 != 0;
-    let boot_readable = unpart_flags & 0x4000_0000 != 0;
-    let boot_writable = unpart_flags & 0x8000_0000 != 0;
-    let unpart_first_sector = unpart_loc & 0x0000_1fff;
-    let unpart_last_sector = (unpart_loc & 0x03ff_e000) >> 13;
+    let unpart = hal::block::UnpartitionedSpace::from_raw(buffer[2], buffer[3]);
     _ = writeln!(
         uart,
         "\tNum Partitions: {} (Has Partition Table? {})",
         partition_count, has_partition_table
     );
-    _ = writeln!(
-        uart,
-        "\tUnpartitioned Space: {:#010x}..{:#010x} S:{}{} NS:{}{} B:{}{}",
-        unpart_first_sector,
-        unpart_last_sector,
-        if secure_readable { 'R' } else { '_' },
-        if secure_writable { 'W' } else { '_' },
-        if ns_readable { 'R' } else { '_' },
-        if ns_writable { 'W' } else { '_' },
-        if boot_readable { 'R' } else { '_' },
-        if boot_writable { 'W' } else { '_' },
-    );
+    _ = writeln!(uart, "\tUnpartitioned Space: {}", unpart);
+    for part_idx in 0..partition_count {
+        let result = unsafe {
+            hal::rom_data::get_partition_table_info(
+                buffer.as_mut_ptr(),
+                buffer.len(),
+                (part_idx << 24) | 0x8010,
+            )
+        };
+        _ = writeln!(
+            uart,
+            "get_partition_table_info(PARTITION_LOCATION_AND_FLAGS|SINGLE_PARTITION/0x8010) -> {}",
+            result
+        );
+        _ = writeln!(uart, "\tSupported Flags: {:#06x}", buffer[0]);
+        let part = hal::block::Partition::from_raw(buffer[1], buffer[2]);
+        _ = writeln!(uart, "\tPartition {}: {}", part_idx, part);
+    }
 }
 // End of file
