@@ -222,8 +222,8 @@ pub const PARTITION_TABLE_MAX_ITEMS: usize = 128;
 /// Describes a unpartitioned space
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct UnpartitionedSpace {
-    permissions: u32,
-    flags: u32,
+    permissions_and_location: u32,
+    permissions_and_flags: u32,
 }
 
 impl UnpartitionedSpace {
@@ -232,34 +232,115 @@ impl UnpartitionedSpace {
     /// It defaults to no permissions.
     pub const fn new() -> Self {
         Self {
-            permissions: 0,
-            flags: 0,
+            permissions_and_location: 0,
+            permissions_and_flags: 0,
+        }
+    }
+
+    /// Create a new unpartition space from run-time values.
+    ///
+    /// Get these from the ROM function `get_partition_table_info` with an argument of `PT_INFO`.
+    pub const fn from_raw(permissions_and_location: u32, permissions_and_flags: u32) -> Self {
+        Self {
+            permissions_and_location,
+            permissions_and_flags,
         }
     }
 
     /// Add a permission
     pub const fn with_permission(self, permission: Permission) -> Self {
         Self {
-            permissions: self.permissions | permission as u32,
-            ..self
+            permissions_and_flags: self.permissions_and_flags | permission as u32,
+            permissions_and_location: self.permissions_and_location | permission as u32,
         }
     }
 
     /// Set a flag
     pub const fn with_flag(self, flag: UnpartitionedFlag) -> Self {
         Self {
-            flags: self.flags | flag as u32,
+            permissions_and_flags: self.permissions_and_flags | flag as u32,
             ..self
         }
     }
+
+    /// Get the partition start and end
+    ///
+    /// The offsets are in 4 KiB sectors, inclusive.
+    pub fn get_first_last_sectors(&self) -> (u16, u16) {
+        (
+            (self.permissions_and_location & 0x0000_1FFF) as u16,
+            ((self.permissions_and_location >> 13) & 0x0000_1FFF) as u16,
+        )
+    }
+
+    /// Get the partition start and end
+    ///
+    /// The offsets are in bytes, inclusive.
+    pub fn get_first_last_bytes(&self) -> (u32, u32) {
+        let (first, last) = self.get_first_last_sectors();
+        (u32::from(first) * 4096, (u32::from(last) * 4096) + 4095)
+    }
+
+    /// Check if it has a permission
+    pub fn has_permission(&self, permission: Permission) -> bool {
+        let mask = permission as u32;
+        (self.permissions_and_flags & mask) != 0
+    }
+
+    /// Check if the partition has a flag set
+    pub fn has_flag(&self, flag: UnpartitionedFlag) -> bool {
+        let mask = flag as u32;
+        (self.permissions_and_flags & mask) != 0
+    }
 }
+
+impl core::fmt::Display for UnpartitionedSpace {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        let (first, last) = self.get_first_last_bytes();
+        write!(
+            f,
+            "{:#010x}..{:#010x} S:{}{} NS:{}{} B:{}{}",
+            first,
+            last,
+            if self.has_permission(Permission::SecureRead) {
+                'R'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::SecureWrite) {
+                'W'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::NonSecureRead) {
+                'R'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::NonSecureWrite) {
+                'W'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::BootRead) {
+                'R'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::BootWrite) {
+                'W'
+            } else {
+                '_'
+            }
+        )
+    }
+}
+
 /// Describes a Partition
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Partition {
-    first_sector: u32,
-    last_sector: u32,
-    permissions: u32,
-    flags: u32,
+    permissions_and_location: u32,
+    permissions_and_flags: u32,
     id: Option<u64>,
     extra_families: [u32; 4],
     extra_families_len: usize,
@@ -278,16 +359,28 @@ impl Partition {
     /// Create a new partition, with the given start and end sectors.
     ///
     /// It defaults to no permissions.
-    pub const fn new(first_sector: u32, last_sector: u32) -> Self {
+    pub const fn new(first_sector: u16, last_sector: u16) -> Self {
         // 0x2000 sectors of 4 KiB is 32 MiB, which is the total XIP area
         assert!(first_sector < 0x2000);
         assert!(last_sector < 0x2000);
         assert!(first_sector <= last_sector);
         Self {
-            first_sector,
-            last_sector,
-            permissions: 0,
-            flags: 0,
+            permissions_and_location: (last_sector as u32) << 13 | first_sector as u32,
+            permissions_and_flags: 0,
+            id: None,
+            extra_families: [0; 4],
+            extra_families_len: 0,
+            name: [0; 128],
+        }
+    }
+
+    /// Create a new partition from run-time values.
+    ///
+    /// Get these from the ROM function `get_partition_table_info` with an argument of `PARTITION_LOCATION_AND_FLAGS`.
+    pub const fn from_raw(permissions_and_location: u32, permissions_and_flags: u32) -> Self {
+        Self {
+            permissions_and_location,
+            permissions_and_flags,
             id: None,
             extra_families: [0; 4],
             extra_families_len: 0,
@@ -298,7 +391,8 @@ impl Partition {
     /// Add a permission
     pub const fn with_permission(self, permission: Permission) -> Self {
         Self {
-            permissions: self.permissions | permission as u32,
+            permissions_and_location: self.permissions_and_location | permission as u32,
+            permissions_and_flags: self.permissions_and_flags | permission as u32,
             ..self
         }
     }
@@ -315,7 +409,7 @@ impl Partition {
         }
         Self {
             name: new_name,
-            flags: self.flags | Self::FLAGS_HAS_NAME,
+            permissions_and_flags: self.permissions_and_flags | Self::FLAGS_HAS_NAME,
             ..self
         }
     }
@@ -334,7 +428,8 @@ impl Partition {
         Self {
             extra_families: new_extra_families,
             extra_families_len: extra_families.len(),
-            flags: (self.flags & !Self::FLAGS_HAS_EXTRA_FAMILIES_MASK)
+            permissions_and_flags: (self.permissions_and_flags
+                & !Self::FLAGS_HAS_EXTRA_FAMILIES_MASK)
                 | (extra_families.len() as u32) << Self::FLAGS_HAS_EXTRA_FAMILIES_SHIFT,
             ..self
         }
@@ -344,14 +439,14 @@ impl Partition {
     pub const fn with_id(self, id: u64) -> Self {
         Self {
             id: Some(id),
-            flags: self.flags | Self::FLAGS_HAS_ID,
+            permissions_and_flags: self.permissions_and_flags | Self::FLAGS_HAS_ID,
             ..self
         }
     }
 
     /// Add a link
     pub const fn with_link(self, link: Link) -> Self {
-        let mut new_flags = self.flags & !Self::FLAGS_LINK_MASK;
+        let mut new_flags = self.permissions_and_flags & !Self::FLAGS_LINK_MASK;
         match link {
             Link::Nothing => {}
             Link::ToA { partition_idx } => {
@@ -366,7 +461,7 @@ impl Partition {
             }
         }
         Self {
-            flags: new_flags,
+            permissions_and_flags: new_flags,
             ..self
         }
     }
@@ -374,9 +469,116 @@ impl Partition {
     /// Set a flag
     pub const fn with_flag(self, flag: PartitionFlag) -> Self {
         Self {
-            flags: self.flags | flag as u32,
+            permissions_and_flags: self.permissions_and_flags | flag as u32,
             ..self
         }
+    }
+
+    /// Get the partition start and end
+    ///
+    /// The offsets are in 4 KiB sectors, inclusive.
+    pub fn get_first_last_sectors(&self) -> (u16, u16) {
+        (
+            (self.permissions_and_location & 0x0000_1FFF) as u16,
+            ((self.permissions_and_location >> 13) & 0x0000_1FFF) as u16,
+        )
+    }
+
+    /// Get the partition start and end
+    ///
+    /// The offsets are in bytes, inclusive.
+    pub fn get_first_last_bytes(&self) -> (u32, u32) {
+        let (first, last) = self.get_first_last_sectors();
+        (u32::from(first) * 4096, (u32::from(last) * 4096) + 4095)
+    }
+
+    /// Check if it has a permission
+    pub fn has_permission(&self, permission: Permission) -> bool {
+        let mask = permission as u32;
+        (self.permissions_and_flags & mask) != 0
+    }
+
+    /// Get which extra families are allowed in this partition
+    pub fn get_extra_families(&self) -> &[u32] {
+        &self.extra_families[0..self.extra_families_len]
+    }
+
+    /// Get the name of the partition
+    ///
+    /// Returns `None` if there's no name, or the name is not valid UTF-8.
+    pub fn get_name(&self) -> Option<&str> {
+        let len = self.name[0] as usize;
+        if len == 0 {
+            None
+        } else {
+            core::str::from_utf8(&self.name[1..=len]).ok()
+        }
+    }
+
+    /// Get the ID
+    pub fn get_id(&self) -> Option<u64> {
+        self.id
+    }
+
+    /// Check if this partition is linked
+    pub fn get_link(&self) -> Link {
+        if (self.permissions_and_flags & Self::FLAGS_LINK_TYPE_A_PARTITION) != 0 {
+            let partition_idx = ((self.permissions_and_flags >> 3) & 0x0F) as u8;
+            Link::ToA { partition_idx }
+        } else if (self.permissions_and_flags & Self::FLAGS_LINK_TYPE_OWNER) != 0 {
+            let partition_idx = ((self.permissions_and_flags >> 3) & 0x0F) as u8;
+            Link::ToOwner { partition_idx }
+        } else {
+            Link::Nothing
+        }
+    }
+
+    /// Check if the partition has a flag set
+    pub fn has_flag(&self, flag: PartitionFlag) -> bool {
+        let mask = flag as u32;
+        (self.permissions_and_flags & mask) != 0
+    }
+}
+
+impl core::fmt::Display for Partition {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        let (first, last) = self.get_first_last_bytes();
+        write!(
+            f,
+            "{:#010x}..{:#010x} S:{}{} NS:{}{} B:{}{}",
+            first,
+            last,
+            if self.has_permission(Permission::SecureRead) {
+                'R'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::SecureWrite) {
+                'W'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::NonSecureRead) {
+                'R'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::NonSecureWrite) {
+                'W'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::BootRead) {
+                'R'
+            } else {
+                '_'
+            },
+            if self.has_permission(Permission::BootWrite) {
+                'W'
+            } else {
+                '_'
+            }
+        )
     }
 }
 
@@ -384,24 +586,24 @@ impl Partition {
 ///
 /// Don't store this as a static - make sure you convert it to a block.
 #[derive(Clone)]
-pub struct PartitionTable {
+pub struct PartitionTableBlock {
     /// This must look like a block, including the 1 word header and the 3 word footer.
     contents: [u32; PARTITION_TABLE_MAX_ITEMS],
     /// This value doesn't include the 1 word header or the 3 word footer
     num_items: usize,
 }
 
-impl PartitionTable {
+impl PartitionTableBlock {
     /// Create an empty Block, big enough for a partition table.
     ///
     /// At a minimum you need to call [`Self::add_partition_item`].
-    pub const fn new() -> PartitionTable {
+    pub const fn new() -> PartitionTableBlock {
         let mut contents = [0; PARTITION_TABLE_MAX_ITEMS];
         contents[0] = BLOCK_MARKER_START;
         contents[1] = item_last(0);
         contents[2] = 0;
         contents[3] = BLOCK_MARKER_END;
-        PartitionTable {
+        PartitionTableBlock {
             contents,
             num_items: 0,
         }
@@ -413,7 +615,7 @@ impl PartitionTable {
         unpartitioned: UnpartitionedSpace,
         partitions: &[Partition],
     ) -> Self {
-        let mut new_table = PartitionTable::new();
+        let mut new_table = PartitionTableBlock::new();
         let mut idx = 0;
         // copy over old table, with the header but not the footer
         while idx < self.num_items + 1 {
@@ -426,8 +628,12 @@ impl PartitionTable {
         new_table.contents[idx] = 0;
         idx += 1;
 
-        // 2. unpartitioned space
-        new_table.contents[idx] = unpartitioned.permissions | unpartitioned.flags;
+        // 2. unpartitioned space flags
+        //
+        // (the location of unpartition space is not recorded here - it is
+        // inferred because the unpartitioned space is where the partitions are
+        // not)
+        new_table.contents[idx] = unpartitioned.permissions_and_flags;
         idx += 1;
 
         // 3. partition info
@@ -435,14 +641,11 @@ impl PartitionTable {
         let mut partition_no = 0;
         while partition_no < partitions.len() {
             // a. permissions_and_location (4K units)
-            new_table.contents[idx] = partitions[partition_no].permissions
-                | (partitions[partition_no].first_sector) & 0x0000_1FFF
-                | ((partitions[partition_no].last_sector) & 0x0000_1FFF) << 13;
+            new_table.contents[idx] = partitions[partition_no].permissions_and_location;
             idx += 1;
 
             // b. permissions_and_flags
-            new_table.contents[idx] =
-                partitions[partition_no].permissions | partitions[partition_no].flags;
+            new_table.contents[idx] = partitions[partition_no].permissions_and_flags;
             idx += 1;
 
             // c. ID
@@ -494,7 +697,7 @@ impl PartitionTable {
 
     /// Add a version number to the partition table
     pub const fn with_version(self, major: u16, minor: u16) -> Self {
-        let mut new_table = PartitionTable::new();
+        let mut new_table = PartitionTableBlock::new();
         let mut idx = 0;
         // copy over old table, with the header but not the footer
         while idx < self.num_items + 1 {
@@ -523,7 +726,7 @@ impl PartitionTable {
     /// Adds a `HASH_DEF` covering all the previous items in the Block, and a
     /// `HASH_VALUE` with a SHA-256 hash of them.
     pub const fn with_sha256(self) -> Self {
-        let mut new_table = PartitionTable::new();
+        let mut new_table = PartitionTableBlock::new();
         let mut idx = 0;
         // copy over old table, with the header but not the footer
         while idx < self.num_items + 1 {
@@ -571,7 +774,7 @@ impl PartitionTable {
     }
 }
 
-impl Default for PartitionTable {
+impl Default for PartitionTableBlock {
     fn default() -> Self {
         Self::new()
     }
@@ -625,6 +828,7 @@ pub enum Link {
 }
 
 /// Permissions that a Partition can have
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[repr(u32)]
 pub enum Permission {
     /// Can be read in Secure Mode
@@ -651,6 +855,13 @@ pub enum Permission {
     ///
     /// Corresponds to `PERMISSION_NSBOOT_W_BITS` in the Pico SDK
     BootWrite = 1 << 31,
+}
+
+impl Permission {
+    /// Is this permission bit set this in this bitmask?
+    pub const fn is_in(self, mask: u32) -> bool {
+        (mask & (self as u32)) != 0
+    }
 }
 
 /// The supported RP2350 CPU architectures
@@ -801,7 +1012,7 @@ mod test {
     /// ```
     #[test]
     fn make_hashed_partition_table() {
-        let table = PartitionTable::new()
+        let table = PartitionTableBlock::new()
             .add_partition_item(
                 UnpartitionedSpace::new()
                     .with_permission(Permission::SecureRead)
