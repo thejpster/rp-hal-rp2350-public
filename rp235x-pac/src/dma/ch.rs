@@ -19,14 +19,12 @@ pub struct CH {
     ch_al3_read_addr_trig: CH_AL3_READ_ADDR_TRIG,
 }
 impl CH {
-    #[doc = "0x00 - DMA Channel 0 Read Address pointer  
- This register updates automatically each time a read completes. The current value is the next address to be read by this channel."]
+    #[doc = "0x00 - DMA Channel 0 Read Address pointer"]
     #[inline(always)]
     pub const fn ch_read_addr(&self) -> &CH_READ_ADDR {
         &self.ch_read_addr
     }
-    #[doc = "0x04 - DMA Channel 0 Write Address pointer  
- This register updates automatically each time a write completes. The current value is the next address to be written by this channel."]
+    #[doc = "0x04 - DMA Channel 0 Write Address pointer"]
     #[inline(always)]
     pub const fn ch_write_addr(&self) -> &CH_WRITE_ADDR {
         &self.ch_write_addr
@@ -56,9 +54,7 @@ impl CH {
     pub const fn ch_al1_write_addr(&self) -> &CH_AL1_WRITE_ADDR {
         &self.ch_al1_write_addr
     }
-    #[doc = "0x1c - Alias for channel 0 TRANS_COUNT register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel."]
+    #[doc = "0x1c - Alias for channel 0 TRANS_COUNT register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel."]
     #[inline(always)]
     pub const fn ch_al1_trans_count_trig(&self) -> &CH_AL1_TRANS_COUNT_TRIG {
         &self.ch_al1_trans_count_trig
@@ -78,9 +74,7 @@ impl CH {
     pub const fn ch_al2_read_addr(&self) -> &CH_AL2_READ_ADDR {
         &self.ch_al2_read_addr
     }
-    #[doc = "0x2c - Alias for channel 0 WRITE_ADDR register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel."]
+    #[doc = "0x2c - Alias for channel 0 WRITE_ADDR register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel."]
     #[inline(always)]
     pub const fn ch_al2_write_addr_trig(&self) -> &CH_AL2_WRITE_ADDR_TRIG {
         &self.ch_al2_write_addr_trig
@@ -100,35 +94,29 @@ impl CH {
     pub const fn ch_al3_trans_count(&self) -> &CH_AL3_TRANS_COUNT {
         &self.ch_al3_trans_count
     }
-    #[doc = "0x3c - Alias for channel 0 READ_ADDR register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel."]
+    #[doc = "0x3c - Alias for channel 0 READ_ADDR register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel."]
     #[inline(always)]
     pub const fn ch_al3_read_addr_trig(&self) -> &CH_AL3_READ_ADDR_TRIG {
         &self.ch_al3_read_addr_trig
     }
 }
 #[doc = "CH_READ_ADDR (rw) register accessor: DMA Channel 0 Read Address pointer  
- This register updates automatically each time a read completes. The current value is the next address to be read by this channel.  
 
 You can [`read`](crate::Reg::read) this register and get [`ch_read_addr::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ch_read_addr::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ch_read_addr`]
 module"]
 pub type CH_READ_ADDR = crate::Reg<ch_read_addr::CH_READ_ADDR_SPEC>;
-#[doc = "DMA Channel 0 Read Address pointer  
- This register updates automatically each time a read completes. The current value is the next address to be read by this channel."]
+#[doc = "DMA Channel 0 Read Address pointer"]
 pub mod ch_read_addr;
 #[doc = "CH_WRITE_ADDR (rw) register accessor: DMA Channel 0 Write Address pointer  
- This register updates automatically each time a write completes. The current value is the next address to be written by this channel.  
 
 You can [`read`](crate::Reg::read) this register and get [`ch_write_addr::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ch_write_addr::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ch_write_addr`]
 module"]
 pub type CH_WRITE_ADDR = crate::Reg<ch_write_addr::CH_WRITE_ADDR_SPEC>;
-#[doc = "DMA Channel 0 Write Address pointer  
- This register updates automatically each time a write completes. The current value is the next address to be written by this channel."]
+#[doc = "DMA Channel 0 Write Address pointer"]
 pub mod ch_write_addr;
 #[doc = "CH_TRANS_COUNT (rw) register accessor: DMA Channel 0 Transfer Count  
 
@@ -175,9 +163,7 @@ module"]
 pub type CH_AL1_WRITE_ADDR = crate::Reg<ch_al1_write_addr::CH_AL1_WRITE_ADDR_SPEC>;
 #[doc = "Alias for channel 0 WRITE_ADDR register"]
 pub mod ch_al1_write_addr;
-#[doc = "CH_AL1_TRANS_COUNT_TRIG (rw) register accessor: Alias for channel 0 TRANS_COUNT register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel.  
+#[doc = "CH_AL1_TRANS_COUNT_TRIG (rw) register accessor: Alias for channel 0 TRANS_COUNT register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel.  
 
 You can [`read`](crate::Reg::read) this register and get [`ch_al1_trans_count_trig::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ch_al1_trans_count_trig::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
@@ -185,9 +171,7 @@ For information about available fields see [`mod@ch_al1_trans_count_trig`]
 module"]
 pub type CH_AL1_TRANS_COUNT_TRIG =
     crate::Reg<ch_al1_trans_count_trig::CH_AL1_TRANS_COUNT_TRIG_SPEC>;
-#[doc = "Alias for channel 0 TRANS_COUNT register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel."]
+#[doc = "Alias for channel 0 TRANS_COUNT register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel."]
 pub mod ch_al1_trans_count_trig;
 #[doc = "CH_AL2_CTRL (rw) register accessor: DMA Channel 0 Control and Status  
 
@@ -216,18 +200,14 @@ module"]
 pub type CH_AL2_READ_ADDR = crate::Reg<ch_al2_read_addr::CH_AL2_READ_ADDR_SPEC>;
 #[doc = "Alias for channel 0 READ_ADDR register"]
 pub mod ch_al2_read_addr;
-#[doc = "CH_AL2_WRITE_ADDR_TRIG (rw) register accessor: Alias for channel 0 WRITE_ADDR register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel.  
+#[doc = "CH_AL2_WRITE_ADDR_TRIG (rw) register accessor: Alias for channel 0 WRITE_ADDR register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel.  
 
 You can [`read`](crate::Reg::read) this register and get [`ch_al2_write_addr_trig::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ch_al2_write_addr_trig::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ch_al2_write_addr_trig`]
 module"]
 pub type CH_AL2_WRITE_ADDR_TRIG = crate::Reg<ch_al2_write_addr_trig::CH_AL2_WRITE_ADDR_TRIG_SPEC>;
-#[doc = "Alias for channel 0 WRITE_ADDR register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel."]
+#[doc = "Alias for channel 0 WRITE_ADDR register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel."]
 pub mod ch_al2_write_addr_trig;
 #[doc = "CH_AL3_CTRL (rw) register accessor: DMA Channel 0 Control and Status  
 
@@ -256,16 +236,12 @@ module"]
 pub type CH_AL3_TRANS_COUNT = crate::Reg<ch_al3_trans_count::CH_AL3_TRANS_COUNT_SPEC>;
 #[doc = "Alias for channel 0 TRANS_COUNT register"]
 pub mod ch_al3_trans_count;
-#[doc = "CH_AL3_READ_ADDR_TRIG (rw) register accessor: Alias for channel 0 READ_ADDR register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel.  
+#[doc = "CH_AL3_READ_ADDR_TRIG (rw) register accessor: Alias for channel 0 READ_ADDR register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel.  
 
 You can [`read`](crate::Reg::read) this register and get [`ch_al3_read_addr_trig::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ch_al3_read_addr_trig::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ch_al3_read_addr_trig`]
 module"]
 pub type CH_AL3_READ_ADDR_TRIG = crate::Reg<ch_al3_read_addr_trig::CH_AL3_READ_ADDR_TRIG_SPEC>;
-#[doc = "Alias for channel 0 READ_ADDR register  
- This is a trigger register (0xc). Writing a nonzero value will  
- reload the channel counter and start the channel."]
+#[doc = "Alias for channel 0 READ_ADDR register This is a trigger register (0xc). Writing a nonzero value will reload the channel counter and start the channel."]
 pub mod ch_al3_read_addr_trig;

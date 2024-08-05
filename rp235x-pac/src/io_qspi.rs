@@ -11,8 +11,8 @@ pub struct RegisterBlock {
     irqsummary_proc0_nonsecure: IRQSUMMARY_PROC0_NONSECURE,
     irqsummary_proc1_secure: IRQSUMMARY_PROC1_SECURE,
     irqsummary_proc1_nonsecure: IRQSUMMARY_PROC1_NONSECURE,
-    irqsummary_coma_wake_secure: IRQSUMMARY_COMA_WAKE_SECURE,
-    irqsummary_coma_wake_nonsecure: IRQSUMMARY_COMA_WAKE_NONSECURE,
+    irqsummary_dormant_wake_secure: IRQSUMMARY_DORMANT_WAKE_SECURE,
+    irqsummary_dormant_wake_nonsecure: IRQSUMMARY_DORMANT_WAKE_NONSECURE,
     intr: INTR,
     proc0_inte: PROC0_INTE,
     proc0_intf: PROC0_INTF,
@@ -108,13 +108,13 @@ impl RegisterBlock {
     }
     #[doc = "0x210 - "]
     #[inline(always)]
-    pub const fn irqsummary_coma_wake_secure(&self) -> &IRQSUMMARY_COMA_WAKE_SECURE {
-        &self.irqsummary_coma_wake_secure
+    pub const fn irqsummary_dormant_wake_secure(&self) -> &IRQSUMMARY_DORMANT_WAKE_SECURE {
+        &self.irqsummary_dormant_wake_secure
     }
     #[doc = "0x214 - "]
     #[inline(always)]
-    pub const fn irqsummary_coma_wake_nonsecure(&self) -> &IRQSUMMARY_COMA_WAKE_NONSECURE {
-        &self.irqsummary_coma_wake_nonsecure
+    pub const fn irqsummary_dormant_wake_nonsecure(&self) -> &IRQSUMMARY_DORMANT_WAKE_NONSECURE {
+        &self.irqsummary_dormant_wake_nonsecure
     }
     #[doc = "0x218 - Raw Interrupts"]
     #[inline(always)]
@@ -167,9 +167,9 @@ impl RegisterBlock {
         &self.dormant_wake_ints
     }
 }
-#[doc = "USBPHY_DP_STATUS (r) register accessor:   
+#[doc = "USBPHY_DP_STATUS (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`usbphy_dp_status::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`usbphy_dp_status::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`usbphy_dp_status::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@usbphy_dp_status`]
 module"]
@@ -185,9 +185,9 @@ module"]
 pub type USBPHY_DP_CTRL = crate::Reg<usbphy_dp_ctrl::USBPHY_DP_CTRL_SPEC>;
 #[doc = ""]
 pub mod usbphy_dp_ctrl;
-#[doc = "USBPHY_DM_STATUS (r) register accessor:   
+#[doc = "USBPHY_DM_STATUS (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`usbphy_dm_status::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`usbphy_dm_status::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`usbphy_dm_status::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@usbphy_dm_status`]
 module"]
@@ -208,9 +208,9 @@ pub use self::gpio_qspi::GPIO_QSPI;
 #[doc = r"Cluster"]
 #[doc = "Cluster GPIO_QSPI%s, containing GPIO_QSPI_*_STATUS, GPIO_QSPI_*_CTRL"]
 pub mod gpio_qspi;
-#[doc = "IRQSUMMARY_PROC0_SECURE (r) register accessor:   
+#[doc = "IRQSUMMARY_PROC0_SECURE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc0_secure::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc0_secure::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irqsummary_proc0_secure::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@irqsummary_proc0_secure`]
 module"]
@@ -218,9 +218,9 @@ pub type IRQSUMMARY_PROC0_SECURE =
     crate::Reg<irqsummary_proc0_secure::IRQSUMMARY_PROC0_SECURE_SPEC>;
 #[doc = ""]
 pub mod irqsummary_proc0_secure;
-#[doc = "IRQSUMMARY_PROC0_NONSECURE (r) register accessor:   
+#[doc = "IRQSUMMARY_PROC0_NONSECURE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc0_nonsecure::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc0_nonsecure::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irqsummary_proc0_nonsecure::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@irqsummary_proc0_nonsecure`]
 module"]
@@ -228,9 +228,9 @@ pub type IRQSUMMARY_PROC0_NONSECURE =
     crate::Reg<irqsummary_proc0_nonsecure::IRQSUMMARY_PROC0_NONSECURE_SPEC>;
 #[doc = ""]
 pub mod irqsummary_proc0_nonsecure;
-#[doc = "IRQSUMMARY_PROC1_SECURE (r) register accessor:   
+#[doc = "IRQSUMMARY_PROC1_SECURE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc1_secure::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc1_secure::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irqsummary_proc1_secure::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@irqsummary_proc1_secure`]
 module"]
@@ -238,9 +238,9 @@ pub type IRQSUMMARY_PROC1_SECURE =
     crate::Reg<irqsummary_proc1_secure::IRQSUMMARY_PROC1_SECURE_SPEC>;
 #[doc = ""]
 pub mod irqsummary_proc1_secure;
-#[doc = "IRQSUMMARY_PROC1_NONSECURE (r) register accessor:   
+#[doc = "IRQSUMMARY_PROC1_NONSECURE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc1_nonsecure::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irqsummary_proc1_nonsecure::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irqsummary_proc1_nonsecure::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@irqsummary_proc1_nonsecure`]
 module"]
@@ -248,26 +248,26 @@ pub type IRQSUMMARY_PROC1_NONSECURE =
     crate::Reg<irqsummary_proc1_nonsecure::IRQSUMMARY_PROC1_NONSECURE_SPEC>;
 #[doc = ""]
 pub mod irqsummary_proc1_nonsecure;
-#[doc = "IRQSUMMARY_COMA_WAKE_SECURE (r) register accessor:   
+#[doc = "IRQSUMMARY_DORMANT_WAKE_SECURE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`irqsummary_coma_wake_secure::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irqsummary_dormant_wake_secure::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irqsummary_dormant_wake_secure::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
-For information about available fields see [`mod@irqsummary_coma_wake_secure`]
+For information about available fields see [`mod@irqsummary_dormant_wake_secure`]
 module"]
-pub type IRQSUMMARY_COMA_WAKE_SECURE =
-    crate::Reg<irqsummary_coma_wake_secure::IRQSUMMARY_COMA_WAKE_SECURE_SPEC>;
+pub type IRQSUMMARY_DORMANT_WAKE_SECURE =
+    crate::Reg<irqsummary_dormant_wake_secure::IRQSUMMARY_DORMANT_WAKE_SECURE_SPEC>;
 #[doc = ""]
-pub mod irqsummary_coma_wake_secure;
-#[doc = "IRQSUMMARY_COMA_WAKE_NONSECURE (r) register accessor:   
+pub mod irqsummary_dormant_wake_secure;
+#[doc = "IRQSUMMARY_DORMANT_WAKE_NONSECURE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`irqsummary_coma_wake_nonsecure::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irqsummary_dormant_wake_nonsecure::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irqsummary_dormant_wake_nonsecure::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
-For information about available fields see [`mod@irqsummary_coma_wake_nonsecure`]
+For information about available fields see [`mod@irqsummary_dormant_wake_nonsecure`]
 module"]
-pub type IRQSUMMARY_COMA_WAKE_NONSECURE =
-    crate::Reg<irqsummary_coma_wake_nonsecure::IRQSUMMARY_COMA_WAKE_NONSECURE_SPEC>;
+pub type IRQSUMMARY_DORMANT_WAKE_NONSECURE =
+    crate::Reg<irqsummary_dormant_wake_nonsecure::IRQSUMMARY_DORMANT_WAKE_NONSECURE_SPEC>;
 #[doc = ""]
-pub mod irqsummary_coma_wake_nonsecure;
+pub mod irqsummary_dormant_wake_nonsecure;
 #[doc = "INTR (rw) register accessor: Raw Interrupts  
 
 You can [`read`](crate::Reg::read) this register and get [`intr::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`intr::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
@@ -295,9 +295,9 @@ module"]
 pub type PROC0_INTF = crate::Reg<proc0_intf::PROC0_INTF_SPEC>;
 #[doc = "Interrupt Force for proc0"]
 pub mod proc0_intf;
-#[doc = "PROC0_INTS (r) register accessor: Interrupt status after masking &amp; forcing for proc0  
+#[doc = "PROC0_INTS (rw) register accessor: Interrupt status after masking &amp; forcing for proc0  
 
-You can [`read`](crate::Reg::read) this register and get [`proc0_ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`proc0_ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`proc0_ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@proc0_ints`]
 module"]
@@ -322,9 +322,9 @@ module"]
 pub type PROC1_INTF = crate::Reg<proc1_intf::PROC1_INTF_SPEC>;
 #[doc = "Interrupt Force for proc1"]
 pub mod proc1_intf;
-#[doc = "PROC1_INTS (r) register accessor: Interrupt status after masking &amp; forcing for proc1  
+#[doc = "PROC1_INTS (rw) register accessor: Interrupt status after masking &amp; forcing for proc1  
 
-You can [`read`](crate::Reg::read) this register and get [`proc1_ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`proc1_ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`proc1_ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@proc1_ints`]
 module"]
@@ -349,9 +349,9 @@ module"]
 pub type DORMANT_WAKE_INTF = crate::Reg<dormant_wake_intf::DORMANT_WAKE_INTF_SPEC>;
 #[doc = "Interrupt Force for dormant_wake"]
 pub mod dormant_wake_intf;
-#[doc = "DORMANT_WAKE_INTS (r) register accessor: Interrupt status after masking &amp; forcing for dormant_wake  
+#[doc = "DORMANT_WAKE_INTS (rw) register accessor: Interrupt status after masking &amp; forcing for dormant_wake  
 
-You can [`read`](crate::Reg::read) this register and get [`dormant_wake_ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`dormant_wake_ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`dormant_wake_ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@dormant_wake_ints`]
 module"]

@@ -2,29 +2,17 @@
 pub type R = crate::R<TMDS_CTRL_SPEC>;
 #[doc = "Register `TMDS_CTRL` writer"]
 pub type W = crate::W<TMDS_CTRL_SPEC>;
-#[doc = "Field `L0_ROT` reader - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
+#[doc = "Field `L0_ROT` reader - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
 pub type L0_ROT_R = crate::FieldReader;
-#[doc = "Field `L0_ROT` writer - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
+#[doc = "Field `L0_ROT` writer - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
 pub type L0_ROT_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Field `L1_ROT` reader - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
+#[doc = "Field `L1_ROT` reader - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
 pub type L1_ROT_R = crate::FieldReader;
-#[doc = "Field `L1_ROT` writer - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
+#[doc = "Field `L1_ROT` writer - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
 pub type L1_ROT_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Field `L2_ROT` reader - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
+#[doc = "Field `L2_ROT` reader - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
 pub type L2_ROT_R = crate::FieldReader;
-#[doc = "Field `L2_ROT` writer - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
+#[doc = "Field `L2_ROT` writer - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
 pub type L2_ROT_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
 #[doc = "Field `L0_NBITS` reader - Number of valid colour MSBs for lane 0 (1-8 bits, encoded as 0 through 7). Remaining LSBs are masked to 0 after the rotate."]
 pub type L0_NBITS_R = crate::FieldReader;
@@ -38,23 +26,11 @@ pub type L1_NBITS_W<'a, REG> = crate::FieldWriter<'a, REG, 3>;
 pub type L2_NBITS_R = crate::FieldReader;
 #[doc = "Field `L2_NBITS` writer - Number of valid colour MSBs for lane 2 (1-8 bits, encoded as 0 through 7). Remaining LSBs are masked to 0 after the rotate."]
 pub type L2_NBITS_W<'a, REG> = crate::FieldWriter<'a, REG, 3>;
-#[doc = "Field `INTERLEAVE` reader - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE.  
-
- When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register.  
-
- When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
+#[doc = "Field `INTERLEAVE` reader - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE. When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register. When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
 pub type INTERLEAVE_R = crate::BitReader;
-#[doc = "Field `INTERLEAVE` writer - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE.  
-
- When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register.  
-
- When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
+#[doc = "Field `INTERLEAVE` writer - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE. When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register. When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
 pub type INTERLEAVE_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Shift applied to the colour data register with each read of a POP alias register.  
-
- Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount.  
-
- Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)  
+#[doc = "Shift applied to the colour data register with each read of a POP alias register. Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount. Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -83,11 +59,7 @@ impl crate::FieldSpec for PIX_SHIFT_A {
     type Ux = u8;
 }
 impl crate::IsEnum for PIX_SHIFT_A {}
-#[doc = "Field `PIX_SHIFT` reader - Shift applied to the colour data register with each read of a POP alias register.  
-
- Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount.  
-
- Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
+#[doc = "Field `PIX_SHIFT` reader - Shift applied to the colour data register with each read of a POP alias register. Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount. Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
 pub type PIX_SHIFT_R = crate::FieldReader<PIX_SHIFT_A>;
 impl PIX_SHIFT_R {
     #[doc = "Get enumerated values variant"]
@@ -134,11 +106,7 @@ impl PIX_SHIFT_R {
         *self == PIX_SHIFT_A::_16
     }
 }
-#[doc = "Field `PIX_SHIFT` writer - Shift applied to the colour data register with each read of a POP alias register.  
-
- Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount.  
-
- Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
+#[doc = "Field `PIX_SHIFT` writer - Shift applied to the colour data register with each read of a POP alias register. Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount. Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
 pub type PIX_SHIFT_W<'a, REG> = crate::FieldWriter<'a, REG, 3, PIX_SHIFT_A>;
 impl<'a, REG> PIX_SHIFT_W<'a, REG>
 where
@@ -176,36 +144,24 @@ where
         self.variant(PIX_SHIFT_A::_16)
     }
 }
-#[doc = "Field `PIX2_NOSHIFT` reader - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register.  
-
- This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
+#[doc = "Field `PIX2_NOSHIFT` reader - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register. This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
 pub type PIX2_NOSHIFT_R = crate::BitReader;
-#[doc = "Field `PIX2_NOSHIFT` writer - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register.  
-
- This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
+#[doc = "Field `PIX2_NOSHIFT` writer - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register. This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
 pub type PIX2_NOSHIFT_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `CLEAR_BALANCE` reader - Clear the running DC balance state of the TMDS encoders. This bit should be written once at the beginning of each scanline."]
-pub type CLEAR_BALANCE_R = crate::BitReader;
 #[doc = "Field `CLEAR_BALANCE` writer - Clear the running DC balance state of the TMDS encoders. This bit should be written once at the beginning of each scanline."]
 pub type CLEAR_BALANCE_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
-    #[doc = "Bits 0:3 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
+    #[doc = "Bits 0:3 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
     #[inline(always)]
     pub fn l0_rot(&self) -> L0_ROT_R {
         L0_ROT_R::new((self.bits & 0x0f) as u8)
     }
-    #[doc = "Bits 4:7 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
+    #[doc = "Bits 4:7 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
     #[inline(always)]
     pub fn l1_rot(&self) -> L1_ROT_R {
         L1_ROT_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
-    #[doc = "Bits 8:11 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
+    #[doc = "Bits 8:11 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
     #[inline(always)]
     pub fn l2_rot(&self) -> L2_ROT_R {
         L2_ROT_R::new(((self.bits >> 8) & 0x0f) as u8)
@@ -225,57 +181,36 @@ impl R {
     pub fn l2_nbits(&self) -> L2_NBITS_R {
         L2_NBITS_R::new(((self.bits >> 18) & 7) as u8)
     }
-    #[doc = "Bit 23 - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE.  
-
- When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register.  
-
- When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
+    #[doc = "Bit 23 - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE. When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register. When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
     #[inline(always)]
     pub fn interleave(&self) -> INTERLEAVE_R {
         INTERLEAVE_R::new(((self.bits >> 23) & 1) != 0)
     }
-    #[doc = "Bits 24:26 - Shift applied to the colour data register with each read of a POP alias register.  
-
- Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount.  
-
- Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
+    #[doc = "Bits 24:26 - Shift applied to the colour data register with each read of a POP alias register. Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount. Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
     #[inline(always)]
     pub fn pix_shift(&self) -> PIX_SHIFT_R {
         PIX_SHIFT_R::new(((self.bits >> 24) & 7) as u8)
     }
-    #[doc = "Bit 27 - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register.  
-
- This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
+    #[doc = "Bit 27 - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register. This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
     #[inline(always)]
     pub fn pix2_noshift(&self) -> PIX2_NOSHIFT_R {
         PIX2_NOSHIFT_R::new(((self.bits >> 27) & 1) != 0)
     }
-    #[doc = "Bit 28 - Clear the running DC balance state of the TMDS encoders. This bit should be written once at the beginning of each scanline."]
-    #[inline(always)]
-    pub fn clear_balance(&self) -> CLEAR_BALANCE_R {
-        CLEAR_BALANCE_R::new(((self.bits >> 28) & 1) != 0)
-    }
 }
 impl W {
-    #[doc = "Bits 0:3 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
+    #[doc = "Bits 0:3 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 0 (blue) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), blue is bits 4:0, so should be right-rotated by 13 to align with bits 7:3 of the encoder input."]
     #[inline(always)]
     #[must_use]
     pub fn l0_rot(&mut self) -> L0_ROT_W<TMDS_CTRL_SPEC> {
         L0_ROT_W::new(self, 0)
     }
-    #[doc = "Bits 4:7 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
+    #[doc = "Bits 4:7 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 1 (green) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565, green is bits 10:5, so should be right-rotated by 3 bits to align with bits 7:2 of the encoder input."]
     #[inline(always)]
     #[must_use]
     pub fn l1_rot(&mut self) -> L1_ROT_W<TMDS_CTRL_SPEC> {
         L1_ROT_W::new(self, 4)
     }
-    #[doc = "Bits 8:11 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input.  
-
- For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
+    #[doc = "Bits 8:11 - Right-rotate the 16 LSBs of the colour accumulator by 0-15 bits, in order to get the MSB of the lane 2 (red) colour data aligned with the MSB of the 8-bit encoder input. For example, for RGB565 (red most significant), red is bits 15:11, so should be right-rotated by 8 bits to align with bits 7:3 of the encoder input."]
     #[inline(always)]
     #[must_use]
     pub fn l2_rot(&mut self) -> L2_ROT_W<TMDS_CTRL_SPEC> {
@@ -299,29 +234,19 @@ impl W {
     pub fn l2_nbits(&mut self) -> L2_NBITS_W<TMDS_CTRL_SPEC> {
         L2_NBITS_W::new(self, 18)
     }
-    #[doc = "Bit 23 - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE.  
-
- When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register.  
-
- When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
+    #[doc = "Bit 23 - Enable lane interleaving for reads of PEEK_SINGLE/POP_SINGLE. When interleaving is disabled, each of the 3 symbols appears as a contiguous 10-bit field, with lane 0 being the least-significant and starting at bit 0 of the register. When interleaving is enabled, the symbols are packed into 5 chunks of 3 lanes times 2 bits (30 bits total). Each chunk contains two bits of a TMDS symbol per lane, with lane 0 being the least significant."]
     #[inline(always)]
     #[must_use]
     pub fn interleave(&mut self) -> INTERLEAVE_W<TMDS_CTRL_SPEC> {
         INTERLEAVE_W::new(self, 23)
     }
-    #[doc = "Bits 24:26 - Shift applied to the colour data register with each read of a POP alias register.  
-
- Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount.  
-
- Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
+    #[doc = "Bits 24:26 - Shift applied to the colour data register with each read of a POP alias register. Reading from the POP_SINGLE register, or reading from the POP_DOUBLE register with PIX2_NOSHIFT set (for pixel doubling), shifts by the indicated amount. Reading from a POP_DOUBLE register when PIX2_NOSHIFT is clear will shift by double the indicated amount. (Shift by 32 means no shift.)"]
     #[inline(always)]
     #[must_use]
     pub fn pix_shift(&mut self) -> PIX_SHIFT_W<TMDS_CTRL_SPEC> {
         PIX_SHIFT_W::new(self, 24)
     }
-    #[doc = "Bit 27 - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register.  
-
- This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
+    #[doc = "Bit 27 - When encoding two pixels's worth of symbols in one cycle (a read of a PEEK/POP_DOUBLE register), the second encoder sees a shifted version of the colour data register. This control disables that shift, so that both encoder layers see the same pixel data. This is used for pixel doubling."]
     #[inline(always)]
     #[must_use]
     pub fn pix2_noshift(&mut self) -> PIX2_NOSHIFT_W<TMDS_CTRL_SPEC> {

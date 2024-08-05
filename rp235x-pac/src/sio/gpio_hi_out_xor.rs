@@ -1,3 +1,5 @@
+#[doc = "Register `GPIO_HI_OUT_XOR` reader"]
+pub type R = crate::R<GPIO_HI_OUT_XOR_SPEC>;
 #[doc = "Register `GPIO_HI_OUT_XOR` writer"]
 pub type W = crate::W<GPIO_HI_OUT_XOR_SPEC>;
 #[doc = "Field `GPIO` writer - "]
@@ -50,14 +52,15 @@ impl W {
         QSPI_SD_W::new(self, 28)
     }
 }
-#[doc = "Output value XOR for GPIO32..47, QSPI IOs and USB pins.  
- Perform an atomic bitwise XOR on GPIO_HI_OUT, i.e. `GPIO_HI_OUT ^= wdata`  
+#[doc = "Output value XOR for GPIO32..47, QSPI IOs and USB pins. Perform an atomic bitwise XOR on GPIO_HI_OUT, i.e. `GPIO_HI_OUT ^= wdata`  
 
-You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`gpio_hi_out_xor::W`](W). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`gpio_hi_out_xor::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`gpio_hi_out_xor::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct GPIO_HI_OUT_XOR_SPEC;
 impl crate::RegisterSpec for GPIO_HI_OUT_XOR_SPEC {
     type Ux = u32;
 }
+#[doc = "`read()` method returns [`gpio_hi_out_xor::R`](R) reader structure"]
+impl crate::Readable for GPIO_HI_OUT_XOR_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`gpio_hi_out_xor::W`](W) writer structure"]
 impl crate::Writable for GPIO_HI_OUT_XOR_SPEC {
     type Safety = crate::Unsafe;

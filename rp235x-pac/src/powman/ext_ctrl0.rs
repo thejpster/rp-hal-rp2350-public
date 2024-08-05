@@ -2,11 +2,9 @@
 pub type R = crate::R<EXT_CTRL0_SPEC>;
 #[doc = "Register `EXT_CTRL0` writer"]
 pub type W = crate::W<EXT_CTRL0_SPEC>;
-#[doc = "Field `GPIO_SELECT` reader - selects from gpio 0->30  
- set to31 to disable this feature"]
+#[doc = "Field `GPIO_SELECT` reader - selects from gpio 0->30 set to 31 to disable this feature"]
 pub type GPIO_SELECT_R = crate::FieldReader;
-#[doc = "Field `GPIO_SELECT` writer - selects from gpio 0->30  
- set to31 to disable this feature"]
+#[doc = "Field `GPIO_SELECT` writer - selects from gpio 0->30 set to 31 to disable this feature"]
 pub type GPIO_SELECT_W<'a, REG> = crate::FieldWriter<'a, REG, 6>;
 #[doc = "Field `INIT` reader - "]
 pub type INIT_R = crate::BitReader;
@@ -25,8 +23,7 @@ pub type LP_EXIT_STATE_R = crate::BitReader;
 #[doc = "Field `LP_EXIT_STATE` writer - output level when exiting the low power state"]
 pub type LP_EXIT_STATE_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
-    #[doc = "Bits 0:5 - selects from gpio 0->30  
- set to31 to disable this feature"]
+    #[doc = "Bits 0:5 - selects from gpio 0->30 set to 31 to disable this feature"]
     #[inline(always)]
     pub fn gpio_select(&self) -> GPIO_SELECT_R {
         GPIO_SELECT_R::new((self.bits & 0x3f) as u8)
@@ -53,8 +50,7 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bits 0:5 - selects from gpio 0->30  
- set to31 to disable this feature"]
+    #[doc = "Bits 0:5 - selects from gpio 0->30 set to 31 to disable this feature"]
     #[inline(always)]
     #[must_use]
     pub fn gpio_select(&mut self) -> GPIO_SELECT_W<EXT_CTRL0_SPEC> {

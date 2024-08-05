@@ -1,5 +1,7 @@
 #[doc = "Register `GPIO_HI_IN` reader"]
 pub type R = crate::R<GPIO_HI_IN_SPEC>;
+#[doc = "Register `GPIO_HI_IN` writer"]
+pub type W = crate::W<GPIO_HI_IN_SPEC>;
 #[doc = "Field `GPIO` reader - Input value on GPIO32...47"]
 pub type GPIO_R = crate::FieldReader<u16>;
 #[doc = "Field `USB_DP` reader - Input value on USB D+ pin"]
@@ -44,17 +46,22 @@ impl R {
         QSPI_SD_R::new(((self.bits >> 28) & 0x0f) as u8)
     }
 }
-#[doc = "Input value on GPIO32...47, QSPI IOs and USB pins  
+impl W {}
+#[doc = "Input value on GPIO32...47, QSPI IOs and USB pins In the Non-secure SIO, Secure-only GPIOs (as per ACCESSCTRL) appear as zero.  
 
- In the NonSecure SIO, Secure-only GPIOs (as per ACCESSCTRL) appear as zero.  
-
-You can [`read`](crate::Reg::read) this register and get [`gpio_hi_in::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`gpio_hi_in::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`gpio_hi_in::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct GPIO_HI_IN_SPEC;
 impl crate::RegisterSpec for GPIO_HI_IN_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`gpio_hi_in::R`](R) reader structure"]
 impl crate::Readable for GPIO_HI_IN_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`gpio_hi_in::W`](W) writer structure"]
+impl crate::Writable for GPIO_HI_IN_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets GPIO_HI_IN to value 0"]
 impl crate::Resettable for GPIO_HI_IN_SPEC {
     const RESET_VALUE: u32 = 0;

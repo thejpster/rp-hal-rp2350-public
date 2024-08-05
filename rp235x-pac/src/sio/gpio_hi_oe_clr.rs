@@ -1,3 +1,5 @@
+#[doc = "Register `GPIO_HI_OE_CLR` reader"]
+pub type R = crate::R<GPIO_HI_OE_CLR_SPEC>;
 #[doc = "Register `GPIO_HI_OE_CLR` writer"]
 pub type W = crate::W<GPIO_HI_OE_CLR_SPEC>;
 #[doc = "Field `GPIO` writer - "]
@@ -50,14 +52,15 @@ impl W {
         QSPI_SD_W::new(self, 28)
     }
 }
-#[doc = "Output enable clear for GPIO32...47, QSPI IOs and USB pins.  
- Perform an atomic bit-clear on GPIO_HI_OE, i.e. `GPIO_HI_OE &amp;= ~wdata`  
+#[doc = "Output enable clear for GPIO32...47, QSPI IOs and USB pins. Perform an atomic bit-clear on GPIO_HI_OE, i.e. `GPIO_HI_OE &amp;= ~wdata`  
 
-You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`gpio_hi_oe_clr::W`](W). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`gpio_hi_oe_clr::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`gpio_hi_oe_clr::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct GPIO_HI_OE_CLR_SPEC;
 impl crate::RegisterSpec for GPIO_HI_OE_CLR_SPEC {
     type Ux = u32;
 }
+#[doc = "`read()` method returns [`gpio_hi_oe_clr::R`](R) reader structure"]
+impl crate::Readable for GPIO_HI_OE_CLR_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`gpio_hi_oe_clr::W`](W) writer structure"]
 impl crate::Writable for GPIO_HI_OE_CLR_SPEC {
     type Safety = crate::Unsafe;

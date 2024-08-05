@@ -14,9 +14,7 @@ pub struct RegisterBlock {
     scratch7: SCRATCH7,
 }
 impl RegisterBlock {
-    #[doc = "0x00 - Watchdog control  
- The rst_wdsel register determines which subsystems are reset when the watchdog is triggered.  
- The watchdog can be triggered in software."]
+    #[doc = "0x00 - Watchdog control The rst_wdsel register determines which subsystems are reset when the watchdog is triggered. The watchdog can be triggered in software."]
     #[inline(always)]
     pub const fn ctrl(&self) -> &CTRL {
         &self.ctrl
@@ -26,9 +24,7 @@ impl RegisterBlock {
     pub const fn load(&self) -> &LOAD {
         &self.load
     }
-    #[doc = "0x08 - Logs the reason for the last reset. Both bits are zero for the case of a hardware reset.  
-
- Additionally, as of RP2350, a debugger warm reset of either core (SYSRESETREQ or hartreset) will also clear the watchdog reason register, so that software loaded under the debugger following a watchdog timeout will not continue to see the timeout condition."]
+    #[doc = "0x08 - Logs the reason for the last reset. Both bits are zero for the case of a hardware reset. Additionally, as of RP2350, a debugger warm reset of either core (SYSRESETREQ or hartreset) will also clear the watchdog reason register, so that software loaded under the debugger following a watchdog timeout will not continue to see the timeout condition."]
     #[inline(always)]
     pub const fn reason(&self) -> &REASON {
         &self.reason
@@ -74,40 +70,32 @@ impl RegisterBlock {
         &self.scratch7
     }
 }
-#[doc = "CTRL (rw) register accessor: Watchdog control  
- The rst_wdsel register determines which subsystems are reset when the watchdog is triggered.  
- The watchdog can be triggered in software.  
+#[doc = "CTRL (rw) register accessor: Watchdog control The rst_wdsel register determines which subsystems are reset when the watchdog is triggered. The watchdog can be triggered in software.  
 
 You can [`read`](crate::Reg::read) this register and get [`ctrl::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ctrl::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ctrl`]
 module"]
 pub type CTRL = crate::Reg<ctrl::CTRL_SPEC>;
-#[doc = "Watchdog control  
- The rst_wdsel register determines which subsystems are reset when the watchdog is triggered.  
- The watchdog can be triggered in software."]
+#[doc = "Watchdog control The rst_wdsel register determines which subsystems are reset when the watchdog is triggered. The watchdog can be triggered in software."]
 pub mod ctrl;
-#[doc = "LOAD (w) register accessor: Load the watchdog timer. The maximum setting is 0xffffff which corresponds to approximately 16 seconds.  
+#[doc = "LOAD (rw) register accessor: Load the watchdog timer. The maximum setting is 0xffffff which corresponds to approximately 16 seconds.  
 
-You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`load::W`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`load::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`load::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@load`]
 module"]
 pub type LOAD = crate::Reg<load::LOAD_SPEC>;
 #[doc = "Load the watchdog timer. The maximum setting is 0xffffff which corresponds to approximately 16 seconds."]
 pub mod load;
-#[doc = "REASON (r) register accessor: Logs the reason for the last reset. Both bits are zero for the case of a hardware reset.  
+#[doc = "REASON (rw) register accessor: Logs the reason for the last reset. Both bits are zero for the case of a hardware reset. Additionally, as of RP2350, a debugger warm reset of either core (SYSRESETREQ or hartreset) will also clear the watchdog reason register, so that software loaded under the debugger following a watchdog timeout will not continue to see the timeout condition.  
 
- Additionally, as of RP2350, a debugger warm reset of either core (SYSRESETREQ or hartreset) will also clear the watchdog reason register, so that software loaded under the debugger following a watchdog timeout will not continue to see the timeout condition.  
-
-You can [`read`](crate::Reg::read) this register and get [`reason::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`reason::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`reason::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@reason`]
 module"]
 pub type REASON = crate::Reg<reason::REASON_SPEC>;
-#[doc = "Logs the reason for the last reset. Both bits are zero for the case of a hardware reset.  
-
- Additionally, as of RP2350, a debugger warm reset of either core (SYSRESETREQ or hartreset) will also clear the watchdog reason register, so that software loaded under the debugger following a watchdog timeout will not continue to see the timeout condition."]
+#[doc = "Logs the reason for the last reset. Both bits are zero for the case of a hardware reset. Additionally, as of RP2350, a debugger warm reset of either core (SYSRESETREQ or hartreset) will also clear the watchdog reason register, so that software loaded under the debugger following a watchdog timeout will not continue to see the timeout condition."]
 pub mod reason;
 #[doc = "SCRATCH0 (rw) register accessor: Scratch register. Information persists through soft reset of the chip.  
 

@@ -231,13 +231,7 @@ impl W {
         UFSR_DIVBYZERO_W::new(self, 25)
     }
 }
-#[doc = "Contains the three Configurable Fault Status Registers.  
-
- 31:16 UFSR: Provides information on UsageFault exceptions  
-
- 15:8 BFSR: Provides information on BusFault exceptions  
-
- 7:0 MMFSR: Provides information on MemManage exceptions  
+#[doc = "Contains the three Configurable Fault Status Registers. 31:16 UFSR: Provides information on UsageFault exceptions 15:8 BFSR: Provides information on BusFault exceptions 7:0 MMFSR: Provides information on MemManage exceptions  
 
 You can [`read`](crate::Reg::read) this register and get [`cfsr::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`cfsr::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct CFSR_SPEC;

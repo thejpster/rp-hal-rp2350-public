@@ -1,5 +1,7 @@
 #[doc = "Register `ITM_DEVARCH` reader"]
 pub type R = crate::R<ITM_DEVARCH_SPEC>;
+#[doc = "Register `ITM_DEVARCH` writer"]
+pub type W = crate::W<ITM_DEVARCH_SPEC>;
 #[doc = "Field `ARCHPART` reader - Defines the architecture of the component"]
 pub type ARCHPART_R = crate::FieldReader<u16>;
 #[doc = "Field `ARCHVER` reader - Defines the architecture version of the component"]
@@ -41,15 +43,22 @@ are the JEP106 ID code."]
         ARCHITECT_R::new(((self.bits >> 21) & 0x07ff) as u16)
     }
 }
+impl W {}
 #[doc = "Provides CoreSight discovery information for the ITM  
 
-You can [`read`](crate::Reg::read) this register and get [`itm_devarch::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`itm_devarch::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`itm_devarch::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct ITM_DEVARCH_SPEC;
 impl crate::RegisterSpec for ITM_DEVARCH_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`itm_devarch::R`](R) reader structure"]
 impl crate::Readable for ITM_DEVARCH_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`itm_devarch::W`](W) writer structure"]
+impl crate::Writable for ITM_DEVARCH_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets ITM_DEVARCH to value 0x4770_1a01"]
 impl crate::Resettable for ITM_DEVARCH_SPEC {
     const RESET_VALUE: u32 = 0x4770_1a01;

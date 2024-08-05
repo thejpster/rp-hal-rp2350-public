@@ -2,31 +2,19 @@
 pub type R = crate::R<INTS0_SPEC>;
 #[doc = "Register `INTS0` writer"]
 pub type W = crate::W<INTS0_SPEC>;
-#[doc = "Field `INTS0` reader - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted.  
- Channel interrupts can be cleared by writing a bit mask here.  
-
- Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
+#[doc = "Field `INTS0` reader - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted. Channel interrupts can be cleared by writing a bit mask here. Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
 pub type INTS0_R = crate::FieldReader<u16>;
-#[doc = "Field `INTS0` writer - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted.  
- Channel interrupts can be cleared by writing a bit mask here.  
-
- Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
+#[doc = "Field `INTS0` writer - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted. Channel interrupts can be cleared by writing a bit mask here. Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
 pub type INTS0_W<'a, REG> = crate::FieldWriter<'a, REG, 16, u16>;
 impl R {
-    #[doc = "Bits 0:15 - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted.  
- Channel interrupts can be cleared by writing a bit mask here.  
-
- Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
+    #[doc = "Bits 0:15 - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted. Channel interrupts can be cleared by writing a bit mask here. Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
     #[inline(always)]
     pub fn ints0(&self) -> INTS0_R {
         INTS0_R::new((self.bits & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = "Bits 0:15 - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted.  
- Channel interrupts can be cleared by writing a bit mask here.  
-
- Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
+    #[doc = "Bits 0:15 - Indicates active channel interrupt requests which are currently causing IRQ 0 to be asserted. Channel interrupts can be cleared by writing a bit mask here. Channels with a security/privilege (SECCFG_CHx) greater SECCFG_IRQ0) read as 0 in this register, and ignore writes."]
     #[inline(always)]
     #[must_use]
     pub fn ints0(&mut self) -> INTS0_W<INTS0_SPEC> {

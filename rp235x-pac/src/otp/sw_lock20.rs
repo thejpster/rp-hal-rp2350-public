@@ -2,7 +2,7 @@
 pub type R = crate::R<SW_LOCK20_SPEC>;
 #[doc = "Register `SW_LOCK20` writer"]
 pub type W = crate::W<SW_LOCK20_SPEC>;
-#[doc = "Secure lock status. Writes are OR'd with the current value. This field is read-only to NonSecure code.  
+#[doc = "Secure lock status. Writes are OR'd with the current value. This field is read-only to Non-secure code.  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -25,7 +25,7 @@ impl crate::FieldSpec for SEC_A {
     type Ux = u8;
 }
 impl crate::IsEnum for SEC_A {}
-#[doc = "Field `SEC` reader - Secure lock status. Writes are OR'd with the current value. This field is read-only to NonSecure code."]
+#[doc = "Field `SEC` reader - Secure lock status. Writes are OR'd with the current value. This field is read-only to Non-secure code."]
 pub type SEC_R = crate::FieldReader<SEC_A>;
 impl SEC_R {
     #[doc = "Get enumerated values variant"]
@@ -54,7 +54,7 @@ impl SEC_R {
         *self == SEC_A::INACCESSIBLE
     }
 }
-#[doc = "Field `SEC` writer - Secure lock status. Writes are OR'd with the current value. This field is read-only to NonSecure code."]
+#[doc = "Field `SEC` writer - Secure lock status. Writes are OR'd with the current value. This field is read-only to Non-secure code."]
 pub type SEC_W<'a, REG> = crate::FieldWriter<'a, REG, 2, SEC_A>;
 impl<'a, REG> SEC_W<'a, REG>
 where
@@ -77,7 +77,7 @@ where
         self.variant(SEC_A::INACCESSIBLE)
     }
 }
-#[doc = "NonSecure lock status. Writes are OR'd with the current value.  
+#[doc = "Non-secure lock status. Writes are OR'd with the current value.  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -100,7 +100,7 @@ impl crate::FieldSpec for NSEC_A {
     type Ux = u8;
 }
 impl crate::IsEnum for NSEC_A {}
-#[doc = "Field `NSEC` reader - NonSecure lock status. Writes are OR'd with the current value."]
+#[doc = "Field `NSEC` reader - Non-secure lock status. Writes are OR'd with the current value."]
 pub type NSEC_R = crate::FieldReader<NSEC_A>;
 impl NSEC_R {
     #[doc = "Get enumerated values variant"]
@@ -129,7 +129,7 @@ impl NSEC_R {
         *self == NSEC_A::INACCESSIBLE
     }
 }
-#[doc = "Field `NSEC` writer - NonSecure lock status. Writes are OR'd with the current value."]
+#[doc = "Field `NSEC` writer - Non-secure lock status. Writes are OR'd with the current value."]
 pub type NSEC_W<'a, REG> = crate::FieldWriter<'a, REG, 2, NSEC_A>;
 impl<'a, REG> NSEC_W<'a, REG>
 where
@@ -153,34 +153,32 @@ where
     }
 }
 impl R {
-    #[doc = "Bits 0:1 - Secure lock status. Writes are OR'd with the current value. This field is read-only to NonSecure code."]
+    #[doc = "Bits 0:1 - Secure lock status. Writes are OR'd with the current value. This field is read-only to Non-secure code."]
     #[inline(always)]
     pub fn sec(&self) -> SEC_R {
         SEC_R::new((self.bits & 3) as u8)
     }
-    #[doc = "Bits 2:3 - NonSecure lock status. Writes are OR'd with the current value."]
+    #[doc = "Bits 2:3 - Non-secure lock status. Writes are OR'd with the current value."]
     #[inline(always)]
     pub fn nsec(&self) -> NSEC_R {
         NSEC_R::new(((self.bits >> 2) & 3) as u8)
     }
 }
 impl W {
-    #[doc = "Bits 0:1 - Secure lock status. Writes are OR'd with the current value. This field is read-only to NonSecure code."]
+    #[doc = "Bits 0:1 - Secure lock status. Writes are OR'd with the current value. This field is read-only to Non-secure code."]
     #[inline(always)]
     #[must_use]
     pub fn sec(&mut self) -> SEC_W<SW_LOCK20_SPEC> {
         SEC_W::new(self, 0)
     }
-    #[doc = "Bits 2:3 - NonSecure lock status. Writes are OR'd with the current value."]
+    #[doc = "Bits 2:3 - Non-secure lock status. Writes are OR'd with the current value."]
     #[inline(always)]
     #[must_use]
     pub fn nsec(&mut self) -> NSEC_W<SW_LOCK20_SPEC> {
         NSEC_W::new(self, 2)
     }
 }
-#[doc = "Software lock register for page 20.  
-
- Locks are initialised from the OTP lock pages at reset. This register can be written to further advance the lock state of each page (until next reset), and read to check the current lock state of a page.  
+#[doc = "Software lock register for page 20. Locks are initialised from the OTP lock pages at reset. This register can be written to further advance the lock state of each page (until next reset), and read to check the current lock state of a page.  
 
 You can [`read`](crate::Reg::read) this register and get [`sw_lock20::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`sw_lock20::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct SW_LOCK20_SPEC;

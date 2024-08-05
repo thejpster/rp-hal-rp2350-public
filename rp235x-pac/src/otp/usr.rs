@@ -2,22 +2,16 @@
 pub type R = crate::R<USR_SPEC>;
 #[doc = "Register `USR` writer"]
 pub type W = crate::W<USR_SPEC>;
-#[doc = "Field `DCTRL` reader - 1 enables USER interface; 0 disables USER interface (enables SBPI).  
-
- This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
+#[doc = "Field `DCTRL` reader - 1 enables USER interface; 0 disables USER interface (enables SBPI). This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
 pub type DCTRL_R = crate::BitReader;
-#[doc = "Field `DCTRL` writer - 1 enables USER interface; 0 disables USER interface (enables SBPI).  
-
- This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
+#[doc = "Field `DCTRL` writer - 1 enables USER interface; 0 disables USER interface (enables SBPI). This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
 pub type DCTRL_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `PD` reader - Power-down; 1 disables current reference. Must be 0 to read data from the OTP."]
 pub type PD_R = crate::BitReader;
 #[doc = "Field `PD` writer - Power-down; 1 disables current reference. Must be 0 to read data from the OTP."]
 pub type PD_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
-    #[doc = "Bit 0 - 1 enables USER interface; 0 disables USER interface (enables SBPI).  
-
- This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
+    #[doc = "Bit 0 - 1 enables USER interface; 0 disables USER interface (enables SBPI). This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
     #[inline(always)]
     pub fn dctrl(&self) -> DCTRL_R {
         DCTRL_R::new((self.bits & 1) != 0)
@@ -29,9 +23,7 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bit 0 - 1 enables USER interface; 0 disables USER interface (enables SBPI).  
-
- This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
+    #[doc = "Bit 0 - 1 enables USER interface; 0 disables USER interface (enables SBPI). This bit must be cleared before performing any SBPI access, such as when programming the OTP. The APB data read interface (USER interface) will be inaccessible during this time, and will return a bus error if any read is attempted."]
     #[inline(always)]
     #[must_use]
     pub fn dctrl(&mut self) -> DCTRL_W<USR_SPEC> {

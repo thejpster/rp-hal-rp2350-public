@@ -21,9 +21,7 @@ impl W {
         DOORBELL_IN_CLR_W::new(self, 0)
     }
 }
-#[doc = "Check and acknowledge doorbells posted to this core. This core's doorbell interrupt is asserted when any bit in this register is 1.  
-
- Write 1 to each bit to clear that bit. The doorbell interrupt deasserts once all bits are cleared. Read to get status of doorbells currently asserted on this core.  
+#[doc = "Check and acknowledge doorbells posted to this core. This core's doorbell interrupt is asserted when any bit in this register is 1. Write 1 to each bit to clear that bit. The doorbell interrupt deasserts once all bits are cleared. Read to get status of doorbells currently asserted on this core.  
 
 You can [`read`](crate::Reg::read) this register and get [`doorbell_in_clr::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`doorbell_in_clr::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct DOORBELL_IN_CLR_SPEC;

@@ -2,27 +2,19 @@
 pub type R = crate::R<BOD_CTRL_SPEC>;
 #[doc = "Register `BOD_CTRL` writer"]
 pub type W = crate::W<BOD_CTRL_SPEC>;
-#[doc = "Field `ISOLATE` reader - isolates the brown-out detection control interface  
- 0 - not isolated (default)  
- 1 - isolated"]
+#[doc = "Field `ISOLATE` reader - isolates the brown-out detection control interface 0 - not isolated (default) 1 - isolated"]
 pub type ISOLATE_R = crate::BitReader;
-#[doc = "Field `ISOLATE` writer - isolates the brown-out detection control interface  
- 0 - not isolated (default)  
- 1 - isolated"]
+#[doc = "Field `ISOLATE` writer - isolates the brown-out detection control interface 0 - not isolated (default) 1 - isolated"]
 pub type ISOLATE_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
-    #[doc = "Bit 12 - isolates the brown-out detection control interface  
- 0 - not isolated (default)  
- 1 - isolated"]
+    #[doc = "Bit 12 - isolates the brown-out detection control interface 0 - not isolated (default) 1 - isolated"]
     #[inline(always)]
     pub fn isolate(&self) -> ISOLATE_R {
         ISOLATE_R::new(((self.bits >> 12) & 1) != 0)
     }
 }
 impl W {
-    #[doc = "Bit 12 - isolates the brown-out detection control interface  
- 0 - not isolated (default)  
- 1 - isolated"]
+    #[doc = "Bit 12 - isolates the brown-out detection control interface 0 - not isolated (default) 1 - isolated"]
     #[inline(always)]
     #[must_use]
     pub fn isolate(&mut self) -> ISOLATE_W<BOD_CTRL_SPEC> {

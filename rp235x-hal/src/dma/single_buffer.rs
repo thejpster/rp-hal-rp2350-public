@@ -125,7 +125,7 @@ where
 
         chan_abort.write(|w| unsafe { w.chan_abort().bits(abort_mask) });
 
-        while chan_abort.read().chan_abort().bits() != 0 {}
+        while chan_abort.read().bits() != 0 {}
 
         while !self.is_done() {}
 

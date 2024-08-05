@@ -2,9 +2,7 @@
 pub type R = crate::R<DISARM_SPEC>;
 #[doc = "Register `DISARM` writer"]
 pub type W = crate::W<DISARM_SPEC>;
-#[doc = "Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES.  
-
- This register is Secure read/write only.  
+#[doc = "Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES. This register is Secure read/write only.  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -25,9 +23,7 @@ impl crate::FieldSpec for DISARM_A {
     type Ux = u16;
 }
 impl crate::IsEnum for DISARM_A {}
-#[doc = "Field `DISARM` reader - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES.  
-
- This register is Secure read/write only."]
+#[doc = "Field `DISARM` reader - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES. This register is Secure read/write only."]
 pub type DISARM_R = crate::FieldReader<DISARM_A>;
 impl DISARM_R {
     #[doc = "Get enumerated values variant"]
@@ -50,9 +46,7 @@ impl DISARM_R {
         *self == DISARM_A::YES
     }
 }
-#[doc = "Field `DISARM` writer - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES.  
-
- This register is Secure read/write only."]
+#[doc = "Field `DISARM` writer - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES. This register is Secure read/write only."]
 pub type DISARM_W<'a, REG> = crate::FieldWriter<'a, REG, 16, DISARM_A>;
 impl<'a, REG> DISARM_W<'a, REG>
 where
@@ -71,18 +65,14 @@ where
     }
 }
 impl R {
-    #[doc = "Bits 0:15 - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES.  
-
- This register is Secure read/write only."]
+    #[doc = "Bits 0:15 - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES. This register is Secure read/write only."]
     #[inline(always)]
     pub fn disarm(&self) -> DISARM_R {
         DISARM_R::new((self.bits & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = "Bits 0:15 - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES.  
-
- This register is Secure read/write only."]
+    #[doc = "Bits 0:15 - Forcibly disarm the glitch detectors, if they are armed by OTP. Ignored if ARM is YES. This register is Secure read/write only."]
     #[inline(always)]
     #[must_use]
     pub fn disarm(&mut self) -> DISARM_W<DISARM_SPEC> {

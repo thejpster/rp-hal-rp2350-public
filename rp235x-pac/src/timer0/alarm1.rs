@@ -2,16 +2,26 @@
 pub type R = crate::R<ALARM1_SPEC>;
 #[doc = "Register `ALARM1` writer"]
 pub type W = crate::W<ALARM1_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `ALARM1` reader - "]
+pub type ALARM1_R = crate::FieldReader<u32>;
+#[doc = "Field `ALARM1` writer - "]
+pub type ALARM1_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn alarm1(&self) -> ALARM1_R {
+        ALARM1_R::new(self.bits)
     }
 }
-impl W {}
-#[doc = "Arm alarm 1, and configure the time it will fire.  
- Once armed, the alarm fires when TIMER_ALARM1 == TIMELR.  
- The alarm will disarm itself once it fires, and can  
- be disarmed early using the ARMED status register.  
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn alarm1(&mut self) -> ALARM1_W<ALARM1_SPEC> {
+        ALARM1_W::new(self, 0)
+    }
+}
+#[doc = "Arm alarm 1, and configure the time it will fire. Once armed, the alarm fires when TIMER_ALARM1 == TIMELR. The alarm will disarm itself once it fires, and can be disarmed early using the ARMED status register.  
 
 You can [`read`](crate::Reg::read) this register and get [`alarm1::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`alarm1::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct ALARM1_SPEC;

@@ -24,7 +24,7 @@ macro_rules! generate_reset {
 }
 
 // In datasheet order
-generate_reset!(USBCTRL_REGS, usbctrl);
+generate_reset!(USB, usbctrl);
 generate_reset!(UART1, uart1);
 generate_reset!(UART0, uart0);
 generate_reset!(TIMER0, timer0);

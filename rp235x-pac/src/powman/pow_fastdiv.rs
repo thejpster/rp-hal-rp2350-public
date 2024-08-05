@@ -2,27 +2,19 @@
 pub type R = crate::R<POW_FASTDIV_SPEC>;
 #[doc = "Register `POW_FASTDIV` writer"]
 pub type W = crate::W<POW_FASTDIV_SPEC>;
-#[doc = "Field `POW_FASTDIV` reader - divides the POWMAN clock to provide a tick for the delay module and state machines  
- when clk_pow is running from the slow clock it is not divided  
- when clk_pow is running from the fast clock it is divided by tick_div"]
+#[doc = "Field `POW_FASTDIV` reader - divides the POWMAN clock to provide a tick for the delay module and state machines when clk_pow is running from the slow clock it is not divided when clk_pow is running from the fast clock it is divided by tick_div"]
 pub type POW_FASTDIV_R = crate::FieldReader<u16>;
-#[doc = "Field `POW_FASTDIV` writer - divides the POWMAN clock to provide a tick for the delay module and state machines  
- when clk_pow is running from the slow clock it is not divided  
- when clk_pow is running from the fast clock it is divided by tick_div"]
+#[doc = "Field `POW_FASTDIV` writer - divides the POWMAN clock to provide a tick for the delay module and state machines when clk_pow is running from the slow clock it is not divided when clk_pow is running from the fast clock it is divided by tick_div"]
 pub type POW_FASTDIV_W<'a, REG> = crate::FieldWriter<'a, REG, 11, u16>;
 impl R {
-    #[doc = "Bits 0:10 - divides the POWMAN clock to provide a tick for the delay module and state machines  
- when clk_pow is running from the slow clock it is not divided  
- when clk_pow is running from the fast clock it is divided by tick_div"]
+    #[doc = "Bits 0:10 - divides the POWMAN clock to provide a tick for the delay module and state machines when clk_pow is running from the slow clock it is not divided when clk_pow is running from the fast clock it is divided by tick_div"]
     #[inline(always)]
     pub fn pow_fastdiv(&self) -> POW_FASTDIV_R {
         POW_FASTDIV_R::new((self.bits & 0x07ff) as u16)
     }
 }
 impl W {
-    #[doc = "Bits 0:10 - divides the POWMAN clock to provide a tick for the delay module and state machines  
- when clk_pow is running from the slow clock it is not divided  
- when clk_pow is running from the fast clock it is divided by tick_div"]
+    #[doc = "Bits 0:10 - divides the POWMAN clock to provide a tick for the delay module and state machines when clk_pow is running from the slow clock it is not divided when clk_pow is running from the fast clock it is divided by tick_div"]
     #[inline(always)]
     #[must_use]
     pub fn pow_fastdiv(&mut self) -> POW_FASTDIV_W<POW_FASTDIV_SPEC> {

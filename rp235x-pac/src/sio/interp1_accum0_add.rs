@@ -21,8 +21,7 @@ impl W {
         INTERP1_ACCUM0_ADD_W::new(self, 0)
     }
 }
-#[doc = "Values written here are atomically added to ACCUM0  
- Reading yields lane 0's raw shift and mask value (BASE0 not added).  
+#[doc = "Values written here are atomically added to ACCUM0 Reading yields lane 0's raw shift and mask value (BASE0 not added).  
 
 You can [`read`](crate::Reg::read) this register and get [`interp1_accum0_add::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`interp1_accum0_add::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct INTERP1_ACCUM0_ADD_SPEC;

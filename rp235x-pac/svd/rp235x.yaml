@@ -366,7 +366,7 @@ PADS_BANK0:
   _array:
     "GPIO*": {}
 
-USBCTRL_REGS:
+USB:
   SIE_STATUS:
     LINE_STATE:
       SE0: [0, "SE0"]

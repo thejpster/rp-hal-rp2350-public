@@ -27,6 +27,7 @@ PROVIDE(SIO_IRQ_FIFO = DefaultHandler);
 PROVIDE(SIO_IRQ_BELL = DefaultHandler);
 PROVIDE(SIO_IRQ_FIFO_NS = DefaultHandler);
 PROVIDE(SIO_IRQ_BELL_NS = DefaultHandler);
+PROVIDE(SIO_IRQ_MTIMECMP = DefaultHandler);
 PROVIDE(CLOCKS_IRQ = DefaultHandler);
 PROVIDE(SPI0_IRQ = DefaultHandler);
 PROVIDE(SPI1_IRQ = DefaultHandler);

@@ -21,9 +21,7 @@ impl W {
         PERFCTR_EN_W::new(self, 0)
     }
 }
-#[doc = "Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code.  
-
- The performance counters are initially disabled, to save energy.  
+#[doc = "Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code. The performance counters are initially disabled, to save energy.  
 
 You can [`read`](crate::Reg::read) this register and get [`perfctr_en::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`perfctr_en::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct PERFCTR_EN_SPEC;

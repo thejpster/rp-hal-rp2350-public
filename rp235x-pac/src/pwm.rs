@@ -23,11 +23,7 @@ impl RegisterBlock {
     pub fn ch_iter(&self) -> impl Iterator<Item = &CH> {
         self.ch.iter()
     }
-    #[doc = "0xf0 - This register aliases the CSR_EN bits for all channels.  
- Writing to this register allows multiple channels to be enabled  
- or disabled simultaneously, so they can run in perfect sync.  
- For each channel, there is only one physical EN register bit,  
- which can be accessed through here or CHx_CSR."]
+    #[doc = "0xf0 - This register aliases the CSR_EN bits for all channels. Writing to this register allows multiple channels to be enabled or disabled simultaneously, so they can run in perfect sync. For each channel, there is only one physical EN register bit, which can be accessed through here or CHx_CSR."]
     #[inline(always)]
     pub const fn en(&self) -> &EN {
         &self.en
@@ -73,22 +69,14 @@ pub use self::ch::CH;
 #[doc = r"Cluster"]
 #[doc = "Cluster CH%s, containing CH*_CC, CH*_CSR, CH*_CTR, CH*_DIV, CH*_TOP"]
 pub mod ch;
-#[doc = "EN (rw) register accessor: This register aliases the CSR_EN bits for all channels.  
- Writing to this register allows multiple channels to be enabled  
- or disabled simultaneously, so they can run in perfect sync.  
- For each channel, there is only one physical EN register bit,  
- which can be accessed through here or CHx_CSR.  
+#[doc = "EN (rw) register accessor: This register aliases the CSR_EN bits for all channels. Writing to this register allows multiple channels to be enabled or disabled simultaneously, so they can run in perfect sync. For each channel, there is only one physical EN register bit, which can be accessed through here or CHx_CSR.  
 
 You can [`read`](crate::Reg::read) this register and get [`en::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`en::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@en`]
 module"]
 pub type EN = crate::Reg<en::EN_SPEC>;
-#[doc = "This register aliases the CSR_EN bits for all channels.  
- Writing to this register allows multiple channels to be enabled  
- or disabled simultaneously, so they can run in perfect sync.  
- For each channel, there is only one physical EN register bit,  
- which can be accessed through here or CHx_CSR."]
+#[doc = "This register aliases the CSR_EN bits for all channels. Writing to this register allows multiple channels to be enabled or disabled simultaneously, so they can run in perfect sync. For each channel, there is only one physical EN register bit, which can be accessed through here or CHx_CSR."]
 pub mod en;
 #[doc = "INTR (rw) register accessor: Raw Interrupts  
 
@@ -117,9 +105,9 @@ module"]
 pub type IRQ0_INTF = crate::Reg<irq0_intf::IRQ0_INTF_SPEC>;
 #[doc = "Interrupt Force for irq0"]
 pub mod irq0_intf;
-#[doc = "IRQ0_INTS (r) register accessor: Interrupt status after masking &amp; forcing for irq0  
+#[doc = "IRQ0_INTS (rw) register accessor: Interrupt status after masking &amp; forcing for irq0  
 
-You can [`read`](crate::Reg::read) this register and get [`irq0_ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irq0_ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irq0_ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@irq0_ints`]
 module"]
@@ -144,9 +132,9 @@ module"]
 pub type IRQ1_INTF = crate::Reg<irq1_intf::IRQ1_INTF_SPEC>;
 #[doc = "Interrupt Force for irq1"]
 pub mod irq1_intf;
-#[doc = "IRQ1_INTS (r) register accessor: Interrupt status after masking &amp; forcing for irq1  
+#[doc = "IRQ1_INTS (rw) register accessor: Interrupt status after masking &amp; forcing for irq1  
 
-You can [`read`](crate::Reg::read) this register and get [`irq1_ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`irq1_ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irq1_ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@irq1_ints`]
 module"]

@@ -2,13 +2,9 @@
 pub type R = crate::R<SLEEPCTRL_SPEC>;
 #[doc = "Register `SLEEPCTRL` writer"]
 pub type W = crate::W<SLEEPCTRL_SPEC>;
-#[doc = "Field `LIGHT_SLEEP` reader - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup.  
-
- Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
+#[doc = "Field `LIGHT_SLEEP` reader - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup. Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
 pub type LIGHT_SLEEP_R = crate::BitReader;
-#[doc = "Field `LIGHT_SLEEP` writer - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup.  
-
- Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
+#[doc = "Field `LIGHT_SLEEP` writer - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup. Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
 pub type LIGHT_SLEEP_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `WICENREQ` reader - Request that the next processor deep sleep is a WIC sleep. After setting this bit, before sleeping, poll WICENACK to ensure the processor interrupt controller has acknowledged the change."]
 pub type WICENREQ_R = crate::BitReader;
@@ -17,9 +13,7 @@ pub type WICENREQ_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `WICENACK` reader - Status signal from the processor's interrupt controller. Changes to WICENREQ are eventually reflected in WICENACK."]
 pub type WICENACK_R = crate::BitReader;
 impl R {
-    #[doc = "Bit 0 - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup.  
-
- Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
+    #[doc = "Bit 0 - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup. Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
     #[inline(always)]
     pub fn light_sleep(&self) -> LIGHT_SLEEP_R {
         LIGHT_SLEEP_R::new((self.bits & 1) != 0)
@@ -36,9 +30,7 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bit 0 - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup.  
-
- Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
+    #[doc = "Bit 0 - By default, any processor sleep will deassert the system-level clock request. Reenabling the clocks incurs 5 cycles of additional latency on wakeup. Setting LIGHT_SLEEP to 1 keeps the clock request asserted during a normal sleep (Arm SCR.SLEEPDEEP = 0), for faster wakeup. Processor deep sleep (Arm SCR.SLEEPDEEP = 1) is not affected, and will always deassert the system-level clock request."]
     #[inline(always)]
     #[must_use]
     pub fn light_sleep(&mut self) -> LIGHT_SLEEP_W<SLEEPCTRL_SPEC> {

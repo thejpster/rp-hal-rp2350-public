@@ -2,23 +2,19 @@
 pub type R = crate::R<DBGCONFIG_SPEC>;
 #[doc = "Register `DBGCONFIG` writer"]
 pub type W = crate::W<DBGCONFIG_SPEC>;
-#[doc = "Field `DP_INSTID` reader - Configure DP instance ID for SWD multidrop selection.  
- Recommend that this is NOT changed until you require debug access in multi-chip environment"]
+#[doc = "Field `DP_INSTID` reader - Configure DP instance ID for SWD multidrop selection. Recommend that this is NOT changed until you require debug access in multi-chip environment"]
 pub type DP_INSTID_R = crate::FieldReader;
-#[doc = "Field `DP_INSTID` writer - Configure DP instance ID for SWD multidrop selection.  
- Recommend that this is NOT changed until you require debug access in multi-chip environment"]
+#[doc = "Field `DP_INSTID` writer - Configure DP instance ID for SWD multidrop selection. Recommend that this is NOT changed until you require debug access in multi-chip environment"]
 pub type DP_INSTID_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
 impl R {
-    #[doc = "Bits 0:3 - Configure DP instance ID for SWD multidrop selection.  
- Recommend that this is NOT changed until you require debug access in multi-chip environment"]
+    #[doc = "Bits 0:3 - Configure DP instance ID for SWD multidrop selection. Recommend that this is NOT changed until you require debug access in multi-chip environment"]
     #[inline(always)]
     pub fn dp_instid(&self) -> DP_INSTID_R {
         DP_INSTID_R::new((self.bits & 0x0f) as u8)
     }
 }
 impl W {
-    #[doc = "Bits 0:3 - Configure DP instance ID for SWD multidrop selection.  
- Recommend that this is NOT changed until you require debug access in multi-chip environment"]
+    #[doc = "Bits 0:3 - Configure DP instance ID for SWD multidrop selection. Recommend that this is NOT changed until you require debug access in multi-chip environment"]
     #[inline(always)]
     #[must_use]
     pub fn dp_instid(&mut self) -> DP_INSTID_W<DBGCONFIG_SPEC> {

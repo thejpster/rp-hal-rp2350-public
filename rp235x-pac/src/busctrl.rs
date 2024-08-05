@@ -24,9 +24,7 @@ impl RegisterBlock {
     pub const fn bus_priority_ack(&self) -> &BUS_PRIORITY_ACK {
         &self.bus_priority_ack
     }
-    #[doc = "0x08 - Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code.  
-
- The performance counters are initially disabled, to save energy."]
+    #[doc = "0x08 - Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code. The performance counters are initially disabled, to save energy."]
     #[inline(always)]
     pub const fn perfctr_en(&self) -> &PERFCTR_EN {
         &self.perfctr_en
@@ -81,27 +79,23 @@ module"]
 pub type BUS_PRIORITY = crate::Reg<bus_priority::BUS_PRIORITY_SPEC>;
 #[doc = "Set the priority of each master for bus arbitration."]
 pub mod bus_priority;
-#[doc = "BUS_PRIORITY_ACK (r) register accessor: Bus priority acknowledge  
+#[doc = "BUS_PRIORITY_ACK (rw) register accessor: Bus priority acknowledge  
 
-You can [`read`](crate::Reg::read) this register and get [`bus_priority_ack::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`bus_priority_ack::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`bus_priority_ack::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@bus_priority_ack`]
 module"]
 pub type BUS_PRIORITY_ACK = crate::Reg<bus_priority_ack::BUS_PRIORITY_ACK_SPEC>;
 #[doc = "Bus priority acknowledge"]
 pub mod bus_priority_ack;
-#[doc = "PERFCTR_EN (rw) register accessor: Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code.  
-
- The performance counters are initially disabled, to save energy.  
+#[doc = "PERFCTR_EN (rw) register accessor: Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code. The performance counters are initially disabled, to save energy.  
 
 You can [`read`](crate::Reg::read) this register and get [`perfctr_en::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`perfctr_en::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@perfctr_en`]
 module"]
 pub type PERFCTR_EN = crate::Reg<perfctr_en::PERFCTR_EN_SPEC>;
-#[doc = "Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code.  
-
- The performance counters are initially disabled, to save energy."]
+#[doc = "Enable the performance counters. If 0, the performance counters do not increment. This can be used to precisely start/stop event sampling around the profiled section of code. The performance counters are initially disabled, to save energy."]
 pub mod perfctr_en;
 #[doc = "PERFCTR0 (rw) register accessor: Bus fabric performance counter 0  
 

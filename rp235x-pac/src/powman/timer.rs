@@ -2,16 +2,14 @@
 pub type R = crate::R<TIMER_SPEC>;
 #[doc = "Register `TIMER` writer"]
 pub type W = crate::W<TIMER_SPEC>;
-#[doc = "Field `NONSEC_WRITE` reader - Control whether NonSecure software can write to the timer registers. All other registers are hardwired to be inaccessible to NonSecure."]
+#[doc = "Field `NONSEC_WRITE` reader - Control whether Non-secure software can write to the timer registers. All other registers are hardwired to be inaccessible to Non-secure."]
 pub type NONSEC_WRITE_R = crate::BitReader;
-#[doc = "Field `NONSEC_WRITE` writer - Control whether NonSecure software can write to the timer registers. All other registers are hardwired to be inaccessible to NonSecure."]
+#[doc = "Field `NONSEC_WRITE` writer - Control whether Non-secure software can write to the timer registers. All other registers are hardwired to be inaccessible to Non-secure."]
 pub type NONSEC_WRITE_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `RUN` reader - Enables the timer, the timer is not cleared when RUN is deasserted. To run the timer set the POWMAN_LPOSC_FREQ* and/or POWMAN_XOSC_FREQ* registers, then set the time in the POWMAN_TIMER_SEC* &amp; POWMAN_TIMER_MSEC registers, then start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
+#[doc = "Field `RUN` reader - Timer enable. Setting this bit causes the timer to begin counting up from its current value. Clearing this bit stops the timer from counting. Before enabling the timer, set the POWMAN_LPOSC_FREQ* and POWMAN_XOSC_FREQ* registers to configure the count rate, and initialise the current time by writing to SET_TIME_63TO48 through SET_TIME_15TO0. You must not write to the SET_TIME_x registers when the timer is running. Once configured, start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
 pub type RUN_R = crate::BitReader;
-#[doc = "Field `RUN` writer - Enables the timer, the timer is not cleared when RUN is deasserted. To run the timer set the POWMAN_LPOSC_FREQ* and/or POWMAN_XOSC_FREQ* registers, then set the time in the POWMAN_TIMER_SEC* &amp; POWMAN_TIMER_MSEC registers, then start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
+#[doc = "Field `RUN` writer - Timer enable. Setting this bit causes the timer to begin counting up from its current value. Clearing this bit stops the timer from counting. Before enabling the timer, set the POWMAN_LPOSC_FREQ* and POWMAN_XOSC_FREQ* registers to configure the count rate, and initialise the current time by writing to SET_TIME_63TO48 through SET_TIME_15TO0. You must not write to the SET_TIME_x registers when the timer is running. Once configured, start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
 pub type RUN_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `CLEAR` reader - Clears the timer, does not disable the timer and does not affect the alarm. This control can be written at any time."]
-pub type CLEAR_R = crate::BitReader;
 #[doc = "Field `CLEAR` writer - Clears the timer, does not disable the timer and does not affect the alarm. This control can be written at any time."]
 pub type CLEAR_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `ALARM_ENAB` reader - Enables the alarm. The alarm must be disabled while writing the alarm time."]
@@ -26,16 +24,10 @@ pub type PWRUP_ON_ALARM_W<'a, REG> = crate::BitWriter<'a, REG>;
 pub type ALARM_R = crate::BitReader;
 #[doc = "Field `ALARM` writer - Alarm has fired. Write to 1 to clear the alarm."]
 pub type ALARM_W<'a, REG> = crate::BitWriter1C<'a, REG>;
-#[doc = "Field `USE_LPOSC` reader - Switch to lposc as the source of the 1kHz timer tick"]
-pub type USE_LPOSC_R = crate::BitReader;
 #[doc = "Field `USE_LPOSC` writer - Switch to lposc as the source of the 1kHz timer tick"]
 pub type USE_LPOSC_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `USE_XOSC` reader - switch to xosc as the source of the 1kHz timer tick"]
-pub type USE_XOSC_R = crate::BitReader;
 #[doc = "Field `USE_XOSC` writer - switch to xosc as the source of the 1kHz timer tick"]
 pub type USE_XOSC_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `USE_GPIO_1KHZ` reader - switch to gpio as the source of the 1kHz timer tick"]
-pub type USE_GPIO_1KHZ_R = crate::BitReader;
 #[doc = "Field `USE_GPIO_1KHZ` writer - switch to gpio as the source of the 1kHz timer tick"]
 pub type USE_GPIO_1KHZ_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `USE_GPIO_1HZ` reader - Selects the gpio source as the reference for the sec counter. The msec counter will continue to use the lposc or xosc reference."]
@@ -51,20 +43,15 @@ pub type USING_GPIO_1KHZ_R = crate::BitReader;
 #[doc = "Field `USING_GPIO_1HZ` reader - Timer is synchronised to a 1hz gpio source"]
 pub type USING_GPIO_1HZ_R = crate::BitReader;
 impl R {
-    #[doc = "Bit 0 - Control whether NonSecure software can write to the timer registers. All other registers are hardwired to be inaccessible to NonSecure."]
+    #[doc = "Bit 0 - Control whether Non-secure software can write to the timer registers. All other registers are hardwired to be inaccessible to Non-secure."]
     #[inline(always)]
     pub fn nonsec_write(&self) -> NONSEC_WRITE_R {
         NONSEC_WRITE_R::new((self.bits & 1) != 0)
     }
-    #[doc = "Bit 1 - Enables the timer, the timer is not cleared when RUN is deasserted. To run the timer set the POWMAN_LPOSC_FREQ* and/or POWMAN_XOSC_FREQ* registers, then set the time in the POWMAN_TIMER_SEC* &amp; POWMAN_TIMER_MSEC registers, then start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
+    #[doc = "Bit 1 - Timer enable. Setting this bit causes the timer to begin counting up from its current value. Clearing this bit stops the timer from counting. Before enabling the timer, set the POWMAN_LPOSC_FREQ* and POWMAN_XOSC_FREQ* registers to configure the count rate, and initialise the current time by writing to SET_TIME_63TO48 through SET_TIME_15TO0. You must not write to the SET_TIME_x registers when the timer is running. Once configured, start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
     #[inline(always)]
     pub fn run(&self) -> RUN_R {
         RUN_R::new(((self.bits >> 1) & 1) != 0)
-    }
-    #[doc = "Bit 2 - Clears the timer, does not disable the timer and does not affect the alarm. This control can be written at any time."]
-    #[inline(always)]
-    pub fn clear(&self) -> CLEAR_R {
-        CLEAR_R::new(((self.bits >> 2) & 1) != 0)
     }
     #[doc = "Bit 4 - Enables the alarm. The alarm must be disabled while writing the alarm time."]
     #[inline(always)]
@@ -80,21 +67,6 @@ impl R {
     #[inline(always)]
     pub fn alarm(&self) -> ALARM_R {
         ALARM_R::new(((self.bits >> 6) & 1) != 0)
-    }
-    #[doc = "Bit 8 - Switch to lposc as the source of the 1kHz timer tick"]
-    #[inline(always)]
-    pub fn use_lposc(&self) -> USE_LPOSC_R {
-        USE_LPOSC_R::new(((self.bits >> 8) & 1) != 0)
-    }
-    #[doc = "Bit 9 - switch to xosc as the source of the 1kHz timer tick"]
-    #[inline(always)]
-    pub fn use_xosc(&self) -> USE_XOSC_R {
-        USE_XOSC_R::new(((self.bits >> 9) & 1) != 0)
-    }
-    #[doc = "Bit 10 - switch to gpio as the source of the 1kHz timer tick"]
-    #[inline(always)]
-    pub fn use_gpio_1khz(&self) -> USE_GPIO_1KHZ_R {
-        USE_GPIO_1KHZ_R::new(((self.bits >> 10) & 1) != 0)
     }
     #[doc = "Bit 13 - Selects the gpio source as the reference for the sec counter. The msec counter will continue to use the lposc or xosc reference."]
     #[inline(always)]
@@ -123,13 +95,13 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bit 0 - Control whether NonSecure software can write to the timer registers. All other registers are hardwired to be inaccessible to NonSecure."]
+    #[doc = "Bit 0 - Control whether Non-secure software can write to the timer registers. All other registers are hardwired to be inaccessible to Non-secure."]
     #[inline(always)]
     #[must_use]
     pub fn nonsec_write(&mut self) -> NONSEC_WRITE_W<TIMER_SPEC> {
         NONSEC_WRITE_W::new(self, 0)
     }
-    #[doc = "Bit 1 - Enables the timer, the timer is not cleared when RUN is deasserted. To run the timer set the POWMAN_LPOSC_FREQ* and/or POWMAN_XOSC_FREQ* registers, then set the time in the POWMAN_TIMER_SEC* &amp; POWMAN_TIMER_MSEC registers, then start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
+    #[doc = "Bit 1 - Timer enable. Setting this bit causes the timer to begin counting up from its current value. Clearing this bit stops the timer from counting. Before enabling the timer, set the POWMAN_LPOSC_FREQ* and POWMAN_XOSC_FREQ* registers to configure the count rate, and initialise the current time by writing to SET_TIME_63TO48 through SET_TIME_15TO0. You must not write to the SET_TIME_x registers when the timer is running. Once configured, start the timer by setting POWMAN_TIMER_RUN=1. This will start the timer running from the LPOSC. When the XOSC is available switch the reference clock to XOSC then select it as the timer clock by setting POWMAN_TIMER_USE_XOSC=1"]
     #[inline(always)]
     #[must_use]
     pub fn run(&mut self) -> RUN_W<TIMER_SPEC> {

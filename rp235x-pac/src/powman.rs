@@ -13,7 +13,7 @@ pub struct RegisterBlock {
     bod_lp_exit: BOD_LP_EXIT,
     lposc: LPOSC,
     chip_reset: CHIP_RESET,
-    watchdog: WATCHDOG,
+    wdsel: WDSEL,
     seq_cfg: SEQ_CFG,
     state: STATE,
     pow_fastdiv: POW_FASTDIV,
@@ -113,7 +113,7 @@ impl RegisterBlock {
     pub const fn bod_lp_exit(&self) -> &BOD_LP_EXIT {
         &self.bod_lp_exit
     }
-    #[doc = "0x28 - low power oscillator control"]
+    #[doc = "0x28 - Low power oscillator control register."]
     #[inline(always)]
     pub const fn lposc(&self) -> &LPOSC {
         &self.lposc
@@ -123,30 +123,17 @@ impl RegisterBlock {
     pub const fn chip_reset(&self) -> &CHIP_RESET {
         &self.chip_reset
     }
-    #[doc = "0x30 - Allows a watchdog reset to reset the internal state of powman in addition to the reset state machine (PSM).  
- Note that powman ignores watchdog resets that do not select at least the CLOCKS stage or earlier stages in the PSM. If using these bits, it's recommended to set PSM_WDSEL to all-ones in addition to the desired bits in this register. Failing to select CLOCKS or earlier will result in the POWMAN_WATCHDOG register having no effect."]
+    #[doc = "0x30 - Allows a watchdog reset to reset the internal state of powman in addition to the power-on state machine (PSM). Note that powman ignores watchdog resets that do not select at least the CLOCKS stage or earlier stages in the PSM. If using these bits, it's recommended to set PSM_WDSEL to all-ones in addition to the desired bits in this register. Failing to select CLOCKS or earlier will result in the POWMAN_WDSEL register having no effect."]
     #[inline(always)]
-    pub const fn watchdog(&self) -> &WATCHDOG {
-        &self.watchdog
+    pub const fn wdsel(&self) -> &WDSEL {
+        &self.wdsel
     }
-    #[doc = "0x34 - For configuration of the power sequencer  
- Writes are ignored while POWMAN_STATE_CHANGING=1"]
+    #[doc = "0x34 - For configuration of the power sequencer Writes are ignored while POWMAN_STATE_CHANGING=1"]
     #[inline(always)]
     pub const fn seq_cfg(&self) -> &SEQ_CFG {
         &self.seq_cfg
     }
-    #[doc = "0x38 - This register controls the power state of the 4 power domains.  
- The current power state is indicated in POWMAN_STATE_CURRENT which is read-only.  
- To change the state, write to POWMAN_STATE_REQ.  
- The coding of POWMAN_STATE_CURRENT &amp; POWMAN_STATE_REQ corresponds to the power states  
- defined in the datasheet:  
- bit 3 = SWCORE  
- bit 2 = XIP cache  
- bit 1 = SRAM0  
- bit 0 = SRAM1  
- 0 = powered up  
- 1 = powered down  
- When POWMAN_STATE_REQ is written, the POWMAN_STATE_WAITING flag is set while the Power Manager determines what is required. If an invalid transition is requested the Power Manager will still register the request in POWMAN_STATE_REQ but will also set the POWMAN_BAD_REQ flag. It will then implement the power-up requests and ignore the power down requests. To do nothing would risk entering an unrecoverable lock-up state. Invalid requests are: any combination of power up and power down requests any request that results in swcore boing powered and xip unpowered If the request is to power down the switched-core domain then POWMAN_STATE_WAITING stays active until the processors halt. During this time the POWMAN_STATE_REQ field can be re-written to change or cancel the request. When the power state transition begins the POWMAN_STATE_WAITING_flag is cleared, the POWMAN_STATE_CHANGING flag is set and POWMAN register writes are ignored until the transition completes."]
+    #[doc = "0x38 - This register controls the power state of the 4 power domains. The current power state is indicated in POWMAN_STATE_CURRENT which is read-only. To change the state, write to POWMAN_STATE_REQ. The coding of POWMAN_STATE_CURRENT &amp; POWMAN_STATE_REQ corresponds to the power states defined in the datasheet: bit 3 = SWCORE bit 2 = XIP cache bit 1 = SRAM0 bit 0 = SRAM1 0 = powered up 1 = powered down When POWMAN_STATE_REQ is written, the POWMAN_STATE_WAITING flag is set while the Power Manager determines what is required. If an invalid transition is requested the Power Manager will still register the request in POWMAN_STATE_REQ but will also set the POWMAN_BAD_REQ flag. It will then implement the power-up requests and ignore the power down requests. To do nothing would risk entering an unrecoverable lock-up state. Invalid requests are: any combination of power up and power down requests any request that results in swcore boing powered and xip unpowered If the request is to power down the switched-core domain then POWMAN_STATE_WAITING stays active until the processors halt. During this time the POWMAN_STATE_REQ field can be re-written to change or cancel the request. When the power state transition begins the POWMAN_STATE_WAITING_flag is cleared, the POWMAN_STATE_CHANGING flag is set and POWMAN register writes are ignored until the transition completes."]
     #[inline(always)]
     pub const fn state(&self) -> &STATE {
         &self.state
@@ -176,22 +163,22 @@ impl RegisterBlock {
     pub const fn ext_time_ref(&self) -> &EXT_TIME_REF {
         &self.ext_time_ref
     }
-    #[doc = "0x50 - "]
+    #[doc = "0x50 - Informs the AON Timer of the integer component of the clock frequency when running off the LPOSC."]
     #[inline(always)]
     pub const fn lposc_freq_khz_int(&self) -> &LPOSC_FREQ_KHZ_INT {
         &self.lposc_freq_khz_int
     }
-    #[doc = "0x54 - "]
+    #[doc = "0x54 - Informs the AON Timer of the fractional component of the clock frequency when running off the LPOSC."]
     #[inline(always)]
     pub const fn lposc_freq_khz_frac(&self) -> &LPOSC_FREQ_KHZ_FRAC {
         &self.lposc_freq_khz_frac
     }
-    #[doc = "0x58 - "]
+    #[doc = "0x58 - Informs the AON Timer of the integer component of the clock frequency when running off the XOSC."]
     #[inline(always)]
     pub const fn xosc_freq_khz_int(&self) -> &XOSC_FREQ_KHZ_INT {
         &self.xosc_freq_khz_int
     }
-    #[doc = "0x5c - "]
+    #[doc = "0x5c - Informs the AON Timer of the fractional component of the clock frequency when running off the XOSC."]
     #[inline(always)]
     pub const fn xosc_freq_khz_frac(&self) -> &XOSC_FREQ_KHZ_FRAC {
         &self.xosc_freq_khz_frac
@@ -216,12 +203,12 @@ impl RegisterBlock {
     pub const fn set_time_15to0(&self) -> &SET_TIME_15TO0 {
         &self.set_time_15to0
     }
-    #[doc = "0x70 - For reading bits 63:32 of the timer. When reading all 64 bits it is possible for the LOWER count to rollover during the read. It is recommended to read UPPER, then LOWER, then re-read UPPER and, if it has changed, re-read LOWER."]
+    #[doc = "0x70 - "]
     #[inline(always)]
     pub const fn read_time_upper(&self) -> &READ_TIME_UPPER {
         &self.read_time_upper
     }
-    #[doc = "0x74 - For reading bits 31:0 of the timer."]
+    #[doc = "0x74 - "]
     #[inline(always)]
     pub const fn read_time_lower(&self) -> &READ_TIME_LOWER {
         &self.read_time_lower
@@ -251,103 +238,32 @@ impl RegisterBlock {
     pub const fn timer(&self) -> &TIMER {
         &self.timer
     }
-    #[doc = "0x8c - 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+    #[doc = "0x8c - 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
     #[inline(always)]
     pub const fn pwrup0(&self) -> &PWRUP0 {
         &self.pwrup0
     }
-    #[doc = "0x90 - 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+    #[doc = "0x90 - 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
     #[inline(always)]
     pub const fn pwrup1(&self) -> &PWRUP1 {
         &self.pwrup1
     }
-    #[doc = "0x94 - 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+    #[doc = "0x94 - 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
     #[inline(always)]
     pub const fn pwrup2(&self) -> &PWRUP2 {
         &self.pwrup2
     }
-    #[doc = "0x98 - 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+    #[doc = "0x98 - 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
     #[inline(always)]
     pub const fn pwrup3(&self) -> &PWRUP3 {
         &self.pwrup3
     }
-    #[doc = "0x9c - Indicates current powerup request state  
- pwrup events can be cleared by removing the enable from the pwrup register. The alarm pwrup req can be cleared by clearing timer.alarm_enab  
- 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET  
- 1 = pwrup0  
- 2 = pwrup1  
- 3 = pwrup2  
- 4 = pwrup3  
- 5 = coresight_pwrup  
- 6 = alarm_pwrup"]
+    #[doc = "0x9c - Indicates current powerup request state pwrup events can be cleared by removing the enable from the pwrup register. The alarm pwrup req can be cleared by clearing timer.alarm_enab 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET 1 = pwrup0 2 = pwrup1 3 = pwrup2 4 = pwrup3 5 = coresight_pwrup 6 = alarm_pwrup"]
     #[inline(always)]
     pub const fn current_pwrup_req(&self) -> &CURRENT_PWRUP_REQ {
         &self.current_pwrup_req
     }
-    #[doc = "0xa0 - Indicates which pwrup source triggered the last switched-core power up  
- 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET  
- 1 = pwrup0  
- 2 = pwrup1  
- 3 = pwrup2  
- 4 = pwrup3  
- 5 = coresight_pwrup  
- 6 = alarm_pwrup"]
+    #[doc = "0xa0 - Indicates which pwrup source triggered the last switched-core power up 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET 1 = pwrup0 2 = pwrup1 3 = pwrup2 4 = pwrup3 5 = coresight_pwrup 6 = alarm_pwrup"]
     #[inline(always)]
     pub const fn last_swcore_pwrup(&self) -> &LAST_SWCORE_PWRUP {
         &self.last_swcore_pwrup
@@ -357,13 +273,7 @@ impl RegisterBlock {
     pub const fn dbg_pwrcfg(&self) -> &DBG_PWRCFG {
         &self.dbg_pwrcfg
     }
-    #[doc = "0xa8 - Tell the bootrom to ignore the BOOT0..3 registers following the next RSM reset (e.g. the next core power down/up).  
-
- If an early boot stage has soft-locked some OTP pages in order to protect their contents from later stages, there is a risk that Secure code running at a later stage can unlock the pages by powering the core up and down.  
-
- This register can be used to ensure that the bootloader runs as normal on the next power up, preventing Secure code at a later stage from accessing OTP in its unlocked state.  
-
- Should be used in conjunction with the OTP BOOTDIS register."]
+    #[doc = "0xa8 - Tell the bootrom to ignore the BOOT0..3 registers following the next RSM reset (e.g. the next core power down/up). If an early boot stage has soft-locked some OTP pages in order to protect their contents from later stages, there is a risk that Secure code running at a later stage can unlock the pages by powering the core up and down. This register can be used to ensure that the bootloader runs as normal on the next power up, preventing Secure code at a later stage from accessing OTP in its unlocked state. Should be used in conjunction with the OTP BOOTDIS register."]
     #[inline(always)]
     pub const fn bootdis(&self) -> &BOOTDIS {
         &self.bootdis
@@ -472,9 +382,9 @@ module"]
 pub type VREG_CTRL = crate::Reg<vreg_ctrl::VREG_CTRL_SPEC>;
 #[doc = "Voltage Regulator Control"]
 pub mod vreg_ctrl;
-#[doc = "VREG_STS (r) register accessor: Voltage Regulator Status  
+#[doc = "VREG_STS (rw) register accessor: Voltage Regulator Status  
 
-You can [`read`](crate::Reg::read) this register and get [`vreg_sts::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`vreg_sts::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`vreg_sts::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@vreg_sts`]
 module"]
@@ -544,14 +454,14 @@ module"]
 pub type BOD_LP_EXIT = crate::Reg<bod_lp_exit::BOD_LP_EXIT_SPEC>;
 #[doc = "Brown-out Detection Low Power Exit Settings"]
 pub mod bod_lp_exit;
-#[doc = "LPOSC (rw) register accessor: low power oscillator control  
+#[doc = "LPOSC (rw) register accessor: Low power oscillator control register.  
 
 You can [`read`](crate::Reg::read) this register and get [`lposc::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`lposc::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@lposc`]
 module"]
 pub type LPOSC = crate::Reg<lposc::LPOSC_SPEC>;
-#[doc = "low power oscillator control"]
+#[doc = "Low power oscillator control register."]
 pub mod lposc;
 #[doc = "CHIP_RESET (rw) register accessor: Chip reset control and status  
 
@@ -562,58 +472,32 @@ module"]
 pub type CHIP_RESET = crate::Reg<chip_reset::CHIP_RESET_SPEC>;
 #[doc = "Chip reset control and status"]
 pub mod chip_reset;
-#[doc = "WATCHDOG (rw) register accessor: Allows a watchdog reset to reset the internal state of powman in addition to the reset state machine (PSM).  
- Note that powman ignores watchdog resets that do not select at least the CLOCKS stage or earlier stages in the PSM. If using these bits, it's recommended to set PSM_WDSEL to all-ones in addition to the desired bits in this register. Failing to select CLOCKS or earlier will result in the POWMAN_WATCHDOG register having no effect.  
+#[doc = "WDSEL (rw) register accessor: Allows a watchdog reset to reset the internal state of powman in addition to the power-on state machine (PSM). Note that powman ignores watchdog resets that do not select at least the CLOCKS stage or earlier stages in the PSM. If using these bits, it's recommended to set PSM_WDSEL to all-ones in addition to the desired bits in this register. Failing to select CLOCKS or earlier will result in the POWMAN_WDSEL register having no effect.  
 
-You can [`read`](crate::Reg::read) this register and get [`watchdog::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`watchdog::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`wdsel::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`wdsel::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
-For information about available fields see [`mod@watchdog`]
+For information about available fields see [`mod@wdsel`]
 module"]
-pub type WATCHDOG = crate::Reg<watchdog::WATCHDOG_SPEC>;
-#[doc = "Allows a watchdog reset to reset the internal state of powman in addition to the reset state machine (PSM).  
- Note that powman ignores watchdog resets that do not select at least the CLOCKS stage or earlier stages in the PSM. If using these bits, it's recommended to set PSM_WDSEL to all-ones in addition to the desired bits in this register. Failing to select CLOCKS or earlier will result in the POWMAN_WATCHDOG register having no effect."]
-pub mod watchdog;
-#[doc = "SEQ_CFG (rw) register accessor: For configuration of the power sequencer  
- Writes are ignored while POWMAN_STATE_CHANGING=1  
+pub type WDSEL = crate::Reg<wdsel::WDSEL_SPEC>;
+#[doc = "Allows a watchdog reset to reset the internal state of powman in addition to the power-on state machine (PSM). Note that powman ignores watchdog resets that do not select at least the CLOCKS stage or earlier stages in the PSM. If using these bits, it's recommended to set PSM_WDSEL to all-ones in addition to the desired bits in this register. Failing to select CLOCKS or earlier will result in the POWMAN_WDSEL register having no effect."]
+pub mod wdsel;
+#[doc = "SEQ_CFG (rw) register accessor: For configuration of the power sequencer Writes are ignored while POWMAN_STATE_CHANGING=1  
 
 You can [`read`](crate::Reg::read) this register and get [`seq_cfg::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`seq_cfg::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@seq_cfg`]
 module"]
 pub type SEQ_CFG = crate::Reg<seq_cfg::SEQ_CFG_SPEC>;
-#[doc = "For configuration of the power sequencer  
- Writes are ignored while POWMAN_STATE_CHANGING=1"]
+#[doc = "For configuration of the power sequencer Writes are ignored while POWMAN_STATE_CHANGING=1"]
 pub mod seq_cfg;
-#[doc = "STATE (rw) register accessor: This register controls the power state of the 4 power domains.  
- The current power state is indicated in POWMAN_STATE_CURRENT which is read-only.  
- To change the state, write to POWMAN_STATE_REQ.  
- The coding of POWMAN_STATE_CURRENT &amp; POWMAN_STATE_REQ corresponds to the power states  
- defined in the datasheet:  
- bit 3 = SWCORE  
- bit 2 = XIP cache  
- bit 1 = SRAM0  
- bit 0 = SRAM1  
- 0 = powered up  
- 1 = powered down  
- When POWMAN_STATE_REQ is written, the POWMAN_STATE_WAITING flag is set while the Power Manager determines what is required. If an invalid transition is requested the Power Manager will still register the request in POWMAN_STATE_REQ but will also set the POWMAN_BAD_REQ flag. It will then implement the power-up requests and ignore the power down requests. To do nothing would risk entering an unrecoverable lock-up state. Invalid requests are: any combination of power up and power down requests any request that results in swcore boing powered and xip unpowered If the request is to power down the switched-core domain then POWMAN_STATE_WAITING stays active until the processors halt. During this time the POWMAN_STATE_REQ field can be re-written to change or cancel the request. When the power state transition begins the POWMAN_STATE_WAITING_flag is cleared, the POWMAN_STATE_CHANGING flag is set and POWMAN register writes are ignored until the transition completes.  
+#[doc = "STATE (rw) register accessor: This register controls the power state of the 4 power domains. The current power state is indicated in POWMAN_STATE_CURRENT which is read-only. To change the state, write to POWMAN_STATE_REQ. The coding of POWMAN_STATE_CURRENT &amp; POWMAN_STATE_REQ corresponds to the power states defined in the datasheet: bit 3 = SWCORE bit 2 = XIP cache bit 1 = SRAM0 bit 0 = SRAM1 0 = powered up 1 = powered down When POWMAN_STATE_REQ is written, the POWMAN_STATE_WAITING flag is set while the Power Manager determines what is required. If an invalid transition is requested the Power Manager will still register the request in POWMAN_STATE_REQ but will also set the POWMAN_BAD_REQ flag. It will then implement the power-up requests and ignore the power down requests. To do nothing would risk entering an unrecoverable lock-up state. Invalid requests are: any combination of power up and power down requests any request that results in swcore boing powered and xip unpowered If the request is to power down the switched-core domain then POWMAN_STATE_WAITING stays active until the processors halt. During this time the POWMAN_STATE_REQ field can be re-written to change or cancel the request. When the power state transition begins the POWMAN_STATE_WAITING_flag is cleared, the POWMAN_STATE_CHANGING flag is set and POWMAN register writes are ignored until the transition completes.  
 
 You can [`read`](crate::Reg::read) this register and get [`state::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`state::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@state`]
 module"]
 pub type STATE = crate::Reg<state::STATE_SPEC>;
-#[doc = "This register controls the power state of the 4 power domains.  
- The current power state is indicated in POWMAN_STATE_CURRENT which is read-only.  
- To change the state, write to POWMAN_STATE_REQ.  
- The coding of POWMAN_STATE_CURRENT &amp; POWMAN_STATE_REQ corresponds to the power states  
- defined in the datasheet:  
- bit 3 = SWCORE  
- bit 2 = XIP cache  
- bit 1 = SRAM0  
- bit 0 = SRAM1  
- 0 = powered up  
- 1 = powered down  
- When POWMAN_STATE_REQ is written, the POWMAN_STATE_WAITING flag is set while the Power Manager determines what is required. If an invalid transition is requested the Power Manager will still register the request in POWMAN_STATE_REQ but will also set the POWMAN_BAD_REQ flag. It will then implement the power-up requests and ignore the power down requests. To do nothing would risk entering an unrecoverable lock-up state. Invalid requests are: any combination of power up and power down requests any request that results in swcore boing powered and xip unpowered If the request is to power down the switched-core domain then POWMAN_STATE_WAITING stays active until the processors halt. During this time the POWMAN_STATE_REQ field can be re-written to change or cancel the request. When the power state transition begins the POWMAN_STATE_WAITING_flag is cleared, the POWMAN_STATE_CHANGING flag is set and POWMAN register writes are ignored until the transition completes."]
+#[doc = "This register controls the power state of the 4 power domains. The current power state is indicated in POWMAN_STATE_CURRENT which is read-only. To change the state, write to POWMAN_STATE_REQ. The coding of POWMAN_STATE_CURRENT &amp; POWMAN_STATE_REQ corresponds to the power states defined in the datasheet: bit 3 = SWCORE bit 2 = XIP cache bit 1 = SRAM0 bit 0 = SRAM1 0 = powered up 1 = powered down When POWMAN_STATE_REQ is written, the POWMAN_STATE_WAITING flag is set while the Power Manager determines what is required. If an invalid transition is requested the Power Manager will still register the request in POWMAN_STATE_REQ but will also set the POWMAN_BAD_REQ flag. It will then implement the power-up requests and ignore the power down requests. To do nothing would risk entering an unrecoverable lock-up state. Invalid requests are: any combination of power up and power down requests any request that results in swcore boing powered and xip unpowered If the request is to power down the switched-core domain then POWMAN_STATE_WAITING stays active until the processors halt. During this time the POWMAN_STATE_REQ field can be re-written to change or cancel the request. When the power state transition begins the POWMAN_STATE_WAITING_flag is cleared, the POWMAN_STATE_CHANGING flag is set and POWMAN register writes are ignored until the transition completes."]
 pub mod state;
 #[doc = "POW_FASTDIV (rw) register accessor:   
 
@@ -660,41 +544,41 @@ module"]
 pub type EXT_TIME_REF = crate::Reg<ext_time_ref::EXT_TIME_REF_SPEC>;
 #[doc = "Select a GPIO to use as a time reference, the source can be used to drive the low power clock at 32kHz, or to provide a 1ms tick to the timer, or provide a 1Hz tick to the timer. The tick selection is controlled by the POWMAN_TIMER register."]
 pub mod ext_time_ref;
-#[doc = "LPOSC_FREQ_KHZ_INT (rw) register accessor:   
+#[doc = "LPOSC_FREQ_KHZ_INT (rw) register accessor: Informs the AON Timer of the integer component of the clock frequency when running off the LPOSC.  
 
 You can [`read`](crate::Reg::read) this register and get [`lposc_freq_khz_int::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`lposc_freq_khz_int::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@lposc_freq_khz_int`]
 module"]
 pub type LPOSC_FREQ_KHZ_INT = crate::Reg<lposc_freq_khz_int::LPOSC_FREQ_KHZ_INT_SPEC>;
-#[doc = ""]
+#[doc = "Informs the AON Timer of the integer component of the clock frequency when running off the LPOSC."]
 pub mod lposc_freq_khz_int;
-#[doc = "LPOSC_FREQ_KHZ_FRAC (rw) register accessor:   
+#[doc = "LPOSC_FREQ_KHZ_FRAC (rw) register accessor: Informs the AON Timer of the fractional component of the clock frequency when running off the LPOSC.  
 
 You can [`read`](crate::Reg::read) this register and get [`lposc_freq_khz_frac::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`lposc_freq_khz_frac::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@lposc_freq_khz_frac`]
 module"]
 pub type LPOSC_FREQ_KHZ_FRAC = crate::Reg<lposc_freq_khz_frac::LPOSC_FREQ_KHZ_FRAC_SPEC>;
-#[doc = ""]
+#[doc = "Informs the AON Timer of the fractional component of the clock frequency when running off the LPOSC."]
 pub mod lposc_freq_khz_frac;
-#[doc = "XOSC_FREQ_KHZ_INT (rw) register accessor:   
+#[doc = "XOSC_FREQ_KHZ_INT (rw) register accessor: Informs the AON Timer of the integer component of the clock frequency when running off the XOSC.  
 
 You can [`read`](crate::Reg::read) this register and get [`xosc_freq_khz_int::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`xosc_freq_khz_int::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@xosc_freq_khz_int`]
 module"]
 pub type XOSC_FREQ_KHZ_INT = crate::Reg<xosc_freq_khz_int::XOSC_FREQ_KHZ_INT_SPEC>;
-#[doc = ""]
+#[doc = "Informs the AON Timer of the integer component of the clock frequency when running off the XOSC."]
 pub mod xosc_freq_khz_int;
-#[doc = "XOSC_FREQ_KHZ_FRAC (rw) register accessor:   
+#[doc = "XOSC_FREQ_KHZ_FRAC (rw) register accessor: Informs the AON Timer of the fractional component of the clock frequency when running off the XOSC.  
 
 You can [`read`](crate::Reg::read) this register and get [`xosc_freq_khz_frac::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`xosc_freq_khz_frac::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@xosc_freq_khz_frac`]
 module"]
 pub type XOSC_FREQ_KHZ_FRAC = crate::Reg<xosc_freq_khz_frac::XOSC_FREQ_KHZ_FRAC_SPEC>;
-#[doc = ""]
+#[doc = "Informs the AON Timer of the fractional component of the clock frequency when running off the XOSC."]
 pub mod xosc_freq_khz_frac;
 #[doc = "SET_TIME_63TO48 (rw) register accessor:   
 
@@ -732,23 +616,23 @@ module"]
 pub type SET_TIME_15TO0 = crate::Reg<set_time_15to0::SET_TIME_15TO0_SPEC>;
 #[doc = ""]
 pub mod set_time_15to0;
-#[doc = "READ_TIME_UPPER (r) register accessor: For reading bits 63:32 of the timer. When reading all 64 bits it is possible for the LOWER count to rollover during the read. It is recommended to read UPPER, then LOWER, then re-read UPPER and, if it has changed, re-read LOWER.  
+#[doc = "READ_TIME_UPPER (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`read_time_upper::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`read_time_upper::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`read_time_upper::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@read_time_upper`]
 module"]
 pub type READ_TIME_UPPER = crate::Reg<read_time_upper::READ_TIME_UPPER_SPEC>;
-#[doc = "For reading bits 63:32 of the timer. When reading all 64 bits it is possible for the LOWER count to rollover during the read. It is recommended to read UPPER, then LOWER, then re-read UPPER and, if it has changed, re-read LOWER."]
+#[doc = ""]
 pub mod read_time_upper;
-#[doc = "READ_TIME_LOWER (r) register accessor: For reading bits 31:0 of the timer.  
+#[doc = "READ_TIME_LOWER (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`read_time_lower::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`read_time_lower::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`read_time_lower::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@read_time_lower`]
 module"]
 pub type READ_TIME_LOWER = crate::Reg<read_time_lower::READ_TIME_LOWER_SPEC>;
-#[doc = "For reading bits 31:0 of the timer."]
+#[doc = ""]
 pub mod read_time_lower;
 #[doc = "ALARM_TIME_63TO48 (rw) register accessor:   
 
@@ -795,201 +679,59 @@ module"]
 pub type TIMER = crate::Reg<timer::TIMER_SPEC>;
 #[doc = ""]
 pub mod timer;
-#[doc = "PWRUP0 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high  
+#[doc = "PWRUP0 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high  
 
 You can [`read`](crate::Reg::read) this register and get [`pwrup0::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`pwrup0::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@pwrup0`]
 module"]
 pub type PWRUP0 = crate::Reg<pwrup0::PWRUP0_SPEC>;
-#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
 pub mod pwrup0;
-#[doc = "PWRUP1 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high  
+#[doc = "PWRUP1 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high  
 
 You can [`read`](crate::Reg::read) this register and get [`pwrup1::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`pwrup1::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@pwrup1`]
 module"]
 pub type PWRUP1 = crate::Reg<pwrup1::PWRUP1_SPEC>;
-#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
 pub mod pwrup1;
-#[doc = "PWRUP2 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high  
+#[doc = "PWRUP2 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high  
 
 You can [`read`](crate::Reg::read) this register and get [`pwrup2::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`pwrup2::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@pwrup2`]
 module"]
 pub type PWRUP2 = crate::Reg<pwrup2::PWRUP2_SPEC>;
-#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
 pub mod pwrup2;
-#[doc = "PWRUP3 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high  
+#[doc = "PWRUP3 (rw) register accessor: 4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high  
 
 You can [`read`](crate::Reg::read) this register and get [`pwrup3::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`pwrup3::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@pwrup3`]
 module"]
 pub type PWRUP3 = crate::Reg<pwrup3::PWRUP3_SPEC>;
-#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high"]
+#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high"]
 pub mod pwrup3;
-#[doc = "CURRENT_PWRUP_REQ (r) register accessor: Indicates current powerup request state  
- pwrup events can be cleared by removing the enable from the pwrup register. The alarm pwrup req can be cleared by clearing timer.alarm_enab  
- 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET  
- 1 = pwrup0  
- 2 = pwrup1  
- 3 = pwrup2  
- 4 = pwrup3  
- 5 = coresight_pwrup  
- 6 = alarm_pwrup  
+#[doc = "CURRENT_PWRUP_REQ (rw) register accessor: Indicates current powerup request state pwrup events can be cleared by removing the enable from the pwrup register. The alarm pwrup req can be cleared by clearing timer.alarm_enab 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET 1 = pwrup0 2 = pwrup1 3 = pwrup2 4 = pwrup3 5 = coresight_pwrup 6 = alarm_pwrup  
 
-You can [`read`](crate::Reg::read) this register and get [`current_pwrup_req::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`current_pwrup_req::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`current_pwrup_req::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@current_pwrup_req`]
 module"]
 pub type CURRENT_PWRUP_REQ = crate::Reg<current_pwrup_req::CURRENT_PWRUP_REQ_SPEC>;
-#[doc = "Indicates current powerup request state  
- pwrup events can be cleared by removing the enable from the pwrup register. The alarm pwrup req can be cleared by clearing timer.alarm_enab  
- 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET  
- 1 = pwrup0  
- 2 = pwrup1  
- 3 = pwrup2  
- 4 = pwrup3  
- 5 = coresight_pwrup  
- 6 = alarm_pwrup"]
+#[doc = "Indicates current powerup request state pwrup events can be cleared by removing the enable from the pwrup register. The alarm pwrup req can be cleared by clearing timer.alarm_enab 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET 1 = pwrup0 2 = pwrup1 3 = pwrup2 4 = pwrup3 5 = coresight_pwrup 6 = alarm_pwrup"]
 pub mod current_pwrup_req;
-#[doc = "LAST_SWCORE_PWRUP (r) register accessor: Indicates which pwrup source triggered the last switched-core power up  
- 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET  
- 1 = pwrup0  
- 2 = pwrup1  
- 3 = pwrup2  
- 4 = pwrup3  
- 5 = coresight_pwrup  
- 6 = alarm_pwrup  
+#[doc = "LAST_SWCORE_PWRUP (rw) register accessor: Indicates which pwrup source triggered the last switched-core power up 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET 1 = pwrup0 2 = pwrup1 3 = pwrup2 4 = pwrup3 5 = coresight_pwrup 6 = alarm_pwrup  
 
-You can [`read`](crate::Reg::read) this register and get [`last_swcore_pwrup::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`last_swcore_pwrup::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`last_swcore_pwrup::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@last_swcore_pwrup`]
 module"]
 pub type LAST_SWCORE_PWRUP = crate::Reg<last_swcore_pwrup::LAST_SWCORE_PWRUP_SPEC>;
-#[doc = "Indicates which pwrup source triggered the last switched-core power up  
- 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET  
- 1 = pwrup0  
- 2 = pwrup1  
- 3 = pwrup2  
- 4 = pwrup3  
- 5 = coresight_pwrup  
- 6 = alarm_pwrup"]
+#[doc = "Indicates which pwrup source triggered the last switched-core power up 0 = chip reset, for the source of the last reset see POWMAN_CHIP_RESET 1 = pwrup0 2 = pwrup1 3 = pwrup2 4 = pwrup3 5 = coresight_pwrup 6 = alarm_pwrup"]
 pub mod last_swcore_pwrup;
 #[doc = "DBG_PWRCFG (rw) register accessor:   
 
@@ -1000,26 +742,14 @@ module"]
 pub type DBG_PWRCFG = crate::Reg<dbg_pwrcfg::DBG_PWRCFG_SPEC>;
 #[doc = ""]
 pub mod dbg_pwrcfg;
-#[doc = "BOOTDIS (rw) register accessor: Tell the bootrom to ignore the BOOT0..3 registers following the next RSM reset (e.g. the next core power down/up).  
-
- If an early boot stage has soft-locked some OTP pages in order to protect their contents from later stages, there is a risk that Secure code running at a later stage can unlock the pages by powering the core up and down.  
-
- This register can be used to ensure that the bootloader runs as normal on the next power up, preventing Secure code at a later stage from accessing OTP in its unlocked state.  
-
- Should be used in conjunction with the OTP BOOTDIS register.  
+#[doc = "BOOTDIS (rw) register accessor: Tell the bootrom to ignore the BOOT0..3 registers following the next RSM reset (e.g. the next core power down/up). If an early boot stage has soft-locked some OTP pages in order to protect their contents from later stages, there is a risk that Secure code running at a later stage can unlock the pages by powering the core up and down. This register can be used to ensure that the bootloader runs as normal on the next power up, preventing Secure code at a later stage from accessing OTP in its unlocked state. Should be used in conjunction with the OTP BOOTDIS register.  
 
 You can [`read`](crate::Reg::read) this register and get [`bootdis::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`bootdis::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@bootdis`]
 module"]
 pub type BOOTDIS = crate::Reg<bootdis::BOOTDIS_SPEC>;
-#[doc = "Tell the bootrom to ignore the BOOT0..3 registers following the next RSM reset (e.g. the next core power down/up).  
-
- If an early boot stage has soft-locked some OTP pages in order to protect their contents from later stages, there is a risk that Secure code running at a later stage can unlock the pages by powering the core up and down.  
-
- This register can be used to ensure that the bootloader runs as normal on the next power up, preventing Secure code at a later stage from accessing OTP in its unlocked state.  
-
- Should be used in conjunction with the OTP BOOTDIS register."]
+#[doc = "Tell the bootrom to ignore the BOOT0..3 registers following the next RSM reset (e.g. the next core power down/up). If an early boot stage has soft-locked some OTP pages in order to protect their contents from later stages, there is a risk that Secure code running at a later stage can unlock the pages by powering the core up and down. This register can be used to ensure that the bootloader runs as normal on the next power up, preventing Secure code at a later stage from accessing OTP in its unlocked state. Should be used in conjunction with the OTP BOOTDIS register."]
 pub mod bootdis;
 #[doc = "DBGCONFIG (rw) register accessor:   
 
@@ -1165,9 +895,9 @@ module"]
 pub type INTF = crate::Reg<intf::INTF_SPEC>;
 #[doc = "Interrupt Force"]
 pub mod intf;
-#[doc = "INTS (r) register accessor: Interrupt status after masking &amp; forcing  
+#[doc = "INTS (rw) register accessor: Interrupt status after masking &amp; forcing  
 
-You can [`read`](crate::Reg::read) this register and get [`ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ints`]
 module"]

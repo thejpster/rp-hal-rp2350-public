@@ -2,21 +2,13 @@
 pub type R = crate::R<SECCFG_MISC_SPEC>;
 #[doc = "Register `SECCFG_MISC` writer"]
 pub type W = crate::W<SECCFG_MISC_SPEC>;
-#[doc = "Field `SNIFF_P` reader - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0.  
-
- If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
+#[doc = "Field `SNIFF_P` reader - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0. If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
 pub type SNIFF_P_R = crate::BitReader;
-#[doc = "Field `SNIFF_P` writer - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0.  
-
- If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
+#[doc = "Field `SNIFF_P` writer - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0. If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
 pub type SNIFF_P_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `SNIFF_S` reader - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context.  
-
- If 0, the sniffer can be accessed from either a Secure or NonSecure context, but can not see data transfers of Secure channels."]
+#[doc = "Field `SNIFF_S` reader - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context. If 0, the sniffer can be accessed from either a Secure or Non-secure context, but can not see data transfers of Secure channels."]
 pub type SNIFF_S_R = crate::BitReader;
-#[doc = "Field `SNIFF_S` writer - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context.  
-
- If 0, the sniffer can be accessed from either a Secure or NonSecure context, but can not see data transfers of Secure channels."]
+#[doc = "Field `SNIFF_S` writer - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context. If 0, the sniffer can be accessed from either a Secure or Non-secure context, but can not see data transfers of Secure channels."]
 pub type SNIFF_S_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `TIMER0_P` reader - If 1, the TIMER0 register is only accessible from a Privileged (or more Secure) context, and timer DREQ 0 is only visible to Privileged (or more Secure) channels."]
 pub type TIMER0_P_R = crate::BitReader;
@@ -51,16 +43,12 @@ pub type TIMER3_S_R = crate::BitReader;
 #[doc = "Field `TIMER3_S` writer - If 1, the TIMER3 register is only accessible from a Secure context, and timer DREQ 3 is only visible to Secure channels."]
 pub type TIMER3_S_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
-    #[doc = "Bit 0 - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0.  
-
- If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
+    #[doc = "Bit 0 - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0. If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
     #[inline(always)]
     pub fn sniff_p(&self) -> SNIFF_P_R {
         SNIFF_P_R::new((self.bits & 1) != 0)
     }
-    #[doc = "Bit 1 - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context.  
-
- If 0, the sniffer can be accessed from either a Secure or NonSecure context, but can not see data transfers of Secure channels."]
+    #[doc = "Bit 1 - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context. If 0, the sniffer can be accessed from either a Secure or Non-secure context, but can not see data transfers of Secure channels."]
     #[inline(always)]
     pub fn sniff_s(&self) -> SNIFF_S_R {
         SNIFF_S_R::new(((self.bits >> 1) & 1) != 0)
@@ -107,17 +95,13 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bit 0 - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0.  
-
- If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
+    #[doc = "Bit 0 - If 1, the sniffer can see data transfers from Privileged channels, and can itself only be accessed from a privileged context, or from a Secure context when SNIFF_S is 0. If 0, the sniffer can be accessed from either a Privileged or Unprivileged context (with sufficient security level) but can not see transfers from Privileged channels."]
     #[inline(always)]
     #[must_use]
     pub fn sniff_p(&mut self) -> SNIFF_P_W<SECCFG_MISC_SPEC> {
         SNIFF_P_W::new(self, 0)
     }
-    #[doc = "Bit 1 - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context.  
-
- If 0, the sniffer can be accessed from either a Secure or NonSecure context, but can not see data transfers of Secure channels."]
+    #[doc = "Bit 1 - If 1, the sniffer can see data transfers from Secure channels, and can itself only be accessed from a Secure context. If 0, the sniffer can be accessed from either a Secure or Non-secure context, but can not see data transfers of Secure channels."]
     #[inline(always)]
     #[must_use]
     pub fn sniff_s(&mut self) -> SNIFF_S_W<SECCFG_MISC_SPEC> {

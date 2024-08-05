@@ -1,68 +1,70 @@
 #[doc = "Register `ENABLED0` reader"]
 pub type R = crate::R<ENABLED0_SPEC>;
-#[doc = "Field `clk_sys_clocks` reader - "]
+#[doc = "Register `ENABLED0` writer"]
+pub type W = crate::W<ENABLED0_SPEC>;
+#[doc = "Field `CLK_SYS_CLOCKS` reader - "]
 pub type CLK_SYS_CLOCKS_R = crate::BitReader;
-#[doc = "Field `clk_sys_accessctrl` reader - "]
+#[doc = "Field `CLK_SYS_ACCESSCTRL` reader - "]
 pub type CLK_SYS_ACCESSCTRL_R = crate::BitReader;
-#[doc = "Field `clk_adc_adc` reader - "]
-pub type CLK_ADC_ADC_R = crate::BitReader;
-#[doc = "Field `clk_sys_adc` reader - "]
+#[doc = "Field `CLK_ADC` reader - "]
+pub type CLK_ADC_R = crate::BitReader;
+#[doc = "Field `CLK_SYS_ADC` reader - "]
 pub type CLK_SYS_ADC_R = crate::BitReader;
-#[doc = "Field `clk_sys_bootram` reader - "]
+#[doc = "Field `CLK_SYS_BOOTRAM` reader - "]
 pub type CLK_SYS_BOOTRAM_R = crate::BitReader;
-#[doc = "Field `clk_sys_busctrl` reader - "]
+#[doc = "Field `CLK_SYS_BUSCTRL` reader - "]
 pub type CLK_SYS_BUSCTRL_R = crate::BitReader;
-#[doc = "Field `clk_sys_busfabric` reader - "]
+#[doc = "Field `CLK_SYS_BUSFABRIC` reader - "]
 pub type CLK_SYS_BUSFABRIC_R = crate::BitReader;
-#[doc = "Field `clk_sys_dma` reader - "]
+#[doc = "Field `CLK_SYS_DMA` reader - "]
 pub type CLK_SYS_DMA_R = crate::BitReader;
-#[doc = "Field `clk_sys_glitch_detector` reader - "]
+#[doc = "Field `CLK_SYS_GLITCH_DETECTOR` reader - "]
 pub type CLK_SYS_GLITCH_DETECTOR_R = crate::BitReader;
-#[doc = "Field `clk_hstx` reader - "]
+#[doc = "Field `CLK_HSTX` reader - "]
 pub type CLK_HSTX_R = crate::BitReader;
-#[doc = "Field `clk_sys_hstx` reader - "]
+#[doc = "Field `CLK_SYS_HSTX` reader - "]
 pub type CLK_SYS_HSTX_R = crate::BitReader;
-#[doc = "Field `clk_sys_i2c0` reader - "]
+#[doc = "Field `CLK_SYS_I2C0` reader - "]
 pub type CLK_SYS_I2C0_R = crate::BitReader;
-#[doc = "Field `clk_sys_i2c1` reader - "]
+#[doc = "Field `CLK_SYS_I2C1` reader - "]
 pub type CLK_SYS_I2C1_R = crate::BitReader;
-#[doc = "Field `clk_sys_io` reader - "]
+#[doc = "Field `CLK_SYS_IO` reader - "]
 pub type CLK_SYS_IO_R = crate::BitReader;
-#[doc = "Field `clk_sys_jtag` reader - "]
+#[doc = "Field `CLK_SYS_JTAG` reader - "]
 pub type CLK_SYS_JTAG_R = crate::BitReader;
-#[doc = "Field `clk_ref_otp` reader - "]
+#[doc = "Field `CLK_REF_OTP` reader - "]
 pub type CLK_REF_OTP_R = crate::BitReader;
-#[doc = "Field `clk_sys_otp` reader - "]
+#[doc = "Field `CLK_SYS_OTP` reader - "]
 pub type CLK_SYS_OTP_R = crate::BitReader;
-#[doc = "Field `clk_sys_pads` reader - "]
+#[doc = "Field `CLK_SYS_PADS` reader - "]
 pub type CLK_SYS_PADS_R = crate::BitReader;
-#[doc = "Field `clk_sys_pio0` reader - "]
+#[doc = "Field `CLK_SYS_PIO0` reader - "]
 pub type CLK_SYS_PIO0_R = crate::BitReader;
-#[doc = "Field `clk_sys_pio1` reader - "]
+#[doc = "Field `CLK_SYS_PIO1` reader - "]
 pub type CLK_SYS_PIO1_R = crate::BitReader;
-#[doc = "Field `clk_sys_pio2` reader - "]
+#[doc = "Field `CLK_SYS_PIO2` reader - "]
 pub type CLK_SYS_PIO2_R = crate::BitReader;
-#[doc = "Field `clk_sys_pll_sys` reader - "]
+#[doc = "Field `CLK_SYS_PLL_SYS` reader - "]
 pub type CLK_SYS_PLL_SYS_R = crate::BitReader;
-#[doc = "Field `clk_sys_pll_usb` reader - "]
+#[doc = "Field `CLK_SYS_PLL_USB` reader - "]
 pub type CLK_SYS_PLL_USB_R = crate::BitReader;
-#[doc = "Field `clk_ref_powman` reader - "]
+#[doc = "Field `CLK_REF_POWMAN` reader - "]
 pub type CLK_REF_POWMAN_R = crate::BitReader;
-#[doc = "Field `clk_sys_powman` reader - "]
+#[doc = "Field `CLK_SYS_POWMAN` reader - "]
 pub type CLK_SYS_POWMAN_R = crate::BitReader;
-#[doc = "Field `clk_sys_pwm` reader - "]
+#[doc = "Field `CLK_SYS_PWM` reader - "]
 pub type CLK_SYS_PWM_R = crate::BitReader;
-#[doc = "Field `clk_sys_resets` reader - "]
+#[doc = "Field `CLK_SYS_RESETS` reader - "]
 pub type CLK_SYS_RESETS_R = crate::BitReader;
-#[doc = "Field `clk_sys_rom` reader - "]
+#[doc = "Field `CLK_SYS_ROM` reader - "]
 pub type CLK_SYS_ROM_R = crate::BitReader;
-#[doc = "Field `clk_sys_rosc` reader - "]
+#[doc = "Field `CLK_SYS_ROSC` reader - "]
 pub type CLK_SYS_ROSC_R = crate::BitReader;
-#[doc = "Field `clk_sys_psm` reader - "]
+#[doc = "Field `CLK_SYS_PSM` reader - "]
 pub type CLK_SYS_PSM_R = crate::BitReader;
-#[doc = "Field `clk_sys_sha256` reader - "]
+#[doc = "Field `CLK_SYS_SHA256` reader - "]
 pub type CLK_SYS_SHA256_R = crate::BitReader;
-#[doc = "Field `clk_sys_sio` reader - "]
+#[doc = "Field `CLK_SYS_SIO` reader - "]
 pub type CLK_SYS_SIO_R = crate::BitReader;
 impl R {
     #[doc = "Bit 0"]
@@ -77,8 +79,8 @@ impl R {
     }
     #[doc = "Bit 2"]
     #[inline(always)]
-    pub fn clk_adc_adc(&self) -> CLK_ADC_ADC_R {
-        CLK_ADC_ADC_R::new(((self.bits >> 2) & 1) != 0)
+    pub fn clk_adc(&self) -> CLK_ADC_R {
+        CLK_ADC_R::new(((self.bits >> 2) & 1) != 0)
     }
     #[doc = "Bit 3"]
     #[inline(always)]
@@ -226,15 +228,22 @@ impl R {
         CLK_SYS_SIO_R::new(((self.bits >> 31) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "indicates the state of the clock enable  
 
-You can [`read`](crate::Reg::read) this register and get [`enabled0::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`enabled0::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`enabled0::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct ENABLED0_SPEC;
 impl crate::RegisterSpec for ENABLED0_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`enabled0::R`](R) reader structure"]
 impl crate::Readable for ENABLED0_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`enabled0::W`](W) writer structure"]
+impl crate::Writable for ENABLED0_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets ENABLED0 to value 0"]
 impl crate::Resettable for ENABLED0_SPEC {
     const RESET_VALUE: u32 = 0;

@@ -2,12 +2,25 @@
 pub type R = crate::R<SCRATCH5_SPEC>;
 #[doc = "Register `SCRATCH5` writer"]
 pub type W = crate::W<SCRATCH5_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `SCRATCH5` reader - "]
+pub type SCRATCH5_R = crate::FieldReader<u32>;
+#[doc = "Field `SCRATCH5` writer - "]
+pub type SCRATCH5_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn scratch5(&self) -> SCRATCH5_R {
+        SCRATCH5_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn scratch5(&mut self) -> SCRATCH5_W<SCRATCH5_SPEC> {
+        SCRATCH5_W::new(self, 0)
+    }
+}
 #[doc = "Scratch register. Information persists through soft reset of the chip.  
 
 You can [`read`](crate::Reg::read) this register and get [`scratch5::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`scratch5::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

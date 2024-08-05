@@ -90,9 +90,7 @@ where
         self.variant(FREQ_RANGE_A::_40_100MHZ)
     }
 }
-#[doc = "On power-up this field is initialised to DISABLE and the chip runs from the ROSC.  
- If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature.  
- The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED  
+#[doc = "On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -113,9 +111,7 @@ impl crate::FieldSpec for ENABLE_A {
     type Ux = u16;
 }
 impl crate::IsEnum for ENABLE_A {}
-#[doc = "Field `ENABLE` reader - On power-up this field is initialised to DISABLE and the chip runs from the ROSC.  
- If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature.  
- The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
+#[doc = "Field `ENABLE` reader - On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
 pub type ENABLE_R = crate::FieldReader<ENABLE_A>;
 impl ENABLE_R {
     #[doc = "Get enumerated values variant"]
@@ -138,9 +134,7 @@ impl ENABLE_R {
         *self == ENABLE_A::ENABLE
     }
 }
-#[doc = "Field `ENABLE` writer - On power-up this field is initialised to DISABLE and the chip runs from the ROSC.  
- If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature.  
- The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
+#[doc = "Field `ENABLE` writer - On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
 pub type ENABLE_W<'a, REG> = crate::FieldWriter<'a, REG, 12, ENABLE_A>;
 impl<'a, REG> ENABLE_W<'a, REG>
 where
@@ -164,9 +158,7 @@ impl R {
     pub fn freq_range(&self) -> FREQ_RANGE_R {
         FREQ_RANGE_R::new((self.bits & 0x0fff) as u16)
     }
-    #[doc = "Bits 12:23 - On power-up this field is initialised to DISABLE and the chip runs from the ROSC.  
- If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature.  
- The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
+    #[doc = "Bits 12:23 - On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
     #[inline(always)]
     pub fn enable(&self) -> ENABLE_R {
         ENABLE_R::new(((self.bits >> 12) & 0x0fff) as u16)
@@ -179,9 +171,7 @@ impl W {
     pub fn freq_range(&mut self) -> FREQ_RANGE_W<CTRL_SPEC> {
         FREQ_RANGE_W::new(self, 0)
     }
-    #[doc = "Bits 12:23 - On power-up this field is initialised to DISABLE and the chip runs from the ROSC.  
- If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature.  
- The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
+    #[doc = "Bits 12:23 - On power-up this field is initialised to DISABLE and the chip runs from the ROSC. If the chip has subsequently been programmed to run from the XOSC then setting this field to DISABLE may lock-up the chip. If this is a concern then run the clk_ref from the ROSC and enable the clk_sys RESUS feature. The 12-bit code is intended to give some protection against accidental writes. An invalid setting will retain the previous value. The actual value being used can be read from STATUS_ENABLED"]
     #[inline(always)]
     #[must_use]
     pub fn enable(&mut self) -> ENABLE_W<CTRL_SPEC> {

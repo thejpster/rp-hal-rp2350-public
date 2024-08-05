@@ -6,11 +6,9 @@ pub type W = crate::W<PWRUP3_SPEC>;
 pub type SOURCE_R = crate::FieldReader;
 #[doc = "Field `SOURCE` writer - "]
 pub type SOURCE_W<'a, REG> = crate::FieldWriter<'a, REG, 6>;
-#[doc = "Field `ENABLE` reader - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event.  
- If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
+#[doc = "Field `ENABLE` reader - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event. If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
 pub type ENABLE_R = crate::BitReader;
-#[doc = "Field `ENABLE` writer - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event.  
- If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
+#[doc = "Field `ENABLE` writer - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event. If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
 pub type ENABLE_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "  
 
@@ -134,8 +132,7 @@ impl R {
     pub fn source(&self) -> SOURCE_R {
         SOURCE_R::new((self.bits & 0x3f) as u8)
     }
-    #[doc = "Bit 6 - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event.  
- If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
+    #[doc = "Bit 6 - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event. If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
     #[inline(always)]
     pub fn enable(&self) -> ENABLE_R {
         ENABLE_R::new(((self.bits >> 6) & 1) != 0)
@@ -168,8 +165,7 @@ impl W {
     pub fn source(&mut self) -> SOURCE_W<PWRUP3_SPEC> {
         SOURCE_W::new(self, 0)
     }
-    #[doc = "Bit 6 - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event.  
- If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
+    #[doc = "Bit 6 - Set to 1 to enable the wakeup source. Set to 0 to disable the wakeup source and clear a pending wakeup event. If using edge detect a latched edge needs to be cleared by writing 1 to the status register also."]
     #[inline(always)]
     #[must_use]
     pub fn enable(&mut self) -> ENABLE_W<PWRUP3_SPEC> {
@@ -194,21 +190,7 @@ impl W {
         STATUS_W::new(self, 9)
     }
 }
-#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state.  
- The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event  
- The number of gpios available depends on the package option. An invalid selection will be ignored  
- source = 0 selects gpio0  
- .  
- .  
- source = 47 selects gpio47  
- source = 48 selects qspi_ss  
- source = 49 selects qspi_sd0  
- source = 50 selects qspi_sd1  
- source = 51 selects qspi_sd2  
- source = 52 selects qspi_sd3  
- source = 53 selects qspi_sclk  
- level = 0 triggers the pwrup when the source is low  
- level = 1 triggers the pwrup when the source is high  
+#[doc = "4 GPIO powerup events can be configured to wake the chip up from a low power state. The pwrups are level/edge sensitive and can be set to trigger on a high/rising or low/falling event The number of gpios available depends on the package option. An invalid selection will be ignored source = 0 selects gpio0 . . source = 47 selects gpio47 source = 48 selects qspi_ss source = 49 selects qspi_sd0 source = 50 selects qspi_sd1 source = 51 selects qspi_sd2 source = 52 selects qspi_sd3 source = 53 selects qspi_sclk level = 0 triggers the pwrup when the source is low level = 1 triggers the pwrup when the source is high  
 
 You can [`read`](crate::Reg::read) this register and get [`pwrup3::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`pwrup3::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct PWRUP3_SPEC;

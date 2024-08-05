@@ -55,44 +55,32 @@ impl RegisterBlock {
     pub const fn trng_valid(&self) -> &TRNG_VALID {
         &self.trng_valid
     }
-    #[doc = "0x114 - RNG collected bits.  
- Bits \\[31:0\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+    #[doc = "0x114 - RNG collected bits."]
     #[inline(always)]
     pub const fn ehr_data0(&self) -> &EHR_DATA0 {
         &self.ehr_data0
     }
-    #[doc = "0x118 - RNG collected bits.  
- Bits \\[63:32\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+    #[doc = "0x118 - RNG collected bits."]
     #[inline(always)]
     pub const fn ehr_data1(&self) -> &EHR_DATA1 {
         &self.ehr_data1
     }
-    #[doc = "0x11c - RNG collected bits.  
- Bits \\[95:64\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+    #[doc = "0x11c - RNG collected bits."]
     #[inline(always)]
     pub const fn ehr_data2(&self) -> &EHR_DATA2 {
         &self.ehr_data2
     }
-    #[doc = "0x120 - RNG collected bits.  
- Bits \\[127:96\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+    #[doc = "0x120 - RNG collected bits."]
     #[inline(always)]
     pub const fn ehr_data3(&self) -> &EHR_DATA3 {
         &self.ehr_data3
     }
-    #[doc = "0x124 - RNG collected bits.  
- Bits \\[159:128\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+    #[doc = "0x124 - RNG collected bits."]
     #[inline(always)]
     pub const fn ehr_data4(&self) -> &EHR_DATA4 {
         &self.ehr_data4
     }
-    #[doc = "0x128 - RNG collected bits.  
- Bits \\[191:160\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+    #[doc = "0x128 - RNG collected bits."]
     #[inline(always)]
     pub const fn ehr_data5(&self) -> &EHR_DATA5 {
         &self.ehr_data5
@@ -167,9 +155,9 @@ module"]
 pub type RNG_IMR = crate::Reg<rng_imr::RNG_IMR_SPEC>;
 #[doc = "Interrupt masking."]
 pub mod rng_imr;
-#[doc = "RNG_ISR (r) register accessor: RNG status register. If corresponding RNG_IMR bit is unmasked, an interrupt will be generated.  
+#[doc = "RNG_ISR (rw) register accessor: RNG status register. If corresponding RNG_IMR bit is unmasked, an interrupt will be generated.  
 
-You can [`read`](crate::Reg::read) this register and get [`rng_isr::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`rng_isr::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rng_isr::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@rng_isr`]
 module"]
@@ -194,92 +182,68 @@ module"]
 pub type TRNG_CONFIG = crate::Reg<trng_config::TRNG_CONFIG_SPEC>;
 #[doc = "Selecting the inverter-chain length."]
 pub mod trng_config;
-#[doc = "TRNG_VALID (r) register accessor: 192 bit collection indication.  
+#[doc = "TRNG_VALID (rw) register accessor: 192 bit collection indication.  
 
-You can [`read`](crate::Reg::read) this register and get [`trng_valid::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`trng_valid::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`trng_valid::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@trng_valid`]
 module"]
 pub type TRNG_VALID = crate::Reg<trng_valid::TRNG_VALID_SPEC>;
 #[doc = "192 bit collection indication."]
 pub mod trng_valid;
-#[doc = "EHR_DATA0 (r) register accessor: RNG collected bits.  
- Bits \\[31:0\\]
-of Entropy Holding Register (EHR) - RNG output register  
+#[doc = "EHR_DATA0 (rw) register accessor: RNG collected bits.  
 
-You can [`read`](crate::Reg::read) this register and get [`ehr_data0::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ehr_data0::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ehr_data0::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ehr_data0`]
 module"]
 pub type EHR_DATA0 = crate::Reg<ehr_data0::EHR_DATA0_SPEC>;
-#[doc = "RNG collected bits.  
- Bits \\[31:0\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+#[doc = "RNG collected bits."]
 pub mod ehr_data0;
-#[doc = "EHR_DATA1 (r) register accessor: RNG collected bits.  
- Bits \\[63:32\\]
-of Entropy Holding Register (EHR) - RNG output register  
+#[doc = "EHR_DATA1 (rw) register accessor: RNG collected bits.  
 
-You can [`read`](crate::Reg::read) this register and get [`ehr_data1::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ehr_data1::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ehr_data1::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ehr_data1`]
 module"]
 pub type EHR_DATA1 = crate::Reg<ehr_data1::EHR_DATA1_SPEC>;
-#[doc = "RNG collected bits.  
- Bits \\[63:32\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+#[doc = "RNG collected bits."]
 pub mod ehr_data1;
-#[doc = "EHR_DATA2 (r) register accessor: RNG collected bits.  
- Bits \\[95:64\\]
-of Entropy Holding Register (EHR) - RNG output register  
+#[doc = "EHR_DATA2 (rw) register accessor: RNG collected bits.  
 
-You can [`read`](crate::Reg::read) this register and get [`ehr_data2::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ehr_data2::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ehr_data2::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ehr_data2`]
 module"]
 pub type EHR_DATA2 = crate::Reg<ehr_data2::EHR_DATA2_SPEC>;
-#[doc = "RNG collected bits.  
- Bits \\[95:64\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+#[doc = "RNG collected bits."]
 pub mod ehr_data2;
-#[doc = "EHR_DATA3 (r) register accessor: RNG collected bits.  
- Bits \\[127:96\\]
-of Entropy Holding Register (EHR) - RNG output register  
+#[doc = "EHR_DATA3 (rw) register accessor: RNG collected bits.  
 
-You can [`read`](crate::Reg::read) this register and get [`ehr_data3::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ehr_data3::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ehr_data3::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ehr_data3`]
 module"]
 pub type EHR_DATA3 = crate::Reg<ehr_data3::EHR_DATA3_SPEC>;
-#[doc = "RNG collected bits.  
- Bits \\[127:96\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+#[doc = "RNG collected bits."]
 pub mod ehr_data3;
-#[doc = "EHR_DATA4 (r) register accessor: RNG collected bits.  
- Bits \\[159:128\\]
-of Entropy Holding Register (EHR) - RNG output register  
+#[doc = "EHR_DATA4 (rw) register accessor: RNG collected bits.  
 
-You can [`read`](crate::Reg::read) this register and get [`ehr_data4::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ehr_data4::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ehr_data4::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ehr_data4`]
 module"]
 pub type EHR_DATA4 = crate::Reg<ehr_data4::EHR_DATA4_SPEC>;
-#[doc = "RNG collected bits.  
- Bits \\[159:128\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+#[doc = "RNG collected bits."]
 pub mod ehr_data4;
-#[doc = "EHR_DATA5 (r) register accessor: RNG collected bits.  
- Bits \\[191:160\\]
-of Entropy Holding Register (EHR) - RNG output register  
+#[doc = "EHR_DATA5 (rw) register accessor: RNG collected bits.  
 
-You can [`read`](crate::Reg::read) this register and get [`ehr_data5::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ehr_data5::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ehr_data5::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ehr_data5`]
 module"]
 pub type EHR_DATA5 = crate::Reg<ehr_data5::EHR_DATA5_SPEC>;
-#[doc = "RNG collected bits.  
- Bits \\[191:160\\]
-of Entropy Holding Register (EHR) - RNG output register"]
+#[doc = "RNG collected bits."]
 pub mod ehr_data5;
 #[doc = "RND_SOURCE_ENABLE (rw) register accessor: Enable signal for the random source.  
 
@@ -335,9 +299,9 @@ module"]
 pub type RNG_DEBUG_EN_INPUT = crate::Reg<rng_debug_en_input::RNG_DEBUG_EN_INPUT_SPEC>;
 #[doc = "Enable the RNG debug mode"]
 pub mod rng_debug_en_input;
-#[doc = "TRNG_BUSY (r) register accessor: RNG Busy indication.  
+#[doc = "TRNG_BUSY (rw) register accessor: RNG Busy indication.  
 
-You can [`read`](crate::Reg::read) this register and get [`trng_busy::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`trng_busy::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`trng_busy::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@trng_busy`]
 module"]
@@ -353,36 +317,36 @@ module"]
 pub type RST_BITS_COUNTER = crate::Reg<rst_bits_counter::RST_BITS_COUNTER_SPEC>;
 #[doc = "Reset the counter of collected bits in the RNG."]
 pub mod rst_bits_counter;
-#[doc = "RNG_VERSION (r) register accessor: Displays the version settings of the TRNG.  
+#[doc = "RNG_VERSION (rw) register accessor: Displays the version settings of the TRNG.  
 
-You can [`read`](crate::Reg::read) this register and get [`rng_version::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`rng_version::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rng_version::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@rng_version`]
 module"]
 pub type RNG_VERSION = crate::Reg<rng_version::RNG_VERSION_SPEC>;
 #[doc = "Displays the version settings of the TRNG."]
 pub mod rng_version;
-#[doc = "RNG_BIST_CNTR_0 (r) register accessor: Collected BIST results.  
+#[doc = "RNG_BIST_CNTR_0 (rw) register accessor: Collected BIST results.  
 
-You can [`read`](crate::Reg::read) this register and get [`rng_bist_cntr_0::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`rng_bist_cntr_0::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rng_bist_cntr_0::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@rng_bist_cntr_0`]
 module"]
 pub type RNG_BIST_CNTR_0 = crate::Reg<rng_bist_cntr_0::RNG_BIST_CNTR_0_SPEC>;
 #[doc = "Collected BIST results."]
 pub mod rng_bist_cntr_0;
-#[doc = "RNG_BIST_CNTR_1 (r) register accessor: Collected BIST results.  
+#[doc = "RNG_BIST_CNTR_1 (rw) register accessor: Collected BIST results.  
 
-You can [`read`](crate::Reg::read) this register and get [`rng_bist_cntr_1::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`rng_bist_cntr_1::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rng_bist_cntr_1::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@rng_bist_cntr_1`]
 module"]
 pub type RNG_BIST_CNTR_1 = crate::Reg<rng_bist_cntr_1::RNG_BIST_CNTR_1_SPEC>;
 #[doc = "Collected BIST results."]
 pub mod rng_bist_cntr_1;
-#[doc = "RNG_BIST_CNTR_2 (r) register accessor: Collected BIST results.  
+#[doc = "RNG_BIST_CNTR_2 (rw) register accessor: Collected BIST results.  
 
-You can [`read`](crate::Reg::read) this register and get [`rng_bist_cntr_2::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`rng_bist_cntr_2::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rng_bist_cntr_2::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@rng_bist_cntr_2`]
 module"]

@@ -6,13 +6,13 @@ pub type W = crate::W<MPU_CTRL_SPEC>;
 pub type P_R = crate::BitReader;
 #[doc = "Field `P` writer - Determine whether an address not covered by an active MPU region is Privileged (1) or Unprivileged (0)"]
 pub type P_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `S` reader - Determine whether an address not covered by an active MPU region is Secure (1) or NonSecure (0)"]
+#[doc = "Field `S` reader - Determine whether an address not covered by an active MPU region is Secure (1) or Non-secure (0)"]
 pub type S_R = crate::BitReader;
-#[doc = "Field `S` writer - Determine whether an address not covered by an active MPU region is Secure (1) or NonSecure (0)"]
+#[doc = "Field `S` writer - Determine whether an address not covered by an active MPU region is Secure (1) or Non-secure (0)"]
 pub type S_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `NS_HIDE_ADDR` reader - By default, when a region's S bit is clear, NonSecure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to NonSecure reads, even when the region is NonSecure, to avoid leaking information about the processor SAU map."]
+#[doc = "Field `NS_HIDE_ADDR` reader - By default, when a region's S bit is clear, Non-secure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to Non-secure reads, even when the region is Non-secure, to avoid leaking information about the processor SAU map."]
 pub type NS_HIDE_ADDR_R = crate::BitReader;
-#[doc = "Field `NS_HIDE_ADDR` writer - By default, when a region's S bit is clear, NonSecure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to NonSecure reads, even when the region is NonSecure, to avoid leaking information about the processor SAU map."]
+#[doc = "Field `NS_HIDE_ADDR` writer - By default, when a region's S bit is clear, Non-secure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to Non-secure reads, even when the region is Non-secure, to avoid leaking information about the processor SAU map."]
 pub type NS_HIDE_ADDR_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
     #[doc = "Bit 1 - Determine whether an address not covered by an active MPU region is Privileged (1) or Unprivileged (0)"]
@@ -20,12 +20,12 @@ impl R {
     pub fn p(&self) -> P_R {
         P_R::new(((self.bits >> 1) & 1) != 0)
     }
-    #[doc = "Bit 2 - Determine whether an address not covered by an active MPU region is Secure (1) or NonSecure (0)"]
+    #[doc = "Bit 2 - Determine whether an address not covered by an active MPU region is Secure (1) or Non-secure (0)"]
     #[inline(always)]
     pub fn s(&self) -> S_R {
         S_R::new(((self.bits >> 2) & 1) != 0)
     }
-    #[doc = "Bit 3 - By default, when a region's S bit is clear, NonSecure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to NonSecure reads, even when the region is NonSecure, to avoid leaking information about the processor SAU map."]
+    #[doc = "Bit 3 - By default, when a region's S bit is clear, Non-secure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to Non-secure reads, even when the region is Non-secure, to avoid leaking information about the processor SAU map."]
     #[inline(always)]
     pub fn ns_hide_addr(&self) -> NS_HIDE_ADDR_R {
         NS_HIDE_ADDR_R::new(((self.bits >> 3) & 1) != 0)
@@ -38,13 +38,13 @@ impl W {
     pub fn p(&mut self) -> P_W<MPU_CTRL_SPEC> {
         P_W::new(self, 1)
     }
-    #[doc = "Bit 2 - Determine whether an address not covered by an active MPU region is Secure (1) or NonSecure (0)"]
+    #[doc = "Bit 2 - Determine whether an address not covered by an active MPU region is Secure (1) or Non-secure (0)"]
     #[inline(always)]
     #[must_use]
     pub fn s(&mut self) -> S_W<MPU_CTRL_SPEC> {
         S_W::new(self, 2)
     }
-    #[doc = "Bit 3 - By default, when a region's S bit is clear, NonSecure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to NonSecure reads, even when the region is NonSecure, to avoid leaking information about the processor SAU map."]
+    #[doc = "Bit 3 - By default, when a region's S bit is clear, Non-secure-Privileged reads can see the region's base address and limit address. Set this bit to make the addresses appear as 0 to Non-secure reads, even when the region is Non-secure, to avoid leaking information about the processor SAU map."]
     #[inline(always)]
     #[must_use]
     pub fn ns_hide_addr(&mut self) -> NS_HIDE_ADDR_W<MPU_CTRL_SPEC> {

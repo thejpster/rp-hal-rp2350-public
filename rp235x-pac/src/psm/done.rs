@@ -1,54 +1,56 @@
 #[doc = "Register `DONE` reader"]
 pub type R = crate::R<DONE_SPEC>;
-#[doc = "Field `proc_cold` reader - "]
+#[doc = "Register `DONE` writer"]
+pub type W = crate::W<DONE_SPEC>;
+#[doc = "Field `PROC_COLD` reader - "]
 pub type PROC_COLD_R = crate::BitReader;
-#[doc = "Field `otp` reader - "]
+#[doc = "Field `OTP` reader - "]
 pub type OTP_R = crate::BitReader;
-#[doc = "Field `rosc` reader - "]
+#[doc = "Field `ROSC` reader - "]
 pub type ROSC_R = crate::BitReader;
-#[doc = "Field `xosc` reader - "]
+#[doc = "Field `XOSC` reader - "]
 pub type XOSC_R = crate::BitReader;
-#[doc = "Field `resets` reader - "]
+#[doc = "Field `RESETS` reader - "]
 pub type RESETS_R = crate::BitReader;
-#[doc = "Field `clocks` reader - "]
+#[doc = "Field `CLOCKS` reader - "]
 pub type CLOCKS_R = crate::BitReader;
-#[doc = "Field `psm_ready` reader - "]
+#[doc = "Field `PSM_READY` reader - "]
 pub type PSM_READY_R = crate::BitReader;
-#[doc = "Field `busfabric` reader - "]
+#[doc = "Field `BUSFABRIC` reader - "]
 pub type BUSFABRIC_R = crate::BitReader;
-#[doc = "Field `rom` reader - "]
+#[doc = "Field `ROM` reader - "]
 pub type ROM_R = crate::BitReader;
-#[doc = "Field `bootram` reader - "]
+#[doc = "Field `BOOTRAM` reader - "]
 pub type BOOTRAM_R = crate::BitReader;
-#[doc = "Field `sram0` reader - "]
+#[doc = "Field `SRAM0` reader - "]
 pub type SRAM0_R = crate::BitReader;
-#[doc = "Field `sram1` reader - "]
+#[doc = "Field `SRAM1` reader - "]
 pub type SRAM1_R = crate::BitReader;
-#[doc = "Field `sram2` reader - "]
+#[doc = "Field `SRAM2` reader - "]
 pub type SRAM2_R = crate::BitReader;
-#[doc = "Field `sram3` reader - "]
+#[doc = "Field `SRAM3` reader - "]
 pub type SRAM3_R = crate::BitReader;
-#[doc = "Field `sram4` reader - "]
+#[doc = "Field `SRAM4` reader - "]
 pub type SRAM4_R = crate::BitReader;
-#[doc = "Field `sram5` reader - "]
+#[doc = "Field `SRAM5` reader - "]
 pub type SRAM5_R = crate::BitReader;
-#[doc = "Field `sram6` reader - "]
+#[doc = "Field `SRAM6` reader - "]
 pub type SRAM6_R = crate::BitReader;
-#[doc = "Field `sram7` reader - "]
+#[doc = "Field `SRAM7` reader - "]
 pub type SRAM7_R = crate::BitReader;
-#[doc = "Field `sram8` reader - "]
+#[doc = "Field `SRAM8` reader - "]
 pub type SRAM8_R = crate::BitReader;
-#[doc = "Field `sram9` reader - "]
+#[doc = "Field `SRAM9` reader - "]
 pub type SRAM9_R = crate::BitReader;
-#[doc = "Field `xip` reader - "]
+#[doc = "Field `XIP` reader - "]
 pub type XIP_R = crate::BitReader;
-#[doc = "Field `sio` reader - "]
+#[doc = "Field `SIO` reader - "]
 pub type SIO_R = crate::BitReader;
-#[doc = "Field `accessctrl` reader - "]
+#[doc = "Field `ACCESSCTRL` reader - "]
 pub type ACCESSCTRL_R = crate::BitReader;
-#[doc = "Field `proc0` reader - "]
+#[doc = "Field `PROC0` reader - "]
 pub type PROC0_R = crate::BitReader;
-#[doc = "Field `proc1` reader - "]
+#[doc = "Field `PROC1` reader - "]
 pub type PROC1_R = crate::BitReader;
 impl R {
     #[doc = "Bit 0"]
@@ -177,15 +179,22 @@ impl R {
         PROC1_R::new(((self.bits >> 24) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "Is the subsystem ready?  
 
-You can [`read`](crate::Reg::read) this register and get [`done::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`done::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`done::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct DONE_SPEC;
 impl crate::RegisterSpec for DONE_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`done::R`](R) reader structure"]
 impl crate::Readable for DONE_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`done::W`](W) writer structure"]
+impl crate::Writable for DONE_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets DONE to value 0"]
 impl crate::Resettable for DONE_SPEC {
     const RESET_VALUE: u32 = 0;
