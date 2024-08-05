@@ -111,6 +111,8 @@ fn main() -> ! {
         hal::rom_data::rom_version_number()
     );
 
+    get_otp_data(&mut uart, &mut pac.OTP_DATA);
+    get_otp_data_raw(&mut uart, &mut pac.OTP_DATA_RAW);
     get_sys_info_chip_info(&mut uart);
     get_sys_info_cpu_info(&mut uart);
     get_sys_info_flash_dev_info(&mut uart);
@@ -195,6 +197,42 @@ fn main() -> ! {
         led_pin.set_low().unwrap();
         timer.delay_ms(250);
     }
+}
+
+/// Read OTP using the PAC
+fn get_otp_data<T>(uart: &mut T, otp_data: &mut hal::pac::OTP_DATA)
+where
+    T: core::fmt::Write,
+{
+    _ = writeln!(uart, "Reading OTP_DATA");
+    let package_id = (otp_data.chipid1().read().chipid1().bits() as u32) << 16
+        | otp_data.chipid0().read().chipid0().bits() as u32;
+    let device_id = (otp_data.chipid3().read().chipid3().bits() as u32) << 16
+        | otp_data.chipid2().read().chipid2().bits() as u32;
+    _ = writeln!(uart, "\tRP2350 Package ID: {:#010x}", package_id);
+    _ = writeln!(uart, "\tRP2350 Device ID : {:#010x}", device_id);
+}
+
+/// Read OTP in raw mode using the PAC
+///
+/// Currently this doesn't work due to SVD issues.
+fn get_otp_data_raw<T>(uart: &mut T, otp_data_raw: &mut hal::pac::OTP_DATA_RAW)
+where
+    T: core::fmt::Write,
+{
+    _ = writeln!(uart, "Reading OTP_DATA_RAW");
+    _ = writeln!(
+        uart,
+        "\tRP2350 Package ID: {:#010x} {:#010x}",
+        otp_data_raw.chipid0().read().bits(),
+        otp_data_raw.chipid1().read().bits()
+    );
+    _ = writeln!(
+        uart,
+        "\tRP2350 Device ID : {:#010x} {:#010x}",
+        otp_data_raw.chipid2().read().bits(),
+        otp_data_raw.chipid3().read().bits()
+    );
 }
 
 /// Run get_sys_info with 0x0001
