@@ -1,36 +1,5 @@
 //! Universal Serial Bus (USB)
 //!
-//! ## Usage
-//!
-//! Initialize the Usb Bus forcing the VBUS detection.
-//! ```no_run
-//! use rp235x_hal::{clocks::init_clocks_and_plls, pac, Sio, usb::UsbBus, watchdog::Watchdog};
-//! use usb_device::class_prelude::UsbBusAllocator;
-//!
-//! const XOSC_CRYSTAL_FREQ: u32 = 12_000_000; // Typically found in BSP crates
-//!
-//! let mut pac = pac::Peripherals::take().unwrap();
-//! let mut watchdog = Watchdog::new(pac.WATCHDOG);
-//! let mut clocks = init_clocks_and_plls(
-//!     XOSC_CRYSTAL_FREQ,
-//!     pac.XOSC,
-//!     pac.CLOCKS,
-//!     pac.PLL_SYS,
-//!     pac.PLL_USB,
-//!     &mut pac.RESETS,
-//!     &mut watchdog
-//! ).ok().unwrap();
-//!
-//! let usb_bus = UsbBusAllocator::new(UsbBus::new(
-//!         pac.USB,
-//!         pac.pac::USB_DPRAM,
-//!         clocks.usb_clock,
-//!         true,
-//!         &mut pac.RESETS,
-//!     ));
-//! // Use the usb_bus as usual.
-//! ```
-//!
 //! See [pico_usb_serial.rs](https://github.com/rp-rs/rp-hal-boards/blob/main/boards/rp-pico/examples/pico_usb_serial.rs) for more complete examples
 //!
 //!
