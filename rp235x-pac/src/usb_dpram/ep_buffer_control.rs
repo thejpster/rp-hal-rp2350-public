@@ -1,7 +1,7 @@
-#[doc = "Register `EP10_IN_BUFFER_CONTROL` reader"]
-pub type R = crate::R<EP10_IN_BUFFER_CONTROL_SPEC>;
-#[doc = "Register `EP10_IN_BUFFER_CONTROL` writer"]
-pub type W = crate::W<EP10_IN_BUFFER_CONTROL_SPEC>;
+#[doc = "Register `EP_BUFFER_CONTROL%s` reader"]
+pub type R = crate::R<EP_BUFFER_CONTROL_SPEC>;
+#[doc = "Register `EP_BUFFER_CONTROL%s` writer"]
+pub type W = crate::W<EP_BUFFER_CONTROL_SPEC>;
 #[doc = "Field `LENGTH_0` reader - The length of the data in buffer 1."]
 pub type LENGTH_0_R = crate::FieldReader<u16>;
 #[doc = "Field `LENGTH_0` writer - The length of the data in buffer 1."]
@@ -210,55 +210,55 @@ impl W {
     #[doc = "Bits 0:9 - The length of the data in buffer 1."]
     #[inline(always)]
     #[must_use]
-    pub fn length_0(&mut self) -> LENGTH_0_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn length_0(&mut self) -> LENGTH_0_W<EP_BUFFER_CONTROL_SPEC> {
         LENGTH_0_W::new(self, 0)
     }
     #[doc = "Bit 10 - Buffer 0 is available. This bit is set to indicate the buffer can be used by the controller. The controller clears the available bit when writing the status back."]
     #[inline(always)]
     #[must_use]
-    pub fn available_0(&mut self) -> AVAILABLE_0_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn available_0(&mut self) -> AVAILABLE_0_W<EP_BUFFER_CONTROL_SPEC> {
         AVAILABLE_0_W::new(self, 10)
     }
     #[doc = "Bit 11 - Reply with a stall (valid for both buffers)."]
     #[inline(always)]
     #[must_use]
-    pub fn stall(&mut self) -> STALL_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn stall(&mut self) -> STALL_W<EP_BUFFER_CONTROL_SPEC> {
         STALL_W::new(self, 11)
     }
     #[doc = "Bit 12 - Reset the buffer selector to buffer 0."]
     #[inline(always)]
     #[must_use]
-    pub fn reset(&mut self) -> RESET_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn reset(&mut self) -> RESET_W<EP_BUFFER_CONTROL_SPEC> {
         RESET_W::new(self, 12)
     }
     #[doc = "Bit 13 - The data pid of buffer 0."]
     #[inline(always)]
     #[must_use]
-    pub fn pid_0(&mut self) -> PID_0_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn pid_0(&mut self) -> PID_0_W<EP_BUFFER_CONTROL_SPEC> {
         PID_0_W::new(self, 13)
     }
     #[doc = "Bit 14 - Buffer 0 is the last buffer of the transfer."]
     #[inline(always)]
     #[must_use]
-    pub fn last_0(&mut self) -> LAST_0_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn last_0(&mut self) -> LAST_0_W<EP_BUFFER_CONTROL_SPEC> {
         LAST_0_W::new(self, 14)
     }
     #[doc = "Bit 15 - Buffer 0 is full. For an IN transfer (TX to the host) the bit is set to indicate the data is valid. For an OUT transfer (RX from the host) this bit should be left as a 0. The host will set it when it has filled the buffer with data."]
     #[inline(always)]
     #[must_use]
-    pub fn full_0(&mut self) -> FULL_0_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn full_0(&mut self) -> FULL_0_W<EP_BUFFER_CONTROL_SPEC> {
         FULL_0_W::new(self, 15)
     }
     #[doc = "Bits 16:25 - The length of the data in buffer 1."]
     #[inline(always)]
     #[must_use]
-    pub fn length_1(&mut self) -> LENGTH_1_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn length_1(&mut self) -> LENGTH_1_W<EP_BUFFER_CONTROL_SPEC> {
         LENGTH_1_W::new(self, 16)
     }
     #[doc = "Bit 26 - Buffer 1 is available. This bit is set to indicate the buffer can be used by the controller. The controller clears the available bit when writing the status back."]
     #[inline(always)]
     #[must_use]
-    pub fn available_1(&mut self) -> AVAILABLE_1_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn available_1(&mut self) -> AVAILABLE_1_W<EP_BUFFER_CONTROL_SPEC> {
         AVAILABLE_1_W::new(self, 26)
     }
     #[doc = "Bits 27:28 - The number of bytes buffer 1 is offset from buffer 0 in Isochronous mode. Only valid in double buffered mode for an Isochronous endpoint. For a non Isochronous endpoint the offset is always 64 bytes."]
@@ -266,44 +266,44 @@ impl W {
     #[must_use]
     pub fn double_buffer_iso_offset(
         &mut self,
-    ) -> DOUBLE_BUFFER_ISO_OFFSET_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    ) -> DOUBLE_BUFFER_ISO_OFFSET_W<EP_BUFFER_CONTROL_SPEC> {
         DOUBLE_BUFFER_ISO_OFFSET_W::new(self, 27)
     }
     #[doc = "Bit 29 - The data pid of buffer 1."]
     #[inline(always)]
     #[must_use]
-    pub fn pid_1(&mut self) -> PID_1_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn pid_1(&mut self) -> PID_1_W<EP_BUFFER_CONTROL_SPEC> {
         PID_1_W::new(self, 29)
     }
     #[doc = "Bit 30 - Buffer 1 is the last buffer of the transfer."]
     #[inline(always)]
     #[must_use]
-    pub fn last_1(&mut self) -> LAST_1_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn last_1(&mut self) -> LAST_1_W<EP_BUFFER_CONTROL_SPEC> {
         LAST_1_W::new(self, 30)
     }
     #[doc = "Bit 31 - Buffer 1 is full. For an IN transfer (TX to the host) the bit is set to indicate the data is valid. For an OUT transfer (RX from the host) this bit should be left as a 0. The host will set it when it has filled the buffer with data."]
     #[inline(always)]
     #[must_use]
-    pub fn full_1(&mut self) -> FULL_1_W<EP10_IN_BUFFER_CONTROL_SPEC> {
+    pub fn full_1(&mut self) -> FULL_1_W<EP_BUFFER_CONTROL_SPEC> {
         FULL_1_W::new(self, 31)
     }
 }
-#[doc = "Buffer control for both buffers of an endpoint. Fields ending in a _1 are for buffer 1. Fields ending in a _0 are for buffer 0. Buffer 1 controls are only valid if the endpoint is in double buffered mode.  
+#[doc = "TODO  
 
-You can [`read`](crate::Reg::read) this register and get [`ep10_in_buffer_control::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ep10_in_buffer_control::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
-pub struct EP10_IN_BUFFER_CONTROL_SPEC;
-impl crate::RegisterSpec for EP10_IN_BUFFER_CONTROL_SPEC {
+You can [`read`](crate::Reg::read) this register and get [`ep_buffer_control::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ep_buffer_control::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct EP_BUFFER_CONTROL_SPEC;
+impl crate::RegisterSpec for EP_BUFFER_CONTROL_SPEC {
     type Ux = u32;
 }
-#[doc = "`read()` method returns [`ep10_in_buffer_control::R`](R) reader structure"]
-impl crate::Readable for EP10_IN_BUFFER_CONTROL_SPEC {}
-#[doc = "`write(|w| ..)` method takes [`ep10_in_buffer_control::W`](W) writer structure"]
-impl crate::Writable for EP10_IN_BUFFER_CONTROL_SPEC {
+#[doc = "`read()` method returns [`ep_buffer_control::R`](R) reader structure"]
+impl crate::Readable for EP_BUFFER_CONTROL_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`ep_buffer_control::W`](W) writer structure"]
+impl crate::Writable for EP_BUFFER_CONTROL_SPEC {
     type Safety = crate::Unsafe;
     const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
     const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
-#[doc = "`reset()` method sets EP10_IN_BUFFER_CONTROL to value 0"]
-impl crate::Resettable for EP10_IN_BUFFER_CONTROL_SPEC {
+#[doc = "`reset()` method sets EP_BUFFER_CONTROL%s to value 0"]
+impl crate::Resettable for EP_BUFFER_CONTROL_SPEC {
     const RESET_VALUE: u32 = 0;
 }

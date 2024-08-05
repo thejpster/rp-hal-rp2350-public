@@ -1,7 +1,7 @@
-#[doc = "Register `EP4_OUT_CONTROL` reader"]
-pub type R = crate::R<EP4_OUT_CONTROL_SPEC>;
-#[doc = "Register `EP4_OUT_CONTROL` writer"]
-pub type W = crate::W<EP4_OUT_CONTROL_SPEC>;
+#[doc = "Register `EP_CONTROL%s` reader"]
+pub type R = crate::R<EP_CONTROL_SPEC>;
+#[doc = "Register `EP_CONTROL%s` writer"]
+pub type W = crate::W<EP_CONTROL_SPEC>;
 #[doc = "Field `BUFFER_ADDRESS` reader - 64 byte aligned buffer address for this EP (bits 0-5 are ignored). Relative to the start of the DPRAM."]
 pub type BUFFER_ADDRESS_R = crate::FieldReader<u16>;
 #[doc = "Field `BUFFER_ADDRESS` writer - 64 byte aligned buffer address for this EP (bits 0-5 are ignored). Relative to the start of the DPRAM."]
@@ -164,70 +164,68 @@ impl W {
     #[doc = "Bits 0:15 - 64 byte aligned buffer address for this EP (bits 0-5 are ignored). Relative to the start of the DPRAM."]
     #[inline(always)]
     #[must_use]
-    pub fn buffer_address(&mut self) -> BUFFER_ADDRESS_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn buffer_address(&mut self) -> BUFFER_ADDRESS_W<EP_CONTROL_SPEC> {
         BUFFER_ADDRESS_W::new(self, 0)
     }
     #[doc = "Bit 16 - Trigger an interrupt if a NAK is sent. Intended for debug only."]
     #[inline(always)]
     #[must_use]
-    pub fn interrupt_on_nak(&mut self) -> INTERRUPT_ON_NAK_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn interrupt_on_nak(&mut self) -> INTERRUPT_ON_NAK_W<EP_CONTROL_SPEC> {
         INTERRUPT_ON_NAK_W::new(self, 16)
     }
     #[doc = "Bit 17 - Trigger an interrupt if a STALL is sent. Intended for debug only."]
     #[inline(always)]
     #[must_use]
-    pub fn interrupt_on_stall(&mut self) -> INTERRUPT_ON_STALL_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn interrupt_on_stall(&mut self) -> INTERRUPT_ON_STALL_W<EP_CONTROL_SPEC> {
         INTERRUPT_ON_STALL_W::new(self, 17)
     }
     #[doc = "Bits 26:27"]
     #[inline(always)]
     #[must_use]
-    pub fn endpoint_type(&mut self) -> ENDPOINT_TYPE_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn endpoint_type(&mut self) -> ENDPOINT_TYPE_W<EP_CONTROL_SPEC> {
         ENDPOINT_TYPE_W::new(self, 26)
     }
     #[doc = "Bit 28 - Trigger an interrupt each time both buffers are done. Only valid in double buffered mode."]
     #[inline(always)]
     #[must_use]
-    pub fn interrupt_per_double_buff(
-        &mut self,
-    ) -> INTERRUPT_PER_DOUBLE_BUFF_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn interrupt_per_double_buff(&mut self) -> INTERRUPT_PER_DOUBLE_BUFF_W<EP_CONTROL_SPEC> {
         INTERRUPT_PER_DOUBLE_BUFF_W::new(self, 28)
     }
     #[doc = "Bit 29 - Trigger an interrupt each time a buffer is done."]
     #[inline(always)]
     #[must_use]
-    pub fn interrupt_per_buff(&mut self) -> INTERRUPT_PER_BUFF_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn interrupt_per_buff(&mut self) -> INTERRUPT_PER_BUFF_W<EP_CONTROL_SPEC> {
         INTERRUPT_PER_BUFF_W::new(self, 29)
     }
     #[doc = "Bit 30 - This endpoint is double buffered."]
     #[inline(always)]
     #[must_use]
-    pub fn double_buffered(&mut self) -> DOUBLE_BUFFERED_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn double_buffered(&mut self) -> DOUBLE_BUFFERED_W<EP_CONTROL_SPEC> {
         DOUBLE_BUFFERED_W::new(self, 30)
     }
     #[doc = "Bit 31 - Enable this endpoint. The device will not reply to any packets for this endpoint if this bit is not set."]
     #[inline(always)]
     #[must_use]
-    pub fn enable(&mut self) -> ENABLE_W<EP4_OUT_CONTROL_SPEC> {
+    pub fn enable(&mut self) -> ENABLE_W<EP_CONTROL_SPEC> {
         ENABLE_W::new(self, 31)
     }
 }
-#[doc = "  
+#[doc = "TODO  
 
-You can [`read`](crate::Reg::read) this register and get [`ep4_out_control::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ep4_out_control::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
-pub struct EP4_OUT_CONTROL_SPEC;
-impl crate::RegisterSpec for EP4_OUT_CONTROL_SPEC {
+You can [`read`](crate::Reg::read) this register and get [`ep_control::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ep_control::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct EP_CONTROL_SPEC;
+impl crate::RegisterSpec for EP_CONTROL_SPEC {
     type Ux = u32;
 }
-#[doc = "`read()` method returns [`ep4_out_control::R`](R) reader structure"]
-impl crate::Readable for EP4_OUT_CONTROL_SPEC {}
-#[doc = "`write(|w| ..)` method takes [`ep4_out_control::W`](W) writer structure"]
-impl crate::Writable for EP4_OUT_CONTROL_SPEC {
+#[doc = "`read()` method returns [`ep_control::R`](R) reader structure"]
+impl crate::Readable for EP_CONTROL_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`ep_control::W`](W) writer structure"]
+impl crate::Writable for EP_CONTROL_SPEC {
     type Safety = crate::Unsafe;
     const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
     const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
-#[doc = "`reset()` method sets EP4_OUT_CONTROL to value 0"]
-impl crate::Resettable for EP4_OUT_CONTROL_SPEC {
+#[doc = "`reset()` method sets EP_CONTROL%s to value 0"]
+impl crate::Resettable for EP_CONTROL_SPEC {
     const RESET_VALUE: u32 = 0;
 }
