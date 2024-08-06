@@ -59,6 +59,7 @@ pub mod pll;
 pub mod powman;
 pub mod prelude;
 pub mod pwm;
+pub mod reboot;
 pub mod resets;
 pub mod rom_data;
 pub mod rosc;

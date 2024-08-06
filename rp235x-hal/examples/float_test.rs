@@ -288,22 +288,26 @@ where
 unsafe fn HardFault(ef: &cortex_m_rt::ExceptionFrame) -> ! {
     let _ = writeln!(&GLOBAL_UART, "HARD FAULT:\n{:#?}", ef);
 
-    hal::rom_data::reboot(2, 1000, 0, 0);
-
-    loop {
-        hal::arch::wfe();
-    }
+    hal::reboot::reboot(
+        hal::reboot::RebootKind::BootSel {
+            msd_disabled: false,
+            picoboot_disabled: false,
+        },
+        hal::reboot::RebootArch::Normal,
+    );
 }
 
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
     let _ = writeln!(&GLOBAL_UART, "PANIC:\n{:?}", info);
 
-    hal::rom_data::reboot(2, 1000, 0, 0);
-
-    loop {
-        hal::arch::wfe();
-    }
+    hal::reboot::reboot(
+        hal::reboot::RebootKind::BootSel {
+            msd_disabled: false,
+            picoboot_disabled: false,
+        },
+        hal::reboot::RebootArch::Normal,
+    );
 }
 
 // End of file
