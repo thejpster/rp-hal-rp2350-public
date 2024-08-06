@@ -18,8 +18,6 @@ use rp235x_hal as hal;
 
 // Some things we need
 use core::fmt::Write;
-use embedded_hal::delay::DelayNs;
-use embedded_hal::digital::OutputPin;
 use hal::fugit::RateExtU32;
 use hal::Clock;
 
@@ -186,17 +184,13 @@ fn main() -> ! {
     _ = writeln!(uart);
 
     // Do an asynchronous reset in 2000ms time, into the bootloader.
-    hal::rom_data::reboot(0x2, 2000, 0, 0);
-
-    // Reboot is async, so blink an LED whilst we wait
-    let mut timer = hal::Timer::new_timer0(pac.TIMER0, &mut pac.RESETS, &clocks);
-    let mut led_pin = pins.gpio25.into_push_pull_output();
-    loop {
-        led_pin.set_high().unwrap();
-        timer.delay_ms(250);
-        led_pin.set_low().unwrap();
-        timer.delay_ms(250);
-    }
+    hal::reboot::reboot(
+        hal::reboot::RebootKind::BootSel {
+            msd_disabled: false,
+            picoboot_disabled: false,
+        },
+        hal::reboot::RebootArch::Normal,
+    );
 }
 
 /// Read OTP using the PAC
