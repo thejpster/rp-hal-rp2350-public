@@ -1,5 +1,7 @@
 #[doc = "Register `CTR` reader"]
 pub type R = crate::R<CTR_SPEC>;
+#[doc = "Register `CTR` writer"]
+pub type W = crate::W<CTR_SPEC>;
 #[doc = "Field `IMINLINE` reader - Log2 of the number of words in the smallest cache line of all the instruction caches that are controlled by the PE"]
 pub type IMINLINE_R = crate::FieldReader;
 #[doc = "Field `RES1_1` reader - Reserved, RES1"]
@@ -44,15 +46,22 @@ impl R {
         RES1_R::new(((self.bits >> 31) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "Provides information about the architecture of the caches. CTR is RES0 if CLIDR is zero.  
 
-You can [`read`](crate::Reg::read) this register and get [`ctr::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`ctr::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ctr::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct CTR_SPEC;
 impl crate::RegisterSpec for CTR_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`ctr::R`](R) reader structure"]
 impl crate::Readable for CTR_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`ctr::W`](W) writer structure"]
+impl crate::Writable for CTR_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets CTR to value 0x8000_c000"]
 impl crate::Resettable for CTR_SPEC {
     const RESET_VALUE: u32 = 0x8000_c000;

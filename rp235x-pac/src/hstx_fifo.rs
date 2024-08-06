@@ -25,9 +25,9 @@ module"]
 pub type STAT = crate::Reg<stat::STAT_SPEC>;
 #[doc = "FIFO status"]
 pub mod stat;
-#[doc = "FIFO (w) register accessor: Write access to FIFO  
+#[doc = "FIFO (rw) register accessor: Write access to FIFO  
 
-You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`fifo::W`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`fifo::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`fifo::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@fifo`]
 module"]

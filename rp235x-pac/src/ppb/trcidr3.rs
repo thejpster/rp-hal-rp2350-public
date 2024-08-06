@@ -1,5 +1,7 @@
 #[doc = "Register `TRCIDR3` reader"]
 pub type R = crate::R<TRCIDR3_SPEC>;
+#[doc = "Register `TRCIDR3` writer"]
+pub type W = crate::W<TRCIDR3_SPEC>;
 #[doc = "Field `CCITMIN` reader - reads as `ImpDef"]
 pub type CCITMIN_R = crate::FieldReader<u16>;
 #[doc = "Field `EXLEVEL_S` reader - reads as `ImpDef"]
@@ -65,15 +67,22 @@ impl R {
         NOOVERFLOW_R::new(((self.bits >> 31) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "TRCIDR3  
 
-You can [`read`](crate::Reg::read) this register and get [`trcidr3::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`trcidr3::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`trcidr3::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct TRCIDR3_SPEC;
 impl crate::RegisterSpec for TRCIDR3_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`trcidr3::R`](R) reader structure"]
 impl crate::Readable for TRCIDR3_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`trcidr3::W`](W) writer structure"]
+impl crate::Writable for TRCIDR3_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets TRCIDR3 to value 0x0f09_0004"]
 impl crate::Resettable for TRCIDR3_SPEC {
     const RESET_VALUE: u32 = 0x0f09_0004;

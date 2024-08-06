@@ -1,5 +1,7 @@
 #[doc = "Register `RNG_VERSION` reader"]
 pub type R = crate::R<RNG_VERSION_SPEC>;
+#[doc = "Register `RNG_VERSION` writer"]
+pub type W = crate::W<RNG_VERSION_SPEC>;
 #[doc = "Field `EHR_WIDTH_192` reader - * 1'b1 - 192-bit EHR. *1'b0 - 128-bit EHR"]
 pub type EHR_WIDTH_192_R = crate::BitReader;
 #[doc = "Field `CRNGT_EXISTS` reader - * 1'b1 - Exists. *1'b0 - Does not exist"]
@@ -58,15 +60,22 @@ impl R {
         RNG_USE_5_SBOXES_R::new(((self.bits >> 7) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "Displays the version settings of the TRNG.  
 
-You can [`read`](crate::Reg::read) this register and get [`rng_version::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`rng_version::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rng_version::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct RNG_VERSION_SPEC;
 impl crate::RegisterSpec for RNG_VERSION_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`rng_version::R`](R) reader structure"]
 impl crate::Readable for RNG_VERSION_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`rng_version::W`](W) writer structure"]
+impl crate::Writable for RNG_VERSION_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets RNG_VERSION to value 0"]
 impl crate::Resettable for RNG_VERSION_SPEC {
     const RESET_VALUE: u32 = 0;

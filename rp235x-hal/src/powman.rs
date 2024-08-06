@@ -353,9 +353,9 @@ impl Powman {
     /// You may get `None` if the AOT is not running.
     pub fn aot_get_clock(&mut self) -> Option<AotClockSource> {
         let status = self.device.timer().read();
-        if status.use_gpio_1hz().bit_is_set() {
+        if status.using_gpio_1hz().bit_is_set() {
             Some(AotClockSource::Gpio1Hz)
-        } else if status.use_gpio_1khz().bit_is_set() {
+        } else if status.using_gpio_1khz().bit_is_set() {
             Some(AotClockSource::Gpio1kHz)
         } else if status.using_lposc().bit_is_set() {
             let int_portion = self.device.lposc_freq_khz_int().read().bits() as u16;

@@ -26,8 +26,6 @@ pub type HAS_PAYLOAD_W<'a, REG> = crate::BitWriter<'a, REG>;
 pub type IS_WR_R = crate::BitReader;
 #[doc = "Field `IS_WR` writer - Payload type is write"]
 pub type IS_WR_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `EXEC` reader - Execute instruction"]
-pub type EXEC_R = crate::BitReader;
 #[doc = "Field `EXEC` writer - Execute instruction"]
 pub type EXEC_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
@@ -60,11 +58,6 @@ impl R {
     #[inline(always)]
     pub fn is_wr(&self) -> IS_WR_R {
         IS_WR_R::new(((self.bits >> 29) & 1) != 0)
-    }
-    #[doc = "Bit 30 - Execute instruction"]
-    #[inline(always)]
-    pub fn exec(&self) -> EXEC_R {
-        EXEC_R::new(((self.bits >> 30) & 1) != 0)
     }
 }
 impl W {

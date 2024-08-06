@@ -2,12 +2,25 @@
 pub type R = crate::R<BOOT0_SPEC>;
 #[doc = "Register `BOOT0` writer"]
 pub type W = crate::W<BOOT0_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `BOOT0` reader - "]
+pub type BOOT0_R = crate::FieldReader<u32>;
+#[doc = "Field `BOOT0` writer - "]
+pub type BOOT0_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn boot0(&self) -> BOOT0_R {
+        BOOT0_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn boot0(&mut self) -> BOOT0_W<BOOT0_SPEC> {
+        BOOT0_W::new(self, 0)
+    }
+}
 #[doc = "Scratch register. Information persists in low power mode  
 
 You can [`read`](crate::Reg::read) this register and get [`boot0::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`boot0::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

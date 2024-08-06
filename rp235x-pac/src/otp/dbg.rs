@@ -14,10 +14,6 @@ pub type ROSC_UP_SEEN_W<'a, REG> = crate::BitWriter1C<'a, REG>;
 pub type ROSC_UP_R = crate::BitReader;
 #[doc = "Field `PSM_STATE` reader - Monitor the PSM FSM's state"]
 pub type PSM_STATE_R = crate::FieldReader;
-#[doc = "Field `CRIT_FAIL` reader - Failed to read magic word. FIXME: secret?"]
-pub type CRIT_FAIL_R = crate::BitReader;
-#[doc = "Field `CRIT_FAIL` writer - Failed to read magic word. FIXME: secret?"]
-pub type CRIT_FAIL_W<'a, REG> = crate::BitWriter1C<'a, REG>;
 #[doc = "Field `CUSTOMER_RMA_FLAG` reader - The chip is in RMA mode"]
 pub type CUSTOMER_RMA_FLAG_R = crate::BitReader;
 impl R {
@@ -46,11 +42,6 @@ impl R {
     pub fn psm_state(&self) -> PSM_STATE_R {
         PSM_STATE_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
-    #[doc = "Bit 8 - Failed to read magic word. FIXME: secret?"]
-    #[inline(always)]
-    pub fn crit_fail(&self) -> CRIT_FAIL_R {
-        CRIT_FAIL_R::new(((self.bits >> 8) & 1) != 0)
-    }
     #[doc = "Bit 12 - The chip is in RMA mode"]
     #[inline(always)]
     pub fn customer_rma_flag(&self) -> CUSTOMER_RMA_FLAG_R {
@@ -63,12 +54,6 @@ impl W {
     #[must_use]
     pub fn rosc_up_seen(&mut self) -> ROSC_UP_SEEN_W<DBG_SPEC> {
         ROSC_UP_SEEN_W::new(self, 2)
-    }
-    #[doc = "Bit 8 - Failed to read magic word. FIXME: secret?"]
-    #[inline(always)]
-    #[must_use]
-    pub fn crit_fail(&mut self) -> CRIT_FAIL_W<DBG_SPEC> {
-        CRIT_FAIL_W::new(self, 8)
     }
 }
 #[doc = "Debug for OTP power-on state machine  
@@ -84,7 +69,7 @@ impl crate::Readable for DBG_SPEC {}
 impl crate::Writable for DBG_SPEC {
     type Safety = crate::Unsafe;
     const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
-    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0x0104;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0x04;
 }
 #[doc = "`reset()` method sets DBG to value 0"]
 impl crate::Resettable for DBG_SPEC {

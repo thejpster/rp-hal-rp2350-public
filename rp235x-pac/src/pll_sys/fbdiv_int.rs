@@ -21,8 +21,7 @@ impl W {
         FBDIV_INT_W::new(self, 0)
     }
 }
-#[doc = "Feedback divisor  
- (note: this PLL does not support fractional division)  
+#[doc = "Feedback divisor (note: this PLL does not support fractional division)  
 
 You can [`read`](crate::Reg::read) this register and get [`fbdiv_int::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`fbdiv_int::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct FBDIV_INT_SPEC;

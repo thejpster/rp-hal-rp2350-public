@@ -21,7 +21,7 @@ impl W {
         LPOSC_FREQ_KHZ_INT_W::new(self, 0)
     }
 }
-#[doc = "  
+#[doc = "Informs the AON Timer of the integer component of the clock frequency when running off the LPOSC.  
 
 You can [`read`](crate::Reg::read) this register and get [`lposc_freq_khz_int::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`lposc_freq_khz_int::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct LPOSC_FREQ_KHZ_INT_SPEC;

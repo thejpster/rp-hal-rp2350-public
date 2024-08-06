@@ -2,12 +2,25 @@
 pub type R = crate::R<BOOTLOCK3_SPEC>;
 #[doc = "Register `BOOTLOCK3` writer"]
 pub type W = crate::W<BOOTLOCK3_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `BOOTLOCK3` reader - "]
+pub type BOOTLOCK3_R = crate::FieldReader<u32>;
+#[doc = "Field `BOOTLOCK3` writer - "]
+pub type BOOTLOCK3_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn bootlock3(&self) -> BOOTLOCK3_R {
+        BOOTLOCK3_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn bootlock3(&mut self) -> BOOTLOCK3_W<BOOTLOCK3_SPEC> {
+        BOOTLOCK3_W::new(self, 0)
+    }
+}
 #[doc = "Read to claim and check. Write to unclaim. The value returned on successful claim is 1 &lt;&lt; n, and on failed claim is zero.  
 
 You can [`read`](crate::Reg::read) this register and get [`bootlock3::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`bootlock3::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

@@ -2,26 +2,21 @@
 pub type R = crate::R<CS_SPEC>;
 #[doc = "Register `CS` writer"]
 pub type W = crate::W<CS_SPEC>;
-#[doc = "Field `EN` reader - Power on ADC and enable its clock.  
- 1 - enabled. 0 - disabled."]
+#[doc = "Field `EN` reader - Power on ADC and enable its clock. 1 - enabled. 0 - disabled."]
 pub type EN_R = crate::BitReader;
-#[doc = "Field `EN` writer - Power on ADC and enable its clock.  
- 1 - enabled. 0 - disabled."]
+#[doc = "Field `EN` writer - Power on ADC and enable its clock. 1 - enabled. 0 - disabled."]
 pub type EN_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `TS_EN` reader - Power on temperature sensor. 1 - enabled. 0 - disabled."]
 pub type TS_EN_R = crate::BitReader;
 #[doc = "Field `TS_EN` writer - Power on temperature sensor. 1 - enabled. 0 - disabled."]
 pub type TS_EN_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `START_ONCE` reader - Start a single conversion. Self-clearing. Ignored if start_many is asserted."]
-pub type START_ONCE_R = crate::BitReader;
 #[doc = "Field `START_ONCE` writer - Start a single conversion. Self-clearing. Ignored if start_many is asserted."]
 pub type START_ONCE_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `START_MANY` reader - Continuously perform conversions whilst this bit is 1. A new conversion will start immediately after the previous finishes."]
 pub type START_MANY_R = crate::BitReader;
 #[doc = "Field `START_MANY` writer - Continuously perform conversions whilst this bit is 1. A new conversion will start immediately after the previous finishes."]
 pub type START_MANY_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `READY` reader - 1 if the ADC is ready to start a new conversion. Implies any previous conversion has completed.  
- 0 whilst conversion in progress."]
+#[doc = "Field `READY` reader - 1 if the ADC is ready to start a new conversion. Implies any previous conversion has completed. 0 whilst conversion in progress."]
 pub type READY_R = crate::BitReader;
 #[doc = "Field `ERR` reader - The most recent ADC conversion encountered an error; result is undefined or noisy."]
 pub type ERR_R = crate::BitReader;
@@ -29,25 +24,16 @@ pub type ERR_R = crate::BitReader;
 pub type ERR_STICKY_R = crate::BitReader;
 #[doc = "Field `ERR_STICKY` writer - Some past ADC conversion encountered an error. Write 1 to clear."]
 pub type ERR_STICKY_W<'a, REG> = crate::BitWriter1C<'a, REG>;
-#[doc = "Field `AINSEL` reader - Select analog mux input. Updated automatically in round-robin mode.  
- This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
+#[doc = "Field `AINSEL` reader - Select analog mux input. Updated automatically in round-robin mode. This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
 pub type AINSEL_R = crate::FieldReader;
-#[doc = "Field `AINSEL` writer - Select analog mux input. Updated automatically in round-robin mode.  
- This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
+#[doc = "Field `AINSEL` writer - Select analog mux input. Updated automatically in round-robin mode. This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
 pub type AINSEL_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Field `RROBIN` reader - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable.  
- Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion.  
- The first channel to be sampled will be the one currently indicated by AINSEL.  
- AINSEL will be updated after each conversion with the newly-selected channel."]
+#[doc = "Field `RROBIN` reader - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable. Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion. The first channel to be sampled will be the one currently indicated by AINSEL. AINSEL will be updated after each conversion with the newly-selected channel."]
 pub type RROBIN_R = crate::FieldReader<u16>;
-#[doc = "Field `RROBIN` writer - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable.  
- Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion.  
- The first channel to be sampled will be the one currently indicated by AINSEL.  
- AINSEL will be updated after each conversion with the newly-selected channel."]
+#[doc = "Field `RROBIN` writer - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable. Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion. The first channel to be sampled will be the one currently indicated by AINSEL. AINSEL will be updated after each conversion with the newly-selected channel."]
 pub type RROBIN_W<'a, REG> = crate::FieldWriter<'a, REG, 9, u16>;
 impl R {
-    #[doc = "Bit 0 - Power on ADC and enable its clock.  
- 1 - enabled. 0 - disabled."]
+    #[doc = "Bit 0 - Power on ADC and enable its clock. 1 - enabled. 0 - disabled."]
     #[inline(always)]
     pub fn en(&self) -> EN_R {
         EN_R::new((self.bits & 1) != 0)
@@ -57,18 +43,12 @@ impl R {
     pub fn ts_en(&self) -> TS_EN_R {
         TS_EN_R::new(((self.bits >> 1) & 1) != 0)
     }
-    #[doc = "Bit 2 - Start a single conversion. Self-clearing. Ignored if start_many is asserted."]
-    #[inline(always)]
-    pub fn start_once(&self) -> START_ONCE_R {
-        START_ONCE_R::new(((self.bits >> 2) & 1) != 0)
-    }
     #[doc = "Bit 3 - Continuously perform conversions whilst this bit is 1. A new conversion will start immediately after the previous finishes."]
     #[inline(always)]
     pub fn start_many(&self) -> START_MANY_R {
         START_MANY_R::new(((self.bits >> 3) & 1) != 0)
     }
-    #[doc = "Bit 8 - 1 if the ADC is ready to start a new conversion. Implies any previous conversion has completed.  
- 0 whilst conversion in progress."]
+    #[doc = "Bit 8 - 1 if the ADC is ready to start a new conversion. Implies any previous conversion has completed. 0 whilst conversion in progress."]
     #[inline(always)]
     pub fn ready(&self) -> READY_R {
         READY_R::new(((self.bits >> 8) & 1) != 0)
@@ -83,24 +63,19 @@ impl R {
     pub fn err_sticky(&self) -> ERR_STICKY_R {
         ERR_STICKY_R::new(((self.bits >> 10) & 1) != 0)
     }
-    #[doc = "Bits 12:15 - Select analog mux input. Updated automatically in round-robin mode.  
- This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
+    #[doc = "Bits 12:15 - Select analog mux input. Updated automatically in round-robin mode. This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
     #[inline(always)]
     pub fn ainsel(&self) -> AINSEL_R {
         AINSEL_R::new(((self.bits >> 12) & 0x0f) as u8)
     }
-    #[doc = "Bits 16:24 - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable.  
- Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion.  
- The first channel to be sampled will be the one currently indicated by AINSEL.  
- AINSEL will be updated after each conversion with the newly-selected channel."]
+    #[doc = "Bits 16:24 - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable. Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion. The first channel to be sampled will be the one currently indicated by AINSEL. AINSEL will be updated after each conversion with the newly-selected channel."]
     #[inline(always)]
     pub fn rrobin(&self) -> RROBIN_R {
         RROBIN_R::new(((self.bits >> 16) & 0x01ff) as u16)
     }
 }
 impl W {
-    #[doc = "Bit 0 - Power on ADC and enable its clock.  
- 1 - enabled. 0 - disabled."]
+    #[doc = "Bit 0 - Power on ADC and enable its clock. 1 - enabled. 0 - disabled."]
     #[inline(always)]
     #[must_use]
     pub fn en(&mut self) -> EN_W<CS_SPEC> {
@@ -130,17 +105,13 @@ impl W {
     pub fn err_sticky(&mut self) -> ERR_STICKY_W<CS_SPEC> {
         ERR_STICKY_W::new(self, 10)
     }
-    #[doc = "Bits 12:15 - Select analog mux input. Updated automatically in round-robin mode.  
- This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
+    #[doc = "Bits 12:15 - Select analog mux input. Updated automatically in round-robin mode. This is corrected for the package option so only ADC channels which are bonded are available, and in the correct order"]
     #[inline(always)]
     #[must_use]
     pub fn ainsel(&mut self) -> AINSEL_W<CS_SPEC> {
         AINSEL_W::new(self, 12)
     }
-    #[doc = "Bits 16:24 - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable.  
- Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion.  
- The first channel to be sampled will be the one currently indicated by AINSEL.  
- AINSEL will be updated after each conversion with the newly-selected channel."]
+    #[doc = "Bits 16:24 - Round-robin sampling. 1 bit per channel. Set all bits to 0 to disable. Otherwise, the ADC will cycle through each enabled channel in a round-robin fashion. The first channel to be sampled will be the one currently indicated by AINSEL. AINSEL will be updated after each conversion with the newly-selected channel."]
     #[inline(always)]
     #[must_use]
     pub fn rrobin(&mut self) -> RROBIN_W<CS_SPEC> {

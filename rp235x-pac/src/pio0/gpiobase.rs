@@ -21,9 +21,7 @@ impl W {
         GPIOBASE_W::new(self, 4)
     }
 }
-#[doc = "Relocate GPIO 0 (from PIO's point of view) in the system GPIO numbering, to access more than 32 GPIOs from PIO.  
-
- Only the values 0 and 16 are supported (only bit 4 is writable).  
+#[doc = "Relocate GPIO 0 (from PIO's point of view) in the system GPIO numbering, to access more than 32 GPIOs from PIO. Only the values 0 and 16 are supported (only bit 4 is writable).  
 
 You can [`read`](crate::Reg::read) this register and get [`gpiobase::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`gpiobase::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct GPIOBASE_SPEC;

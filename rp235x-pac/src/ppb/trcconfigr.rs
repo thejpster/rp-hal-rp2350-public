@@ -18,9 +18,9 @@ pub type COND_W<'a, REG> = crate::FieldWriter<'a, REG, 6>;
 pub type TS_R = crate::BitReader;
 #[doc = "Field `TS` writer - Global timestamp tracing"]
 pub type TS_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `RS` reader - Resturn stack enable"]
+#[doc = "Field `RS` reader - Return stack enable"]
 pub type RS_R = crate::BitReader;
-#[doc = "Field `RS` writer - Resturn stack enable"]
+#[doc = "Field `RS` writer - Return stack enable"]
 pub type RS_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
     #[doc = "Bit 3 - Branch broadcast mode"]
@@ -43,7 +43,7 @@ impl R {
     pub fn ts(&self) -> TS_R {
         TS_R::new(((self.bits >> 11) & 1) != 0)
     }
-    #[doc = "Bit 12 - Resturn stack enable"]
+    #[doc = "Bit 12 - Return stack enable"]
     #[inline(always)]
     pub fn rs(&self) -> RS_R {
         RS_R::new(((self.bits >> 12) & 1) != 0)
@@ -74,7 +74,7 @@ impl W {
     pub fn ts(&mut self) -> TS_W<TRCCONFIGR_SPEC> {
         TS_W::new(self, 11)
     }
-    #[doc = "Bit 12 - Resturn stack enable"]
+    #[doc = "Bit 12 - Return stack enable"]
     #[inline(always)]
     #[must_use]
     pub fn rs(&mut self) -> RS_W<TRCCONFIGR_SPEC> {

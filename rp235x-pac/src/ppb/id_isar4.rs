@@ -1,5 +1,7 @@
 #[doc = "Register `ID_ISAR4` reader"]
 pub type R = crate::R<ID_ISAR4_SPEC>;
+#[doc = "Register `ID_ISAR4` writer"]
+pub type W = crate::W<ID_ISAR4_SPEC>;
 #[doc = "Field `UNPRIV` reader - Indicates the implemented unprivileged instructions"]
 pub type UNPRIV_R = crate::FieldReader;
 #[doc = "Field `WITHSHIFTS` reader - Indicates the support for writeback addressing modes"]
@@ -44,15 +46,22 @@ impl R {
         PSR_M_R::new(((self.bits >> 24) & 0x0f) as u8)
     }
 }
+impl W {}
 #[doc = "Provides information about the instruction set implemented by the PE  
 
-You can [`read`](crate::Reg::read) this register and get [`id_isar4::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`id_isar4::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`id_isar4::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct ID_ISAR4_SPEC;
 impl crate::RegisterSpec for ID_ISAR4_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`id_isar4::R`](R) reader structure"]
 impl crate::Readable for ID_ISAR4_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`id_isar4::W`](W) writer structure"]
+impl crate::Writable for ID_ISAR4_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets ID_ISAR4 to value 0x0131_0132"]
 impl crate::Resettable for ID_ISAR4_SPEC {
     const RESET_VALUE: u32 = 0x0131_0132;

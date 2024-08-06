@@ -201,9 +201,7 @@ impl W {
         BOOTRAM_W::new(self, 12)
     }
 }
-#[doc = "Control PD pins to memories.  
- Set high to put memories to a low power state. In this state the memories will retain contents but not be accessible  
- Use with caution  
+#[doc = "Control PD pins to memories. Set high to put memories to a low power state. In this state the memories will retain contents but not be accessible Use with caution  
 
 You can [`read`](crate::Reg::read) this register and get [`mempowerdown::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`mempowerdown::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct MEMPOWERDOWN_SPEC;

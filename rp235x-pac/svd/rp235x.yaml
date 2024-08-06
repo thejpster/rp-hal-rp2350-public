@@ -366,7 +366,7 @@ PADS_BANK0:
   _array:
     "GPIO*": {}
 
-USBCTRL_REGS:
+USB:
   SIE_STATUS:
     LINE_STATE:
       SE0: [0, "SE0"]
@@ -400,3 +400,21 @@ TICKS:
         name: "CYCLES"
       "*_COUNT":
         name: "COUNT"
+
+USB_DPRAM:
+  _modify:
+    "EP1_IN_CONTROL":
+      description: "-"
+    "EP0_IN_BUFFER_CONTROL":
+      description: "-"
+
+  _array:
+    "EP*_IN_BUFFER_CONTROL,EP*_OUT_BUFFER_CONTROL":
+        _start_from_zero: true
+        name: "EP_BUFFER_CONTROL%s"
+        description: "TODO"
+    "EP*_IN_CONTROL,EP*_OUT_CONTROL":
+        _start_from_zero: true
+        name: "EP_CONTROL%s"
+        description: "TODO"
+  

@@ -1,5 +1,7 @@
 #[doc = "Register `IRQ1_INTS` reader"]
 pub type R = crate::R<IRQ1_INTS_SPEC>;
+#[doc = "Register `IRQ1_INTS` writer"]
+pub type W = crate::W<IRQ1_INTS_SPEC>;
 #[doc = "Field `CH0` reader - "]
 pub type CH0_R = crate::BitReader;
 #[doc = "Field `CH1` reader - "]
@@ -86,15 +88,22 @@ impl R {
         CH11_R::new(((self.bits >> 11) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "Interrupt status after masking &amp; forcing for irq1  
 
-You can [`read`](crate::Reg::read) this register and get [`irq1_ints::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`irq1_ints::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`irq1_ints::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct IRQ1_INTS_SPEC;
 impl crate::RegisterSpec for IRQ1_INTS_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`irq1_ints::R`](R) reader structure"]
 impl crate::Readable for IRQ1_INTS_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`irq1_ints::W`](W) writer structure"]
+impl crate::Writable for IRQ1_INTS_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets IRQ1_INTS to value 0"]
 impl crate::Resettable for IRQ1_INTS_SPEC {
     const RESET_VALUE: u32 = 0;

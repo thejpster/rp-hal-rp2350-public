@@ -2,12 +2,25 @@
 pub type R = crate::R<TRCPIDR5_SPEC>;
 #[doc = "Register `TRCPIDR5` writer"]
 pub type W = crate::W<TRCPIDR5_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `TRCPIDR5` reader - "]
+pub type TRCPIDR5_R = crate::FieldReader<u32>;
+#[doc = "Field `TRCPIDR5` writer - "]
+pub type TRCPIDR5_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn trcpidr5(&self) -> TRCPIDR5_R {
+        TRCPIDR5_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn trcpidr5(&mut self) -> TRCPIDR5_W<TRCPIDR5_SPEC> {
+        TRCPIDR5_W::new(self, 0)
+    }
+}
 #[doc = "TRCPIDR5  
 
 You can [`read`](crate::Reg::read) this register and get [`trcpidr5::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`trcpidr5::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

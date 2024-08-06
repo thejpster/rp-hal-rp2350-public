@@ -2,12 +2,25 @@
 pub type R = crate::R<CH_AL3_TRANS_COUNT_SPEC>;
 #[doc = "Register `CH_AL3_TRANS_COUNT` writer"]
 pub type W = crate::W<CH_AL3_TRANS_COUNT_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `CH0_AL3_TRANS_COUNT` reader - "]
+pub type CH0_AL3_TRANS_COUNT_R = crate::FieldReader<u32>;
+#[doc = "Field `CH0_AL3_TRANS_COUNT` writer - "]
+pub type CH0_AL3_TRANS_COUNT_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn ch0_al3_trans_count(&self) -> CH0_AL3_TRANS_COUNT_R {
+        CH0_AL3_TRANS_COUNT_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn ch0_al3_trans_count(&mut self) -> CH0_AL3_TRANS_COUNT_W<CH_AL3_TRANS_COUNT_SPEC> {
+        CH0_AL3_TRANS_COUNT_W::new(self, 0)
+    }
+}
 #[doc = "Alias for channel 0 TRANS_COUNT register  
 
 You can [`read`](crate::Reg::read) this register and get [`ch_al3_trans_count::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ch_al3_trans_count::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

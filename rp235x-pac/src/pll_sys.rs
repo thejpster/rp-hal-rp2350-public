@@ -11,11 +11,7 @@ pub struct RegisterBlock {
     ints: INTS,
 }
 impl RegisterBlock {
-    #[doc = "0x00 - Control and Status  
- GENERAL CONSTRAINTS:  
- Reference clock frequency min=5MHz, max=800MHz  
- Feedback divider min=16, max=320  
- VCO frequency min=400MHz, max=1600MHz"]
+    #[doc = "0x00 - Control and Status GENERAL CONSTRAINTS: Reference clock frequency min=5MHz, max=800MHz Feedback divider min=16, max=320 VCO frequency min=750MHz, max=1600MHz"]
     #[inline(always)]
     pub const fn cs(&self) -> &CS {
         &self.cs
@@ -25,15 +21,12 @@ impl RegisterBlock {
     pub const fn pwr(&self) -> &PWR {
         &self.pwr
     }
-    #[doc = "0x08 - Feedback divisor  
- (note: this PLL does not support fractional division)"]
+    #[doc = "0x08 - Feedback divisor (note: this PLL does not support fractional division)"]
     #[inline(always)]
     pub const fn fbdiv_int(&self) -> &FBDIV_INT {
         &self.fbdiv_int
     }
-    #[doc = "0x0c - Controls the PLL post dividers for the primary output  
- (note: this PLL does not have a secondary output)  
- the primary output is driven from VCO divided by postdiv1*postdiv2"]
+    #[doc = "0x0c - Controls the PLL post dividers for the primary output (note: this PLL does not have a secondary output) the primary output is driven from VCO divided by postdiv1*postdiv2"]
     #[inline(always)]
     pub const fn prim(&self) -> &PRIM {
         &self.prim
@@ -59,22 +52,14 @@ impl RegisterBlock {
         &self.ints
     }
 }
-#[doc = "CS (rw) register accessor: Control and Status  
- GENERAL CONSTRAINTS:  
- Reference clock frequency min=5MHz, max=800MHz  
- Feedback divider min=16, max=320  
- VCO frequency min=400MHz, max=1600MHz  
+#[doc = "CS (rw) register accessor: Control and Status GENERAL CONSTRAINTS: Reference clock frequency min=5MHz, max=800MHz Feedback divider min=16, max=320 VCO frequency min=750MHz, max=1600MHz  
 
 You can [`read`](crate::Reg::read) this register and get [`cs::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`cs::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@cs`]
 module"]
 pub type CS = crate::Reg<cs::CS_SPEC>;
-#[doc = "Control and Status  
- GENERAL CONSTRAINTS:  
- Reference clock frequency min=5MHz, max=800MHz  
- Feedback divider min=16, max=320  
- VCO frequency min=400MHz, max=1600MHz"]
+#[doc = "Control and Status GENERAL CONSTRAINTS: Reference clock frequency min=5MHz, max=800MHz Feedback divider min=16, max=320 VCO frequency min=750MHz, max=1600MHz"]
 pub mod cs;
 #[doc = "PWR (rw) register accessor: Controls the PLL power modes.  
 
@@ -85,29 +70,23 @@ module"]
 pub type PWR = crate::Reg<pwr::PWR_SPEC>;
 #[doc = "Controls the PLL power modes."]
 pub mod pwr;
-#[doc = "FBDIV_INT (rw) register accessor: Feedback divisor  
- (note: this PLL does not support fractional division)  
+#[doc = "FBDIV_INT (rw) register accessor: Feedback divisor (note: this PLL does not support fractional division)  
 
 You can [`read`](crate::Reg::read) this register and get [`fbdiv_int::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`fbdiv_int::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@fbdiv_int`]
 module"]
 pub type FBDIV_INT = crate::Reg<fbdiv_int::FBDIV_INT_SPEC>;
-#[doc = "Feedback divisor  
- (note: this PLL does not support fractional division)"]
+#[doc = "Feedback divisor (note: this PLL does not support fractional division)"]
 pub mod fbdiv_int;
-#[doc = "PRIM (rw) register accessor: Controls the PLL post dividers for the primary output  
- (note: this PLL does not have a secondary output)  
- the primary output is driven from VCO divided by postdiv1*postdiv2  
+#[doc = "PRIM (rw) register accessor: Controls the PLL post dividers for the primary output (note: this PLL does not have a secondary output) the primary output is driven from VCO divided by postdiv1*postdiv2  
 
 You can [`read`](crate::Reg::read) this register and get [`prim::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`prim::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@prim`]
 module"]
 pub type PRIM = crate::Reg<prim::PRIM_SPEC>;
-#[doc = "Controls the PLL post dividers for the primary output  
- (note: this PLL does not have a secondary output)  
- the primary output is driven from VCO divided by postdiv1*postdiv2"]
+#[doc = "Controls the PLL post dividers for the primary output (note: this PLL does not have a secondary output) the primary output is driven from VCO divided by postdiv1*postdiv2"]
 pub mod prim;
 #[doc = "INTR (rw) register accessor: Raw Interrupts  
 
@@ -136,9 +115,9 @@ module"]
 pub type INTF = crate::Reg<intf::INTF_SPEC>;
 #[doc = "Interrupt Force"]
 pub mod intf;
-#[doc = "INTS (r) register accessor: Interrupt status after masking &amp; forcing  
+#[doc = "INTS (rw) register accessor: Interrupt status after masking &amp; forcing  
 
-You can [`read`](crate::Reg::read) this register and get [`ints::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`ints::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`ints::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@ints`]
 module"]

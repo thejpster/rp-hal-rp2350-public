@@ -2,12 +2,25 @@
 pub type R = crate::R<SCRATCH6_SPEC>;
 #[doc = "Register `SCRATCH6` writer"]
 pub type W = crate::W<SCRATCH6_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `SCRATCH6` reader - "]
+pub type SCRATCH6_R = crate::FieldReader<u32>;
+#[doc = "Field `SCRATCH6` writer - "]
+pub type SCRATCH6_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn scratch6(&self) -> SCRATCH6_R {
+        SCRATCH6_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn scratch6(&mut self) -> SCRATCH6_W<SCRATCH6_SPEC> {
+        SCRATCH6_W::new(self, 0)
+    }
+}
 #[doc = "Scratch register. Information persists in low power mode  
 
 You can [`read`](crate::Reg::read) this register and get [`scratch6::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`scratch6::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

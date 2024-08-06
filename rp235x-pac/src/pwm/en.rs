@@ -186,11 +186,7 @@ impl W {
         CH11_W::new(self, 11)
     }
 }
-#[doc = "This register aliases the CSR_EN bits for all channels.  
- Writing to this register allows multiple channels to be enabled  
- or disabled simultaneously, so they can run in perfect sync.  
- For each channel, there is only one physical EN register bit,  
- which can be accessed through here or CHx_CSR.  
+#[doc = "This register aliases the CSR_EN bits for all channels. Writing to this register allows multiple channels to be enabled or disabled simultaneously, so they can run in perfect sync. For each channel, there is only one physical EN register bit, which can be accessed through here or CHx_CSR.  
 
 You can [`read`](crate::Reg::read) this register and get [`en::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`en::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct EN_SPEC;

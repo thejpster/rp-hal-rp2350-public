@@ -21,9 +21,7 @@ impl W {
         COUNT_W::new(self, 0)
     }
 }
-#[doc = "A down counter running at the ROSC frequency which counts to zero and stops.  
- To start the counter write a non-zero value.  
- Can be used for short software pauses when setting up time sensitive hardware.  
+#[doc = "A down counter running at the ROSC frequency which counts to zero and stops. To start the counter write a non-zero value. Can be used for short software pauses when setting up time sensitive hardware.  
 
 You can [`read`](crate::Reg::read) this register and get [`count::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`count::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct COUNT_SPEC;

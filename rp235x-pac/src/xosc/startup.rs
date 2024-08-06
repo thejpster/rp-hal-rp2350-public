@@ -6,9 +6,9 @@ pub type W = crate::W<STARTUP_SPEC>;
 pub type DELAY_R = crate::FieldReader<u16>;
 #[doc = "Field `DELAY` writer - in multiples of 256*xtal_period. The reset value of 0xc4 corresponds to approx 50 000 cycles."]
 pub type DELAY_W<'a, REG> = crate::FieldWriter<'a, REG, 14, u16>;
-#[doc = "Field `X4` reader - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient"]
+#[doc = "Field `X4` reader - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient. The reset value is 0x0."]
 pub type X4_R = crate::BitReader;
-#[doc = "Field `X4` writer - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient"]
+#[doc = "Field `X4` writer - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient. The reset value is 0x0."]
 pub type X4_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
     #[doc = "Bits 0:13 - in multiples of 256*xtal_period. The reset value of 0xc4 corresponds to approx 50 000 cycles."]
@@ -16,7 +16,7 @@ impl R {
     pub fn delay(&self) -> DELAY_R {
         DELAY_R::new((self.bits & 0x3fff) as u16)
     }
-    #[doc = "Bit 20 - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient"]
+    #[doc = "Bit 20 - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient. The reset value is 0x0."]
     #[inline(always)]
     pub fn x4(&self) -> X4_R {
         X4_R::new(((self.bits >> 20) & 1) != 0)
@@ -29,7 +29,7 @@ impl W {
     pub fn delay(&mut self) -> DELAY_W<STARTUP_SPEC> {
         DELAY_W::new(self, 0)
     }
-    #[doc = "Bit 20 - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient"]
+    #[doc = "Bit 20 - Multiplies the startup_delay by 4, just in case. The reset value is controlled by a mask-programmable tiecell and is provided in case we are booting from XOSC and the default startup delay is insufficient. The reset value is 0x0."]
     #[inline(always)]
     #[must_use]
     pub fn x4(&mut self) -> X4_W<STARTUP_SPEC> {
@@ -51,7 +51,7 @@ impl crate::Writable for STARTUP_SPEC {
     const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
     const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
-#[doc = "`reset()` method sets STARTUP to value 0xc4"]
+#[doc = "`reset()` method sets STARTUP to value 0"]
 impl crate::Resettable for STARTUP_SPEC {
-    const RESET_VALUE: u32 = 0xc4;
+    const RESET_VALUE: u32 = 0;
 }

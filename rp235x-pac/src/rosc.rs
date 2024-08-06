@@ -18,14 +18,7 @@ impl RegisterBlock {
     pub const fn ctrl(&self) -> &CTRL {
         &self.ctrl
     }
-    #[doc = "0x04 - The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage  
- The drive strength has 4 levels determined by the number of bits set  
- Increasing the number of bits set increases the drive strength and increases the oscillation frequency  
- 0 bits set is the default drive strength  
- 1 bit set doubles the drive strength  
- 2 bits set triples drive strength  
- 3 bits set quadruples drive strength  
- For frequency randomisation set both DS0_RANDOM=1 &amp; DS1_RANDOM=1"]
+    #[doc = "0x04 - The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage The drive strength has 4 levels determined by the number of bits set Increasing the number of bits set increases the drive strength and increases the oscillation frequency 0 bits set is the default drive strength 1 bit set doubles the drive strength 2 bits set triples drive strength 3 bits set quadruples drive strength For frequency randomisation set both DS0_RANDOM=1 &amp; DS1_RANDOM=1"]
     #[inline(always)]
     pub const fn freqa(&self) -> &FREQA {
         &self.freqa
@@ -40,11 +33,7 @@ impl RegisterBlock {
     pub const fn random(&self) -> &RANDOM {
         &self.random
     }
-    #[doc = "0x10 - Ring Oscillator pause control  
- This is used to save power by pausing the ROSC  
- On power-up this field is initialised to WAKE  
- An invalid write will also select WAKE  
- Warning: setup the irq before selecting dormant mode"]
+    #[doc = "0x10 - Ring Oscillator pause control"]
     #[inline(always)]
     pub const fn dormant(&self) -> &DORMANT {
         &self.dormant
@@ -69,9 +58,7 @@ impl RegisterBlock {
     pub const fn randombit(&self) -> &RANDOMBIT {
         &self.randombit
     }
-    #[doc = "0x24 - A down counter running at the ROSC frequency which counts to zero and stops.  
- To start the counter write a non-zero value.  
- Can be used for short software pauses when setting up time sensitive hardware."]
+    #[doc = "0x24 - A down counter running at the ROSC frequency which counts to zero and stops. To start the counter write a non-zero value. Can be used for short software pauses when setting up time sensitive hardware."]
     #[inline(always)]
     pub const fn count(&self) -> &COUNT {
         &self.count
@@ -86,28 +73,14 @@ module"]
 pub type CTRL = crate::Reg<ctrl::CTRL_SPEC>;
 #[doc = "Ring Oscillator control"]
 pub mod ctrl;
-#[doc = "FREQA (rw) register accessor: The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage  
- The drive strength has 4 levels determined by the number of bits set  
- Increasing the number of bits set increases the drive strength and increases the oscillation frequency  
- 0 bits set is the default drive strength  
- 1 bit set doubles the drive strength  
- 2 bits set triples drive strength  
- 3 bits set quadruples drive strength  
- For frequency randomisation set both DS0_RANDOM=1 &amp; DS1_RANDOM=1  
+#[doc = "FREQA (rw) register accessor: The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage The drive strength has 4 levels determined by the number of bits set Increasing the number of bits set increases the drive strength and increases the oscillation frequency 0 bits set is the default drive strength 1 bit set doubles the drive strength 2 bits set triples drive strength 3 bits set quadruples drive strength For frequency randomisation set both DS0_RANDOM=1 &amp; DS1_RANDOM=1  
 
 You can [`read`](crate::Reg::read) this register and get [`freqa::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`freqa::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@freqa`]
 module"]
 pub type FREQA = crate::Reg<freqa::FREQA_SPEC>;
-#[doc = "The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage  
- The drive strength has 4 levels determined by the number of bits set  
- Increasing the number of bits set increases the drive strength and increases the oscillation frequency  
- 0 bits set is the default drive strength  
- 1 bit set doubles the drive strength  
- 2 bits set triples drive strength  
- 3 bits set quadruples drive strength  
- For frequency randomisation set both DS0_RANDOM=1 &amp; DS1_RANDOM=1"]
+#[doc = "The FREQA &amp; FREQB registers control the frequency by controlling the drive strength of each stage The drive strength has 4 levels determined by the number of bits set Increasing the number of bits set increases the drive strength and increases the oscillation frequency 0 bits set is the default drive strength 1 bit set doubles the drive strength 2 bits set triples drive strength 3 bits set quadruples drive strength For frequency randomisation set both DS0_RANDOM=1 &amp; DS1_RANDOM=1"]
 pub mod freqa;
 #[doc = "FREQB (rw) register accessor: For a detailed description see freqa register  
 
@@ -128,21 +101,13 @@ pub type RANDOM = crate::Reg<random::RANDOM_SPEC>;
 #[doc = "Loads a value to the LFSR randomiser"]
 pub mod random;
 #[doc = "DORMANT (rw) register accessor: Ring Oscillator pause control  
- This is used to save power by pausing the ROSC  
- On power-up this field is initialised to WAKE  
- An invalid write will also select WAKE  
- Warning: setup the irq before selecting dormant mode  
 
 You can [`read`](crate::Reg::read) this register and get [`dormant::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`dormant::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@dormant`]
 module"]
 pub type DORMANT = crate::Reg<dormant::DORMANT_SPEC>;
-#[doc = "Ring Oscillator pause control  
- This is used to save power by pausing the ROSC  
- On power-up this field is initialised to WAKE  
- An invalid write will also select WAKE  
- Warning: setup the irq before selecting dormant mode"]
+#[doc = "Ring Oscillator pause control"]
 pub mod dormant;
 #[doc = "DIV (rw) register accessor: Controls the output divider  
 
@@ -171,25 +136,21 @@ module"]
 pub type STATUS = crate::Reg<status::STATUS_SPEC>;
 #[doc = "Ring Oscillator Status"]
 pub mod status;
-#[doc = "RANDOMBIT (r) register accessor: This just reads the state of the oscillator output so randomness is compromised if the ring oscillator is stopped or run at a harmonic of the bus frequency  
+#[doc = "RANDOMBIT (rw) register accessor: This just reads the state of the oscillator output so randomness is compromised if the ring oscillator is stopped or run at a harmonic of the bus frequency  
 
-You can [`read`](crate::Reg::read) this register and get [`randombit::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`randombit::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`randombit::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@randombit`]
 module"]
 pub type RANDOMBIT = crate::Reg<randombit::RANDOMBIT_SPEC>;
 #[doc = "This just reads the state of the oscillator output so randomness is compromised if the ring oscillator is stopped or run at a harmonic of the bus frequency"]
 pub mod randombit;
-#[doc = "COUNT (rw) register accessor: A down counter running at the ROSC frequency which counts to zero and stops.  
- To start the counter write a non-zero value.  
- Can be used for short software pauses when setting up time sensitive hardware.  
+#[doc = "COUNT (rw) register accessor: A down counter running at the ROSC frequency which counts to zero and stops. To start the counter write a non-zero value. Can be used for short software pauses when setting up time sensitive hardware.  
 
 You can [`read`](crate::Reg::read) this register and get [`count::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`count::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@count`]
 module"]
 pub type COUNT = crate::Reg<count::COUNT_SPEC>;
-#[doc = "A down counter running at the ROSC frequency which counts to zero and stops.  
- To start the counter write a non-zero value.  
- Can be used for short software pauses when setting up time sensitive hardware."]
+#[doc = "A down counter running at the ROSC frequency which counts to zero and stops. To start the counter write a non-zero value. Can be used for short software pauses when setting up time sensitive hardware."]
 pub mod count;

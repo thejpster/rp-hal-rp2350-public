@@ -1,5 +1,7 @@
 #[doc = "Register `ARCHSEL_STATUS` reader"]
 pub type R = crate::R<ARCHSEL_STATUS_SPEC>;
+#[doc = "Register `ARCHSEL_STATUS` writer"]
+pub type W = crate::W<ARCHSEL_STATUS_SPEC>;
 #[doc = "Current architecture for core 0. Updated on processor warm reset.  
 
 Value on reset: 0"]
@@ -88,15 +90,22 @@ impl R {
         CORE1_R::new(((self.bits >> 1) & 1) != 0)
     }
 }
+impl W {}
 #[doc = "Get the current architecture select state of each core. Cores sample the current value of the ARCHSEL register when their warm reset is released, at which point the corresponding bit in this register will also update.  
 
-You can [`read`](crate::Reg::read) this register and get [`archsel_status::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`archsel_status::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`archsel_status::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct ARCHSEL_STATUS_SPEC;
 impl crate::RegisterSpec for ARCHSEL_STATUS_SPEC {
     type Ux = u32;
 }
 #[doc = "`read()` method returns [`archsel_status::R`](R) reader structure"]
 impl crate::Readable for ARCHSEL_STATUS_SPEC {}
+#[doc = "`write(|w| ..)` method takes [`archsel_status::W`](W) writer structure"]
+impl crate::Writable for ARCHSEL_STATUS_SPEC {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
 #[doc = "`reset()` method sets ARCHSEL_STATUS to value 0"]
 impl crate::Resettable for ARCHSEL_STATUS_SPEC {
     const RESET_VALUE: u32 = 0;

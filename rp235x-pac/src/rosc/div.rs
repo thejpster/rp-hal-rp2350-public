@@ -2,11 +2,7 @@
 pub type R = crate::R<DIV_SPEC>;
 #[doc = "Register `DIV` writer"]
 pub type W = crate::W<DIV_SPEC>;
-#[doc = "set to 0xaa00 + div where  
- div = 0 divides by 128  
- div = 1-127 divides by div  
- any other value sets div=128  
- this register resets to div=32  
+#[doc = "set to 0xaa00 + div where div = 0 divides by 128 div = 1-127 divides by div any other value sets div=128 this register resets to div=32  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -25,11 +21,7 @@ impl crate::FieldSpec for DIV_A {
     type Ux = u16;
 }
 impl crate::IsEnum for DIV_A {}
-#[doc = "Field `DIV` reader - set to 0xaa00 + div where  
- div = 0 divides by 128  
- div = 1-127 divides by div  
- any other value sets div=128  
- this register resets to div=32"]
+#[doc = "Field `DIV` reader - set to 0xaa00 + div where div = 0 divides by 128 div = 1-127 divides by div any other value sets div=128 this register resets to div=32"]
 pub type DIV_R = crate::FieldReader<DIV_A>;
 impl DIV_R {
     #[doc = "Get enumerated values variant"]
@@ -46,11 +38,7 @@ impl DIV_R {
         *self == DIV_A::PASS
     }
 }
-#[doc = "Field `DIV` writer - set to 0xaa00 + div where  
- div = 0 divides by 128  
- div = 1-127 divides by div  
- any other value sets div=128  
- this register resets to div=32"]
+#[doc = "Field `DIV` writer - set to 0xaa00 + div where div = 0 divides by 128 div = 1-127 divides by div any other value sets div=128 this register resets to div=32"]
 pub type DIV_W<'a, REG> = crate::FieldWriter<'a, REG, 16, DIV_A>;
 impl<'a, REG> DIV_W<'a, REG>
 where
@@ -64,22 +52,14 @@ where
     }
 }
 impl R {
-    #[doc = "Bits 0:15 - set to 0xaa00 + div where  
- div = 0 divides by 128  
- div = 1-127 divides by div  
- any other value sets div=128  
- this register resets to div=32"]
+    #[doc = "Bits 0:15 - set to 0xaa00 + div where div = 0 divides by 128 div = 1-127 divides by div any other value sets div=128 this register resets to div=32"]
     #[inline(always)]
     pub fn div(&self) -> DIV_R {
         DIV_R::new((self.bits & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = "Bits 0:15 - set to 0xaa00 + div where  
- div = 0 divides by 128  
- div = 1-127 divides by div  
- any other value sets div=128  
- this register resets to div=32"]
+    #[doc = "Bits 0:15 - set to 0xaa00 + div where div = 0 divides by 128 div = 1-127 divides by div any other value sets div=128 this register resets to div=32"]
     #[inline(always)]
     #[must_use]
     pub fn div(&mut self) -> DIV_W<DIV_SPEC> {

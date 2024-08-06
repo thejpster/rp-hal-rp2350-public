@@ -2,12 +2,25 @@
 pub type R = crate::R<ITM_PIDR5_SPEC>;
 #[doc = "Register `ITM_PIDR5` writer"]
 pub type W = crate::W<ITM_PIDR5_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `ITM_PIDR5` reader - "]
+pub type ITM_PIDR5_R = crate::FieldReader<u32>;
+#[doc = "Field `ITM_PIDR5` writer - "]
+pub type ITM_PIDR5_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn itm_pidr5(&self) -> ITM_PIDR5_R {
+        ITM_PIDR5_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn itm_pidr5(&mut self) -> ITM_PIDR5_W<ITM_PIDR5_SPEC> {
+        ITM_PIDR5_W::new(self, 0)
+    }
+}
 #[doc = "Provides CoreSight discovery information for the ITM  
 
 You can [`read`](crate::Reg::read) this register and get [`itm_pidr5::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`itm_pidr5::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

@@ -2,27 +2,19 @@
 pub type R = crate::R<INTE1_SPEC>;
 #[doc = "Register `INTE1` writer"]
 pub type W = crate::W<INTE1_SPEC>;
-#[doc = "Field `INTE1` reader - Set bit n to pass interrupts from channel n to DMA IRQ 1.  
-
- Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
+#[doc = "Field `INTE1` reader - Set bit n to pass interrupts from channel n to DMA IRQ 1. Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
 pub type INTE1_R = crate::FieldReader<u16>;
-#[doc = "Field `INTE1` writer - Set bit n to pass interrupts from channel n to DMA IRQ 1.  
-
- Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
+#[doc = "Field `INTE1` writer - Set bit n to pass interrupts from channel n to DMA IRQ 1. Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
 pub type INTE1_W<'a, REG> = crate::FieldWriter<'a, REG, 16, u16>;
 impl R {
-    #[doc = "Bits 0:15 - Set bit n to pass interrupts from channel n to DMA IRQ 1.  
-
- Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
+    #[doc = "Bits 0:15 - Set bit n to pass interrupts from channel n to DMA IRQ 1. Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
     #[inline(always)]
     pub fn inte1(&self) -> INTE1_R {
         INTE1_R::new((self.bits & 0xffff) as u16)
     }
 }
 impl W {
-    #[doc = "Bits 0:15 - Set bit n to pass interrupts from channel n to DMA IRQ 1.  
-
- Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
+    #[doc = "Bits 0:15 - Set bit n to pass interrupts from channel n to DMA IRQ 1. Note this bit has no effect if the channel security/privilege level, defined by SECCFG_CHx, is greater than the IRQ security/privilege defined by SECCFG_IRQ1."]
     #[inline(always)]
     #[must_use]
     pub fn inte1(&mut self) -> INTE1_W<INTE1_SPEC> {

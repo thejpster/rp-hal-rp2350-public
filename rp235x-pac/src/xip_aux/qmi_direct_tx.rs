@@ -1,8 +1,8 @@
+#[doc = "Register `QMI_DIRECT_TX` reader"]
+pub type R = crate::R<QMI_DIRECT_TX_SPEC>;
 #[doc = "Register `QMI_DIRECT_TX` writer"]
 pub type W = crate::W<QMI_DIRECT_TX_SPEC>;
-#[doc = "Field `DATA` writer - Data pushed here will be clocked out falling edges of SCK (or before the very first rising edge of SCK, if this is the first pulse). For each byte clocked out, the interface will simultaneously sample one byte, on rising edges of SCK, and push this to the DIRECT_RX FIFO.  
-
- For 16-bit data, the least-significant byte is transmitted first."]
+#[doc = "Field `DATA` writer - Data pushed here will be clocked out falling edges of SCK (or before the very first rising edge of SCK, if this is the first pulse). For each byte clocked out, the interface will simultaneously sample one byte, on rising edges of SCK, and push this to the DIRECT_RX FIFO. For 16-bit data, the least-significant byte is transmitted first."]
 pub type DATA_W<'a, REG> = crate::FieldWriter<'a, REG, 16, u16>;
 #[doc = "Configure whether this FIFO record is transferred with single/dual/quad interface width (0/1/2). Different widths can be mixed freely.  
 
@@ -52,18 +52,12 @@ where
 }
 #[doc = "Field `DWIDTH` writer - Data width. If 0, hardware will transmit the 8 LSBs of the DIRECT_TX DATA field, and return an 8-bit value in the 8 LSBs of DIRECT_RX. If 1, the full 16-bit width is used. 8-bit and 16-bit transfers can be mixed freely."]
 pub type DWIDTH_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `OE` writer - Output enable (active-high). For single width (SPI), this field is ignored, and SD0 is always set to output, with SD1 always set to input.  
-
- For dual and quad width (DSPI/QSPI), this sets whether the relevant SDx pads are set to output whilst transferring this FIFO record. In this case the command/address should have OE set, and the data transfer should have OE set or clear depending on the direction of the transfer."]
+#[doc = "Field `OE` writer - Output enable (active-high). For single width (SPI), this field is ignored, and SD0 is always set to output, with SD1 always set to input. For dual and quad width (DSPI/QSPI), this sets whether the relevant SDx pads are set to output whilst transferring this FIFO record. In this case the command/address should have OE set, and the data transfer should have OE set or clear depending on the direction of the transfer."]
 pub type OE_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `NOPUSH` writer - Inhibit the RX FIFO push that would correspond to this TX FIFO entry.  
-
- Useful to avoid garbage appearing in the RX FIFO when pushing the command at the beginning of a SPI transfer."]
+#[doc = "Field `NOPUSH` writer - Inhibit the RX FIFO push that would correspond to this TX FIFO entry. Useful to avoid garbage appearing in the RX FIFO when pushing the command at the beginning of a SPI transfer."]
 pub type NOPUSH_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl W {
-    #[doc = "Bits 0:15 - Data pushed here will be clocked out falling edges of SCK (or before the very first rising edge of SCK, if this is the first pulse). For each byte clocked out, the interface will simultaneously sample one byte, on rising edges of SCK, and push this to the DIRECT_RX FIFO.  
-
- For 16-bit data, the least-significant byte is transmitted first."]
+    #[doc = "Bits 0:15 - Data pushed here will be clocked out falling edges of SCK (or before the very first rising edge of SCK, if this is the first pulse). For each byte clocked out, the interface will simultaneously sample one byte, on rising edges of SCK, and push this to the DIRECT_RX FIFO. For 16-bit data, the least-significant byte is transmitted first."]
     #[inline(always)]
     #[must_use]
     pub fn data(&mut self) -> DATA_W<QMI_DIRECT_TX_SPEC> {
@@ -81,17 +75,13 @@ impl W {
     pub fn dwidth(&mut self) -> DWIDTH_W<QMI_DIRECT_TX_SPEC> {
         DWIDTH_W::new(self, 18)
     }
-    #[doc = "Bit 19 - Output enable (active-high). For single width (SPI), this field is ignored, and SD0 is always set to output, with SD1 always set to input.  
-
- For dual and quad width (DSPI/QSPI), this sets whether the relevant SDx pads are set to output whilst transferring this FIFO record. In this case the command/address should have OE set, and the data transfer should have OE set or clear depending on the direction of the transfer."]
+    #[doc = "Bit 19 - Output enable (active-high). For single width (SPI), this field is ignored, and SD0 is always set to output, with SD1 always set to input. For dual and quad width (DSPI/QSPI), this sets whether the relevant SDx pads are set to output whilst transferring this FIFO record. In this case the command/address should have OE set, and the data transfer should have OE set or clear depending on the direction of the transfer."]
     #[inline(always)]
     #[must_use]
     pub fn oe(&mut self) -> OE_W<QMI_DIRECT_TX_SPEC> {
         OE_W::new(self, 19)
     }
-    #[doc = "Bit 20 - Inhibit the RX FIFO push that would correspond to this TX FIFO entry.  
-
- Useful to avoid garbage appearing in the RX FIFO when pushing the command at the beginning of a SPI transfer."]
+    #[doc = "Bit 20 - Inhibit the RX FIFO push that would correspond to this TX FIFO entry. Useful to avoid garbage appearing in the RX FIFO when pushing the command at the beginning of a SPI transfer."]
     #[inline(always)]
     #[must_use]
     pub fn nopush(&mut self) -> NOPUSH_W<QMI_DIRECT_TX_SPEC> {
@@ -100,11 +90,13 @@ impl W {
 }
 #[doc = "Write to the QMI direct-mode TX FIFO (fast bus access to QMI_DIRECT_TX)  
 
-You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`qmi_direct_tx::W`](W). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+You can [`read`](crate::Reg::read) this register and get [`qmi_direct_tx::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`qmi_direct_tx::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct QMI_DIRECT_TX_SPEC;
 impl crate::RegisterSpec for QMI_DIRECT_TX_SPEC {
     type Ux = u32;
 }
+#[doc = "`read()` method returns [`qmi_direct_tx::R`](R) reader structure"]
+impl crate::Readable for QMI_DIRECT_TX_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`qmi_direct_tx::W`](W) writer structure"]
 impl crate::Writable for QMI_DIRECT_TX_SPEC {
     type Safety = crate::Unsafe;

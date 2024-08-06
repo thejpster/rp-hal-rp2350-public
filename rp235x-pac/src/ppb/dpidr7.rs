@@ -2,12 +2,25 @@
 pub type R = crate::R<DPIDR7_SPEC>;
 #[doc = "Register `DPIDR7` writer"]
 pub type W = crate::W<DPIDR7_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `DPIDR7` reader - "]
+pub type DPIDR7_R = crate::FieldReader<u32>;
+#[doc = "Field `DPIDR7` writer - "]
+pub type DPIDR7_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn dpidr7(&self) -> DPIDR7_R {
+        DPIDR7_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn dpidr7(&mut self) -> DPIDR7_W<DPIDR7_SPEC> {
+        DPIDR7_W::new(self, 0)
+    }
+}
 #[doc = "Provides CoreSight discovery information for the SCS  
 
 You can [`read`](crate::Reg::read) this register and get [`dpidr7::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`dpidr7::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

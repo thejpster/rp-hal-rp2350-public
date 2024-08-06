@@ -2,25 +2,16 @@
 pub type R = crate::R<EXT_TIME_REF_SPEC>;
 #[doc = "Register `EXT_TIME_REF` writer"]
 pub type W = crate::W<EXT_TIME_REF_SPEC>;
-#[doc = "Field `SOURCE_SEL` reader - 0 -> gpio12  
- 1 -> gpio20  
- 2 -> gpio14  
- 3 -> gpio22"]
+#[doc = "Field `SOURCE_SEL` reader - 0 -> gpio12 1 -> gpio20 2 -> gpio14 3 -> gpio22"]
 pub type SOURCE_SEL_R = crate::FieldReader;
-#[doc = "Field `SOURCE_SEL` writer - 0 -> gpio12  
- 1 -> gpio20  
- 2 -> gpio14  
- 3 -> gpio22"]
+#[doc = "Field `SOURCE_SEL` writer - 0 -> gpio12 1 -> gpio20 2 -> gpio14 3 -> gpio22"]
 pub type SOURCE_SEL_W<'a, REG> = crate::FieldWriter<'a, REG, 2>;
 #[doc = "Field `DRIVE_LPCK` reader - Use the selected GPIO to drive the 32kHz low power clock, in place of LPOSC. This field must only be written when POWMAN_TIMER_RUN=0"]
 pub type DRIVE_LPCK_R = crate::BitReader;
 #[doc = "Field `DRIVE_LPCK` writer - Use the selected GPIO to drive the 32kHz low power clock, in place of LPOSC. This field must only be written when POWMAN_TIMER_RUN=0"]
 pub type DRIVE_LPCK_W<'a, REG> = crate::BitWriter<'a, REG>;
 impl R {
-    #[doc = "Bits 0:1 - 0 -> gpio12  
- 1 -> gpio20  
- 2 -> gpio14  
- 3 -> gpio22"]
+    #[doc = "Bits 0:1 - 0 -> gpio12 1 -> gpio20 2 -> gpio14 3 -> gpio22"]
     #[inline(always)]
     pub fn source_sel(&self) -> SOURCE_SEL_R {
         SOURCE_SEL_R::new((self.bits & 3) as u8)
@@ -32,10 +23,7 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bits 0:1 - 0 -> gpio12  
- 1 -> gpio20  
- 2 -> gpio14  
- 3 -> gpio22"]
+    #[doc = "Bits 0:1 - 0 -> gpio12 1 -> gpio20 2 -> gpio14 3 -> gpio22"]
     #[inline(always)]
     #[must_use]
     pub fn source_sel(&mut self) -> SOURCE_SEL_W<EXT_TIME_REF_SPEC> {

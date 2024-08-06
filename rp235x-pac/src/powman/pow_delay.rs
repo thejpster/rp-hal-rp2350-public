@@ -2,61 +2,49 @@
 pub type R = crate::R<POW_DELAY_SPEC>;
 #[doc = "Register `POW_DELAY` writer"]
 pub type W = crate::W<POW_DELAY_SPEC>;
-#[doc = "Field `SWCORE_STEP` reader - timing between the swcore power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+#[doc = "Field `SWCORE_STEP` reader - timing between the swcore power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
 pub type SWCORE_STEP_R = crate::FieldReader;
-#[doc = "Field `SWCORE_STEP` writer - timing between the swcore power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+#[doc = "Field `SWCORE_STEP` writer - timing between the swcore power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
 pub type SWCORE_STEP_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Field `XIP_STEP` reader - timing between the xip power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+#[doc = "Field `XIP_STEP` reader - timing between the xip power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
 pub type XIP_STEP_R = crate::FieldReader;
-#[doc = "Field `XIP_STEP` writer - timing between the xip power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+#[doc = "Field `XIP_STEP` writer - timing between the xip power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
 pub type XIP_STEP_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Field `SRAM_STEP` reader - timing between the sram0 and sram1 power state machine steps  
- measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
+#[doc = "Field `SRAM_STEP` reader - timing between the sram0 and sram1 power state machine steps measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
 pub type SRAM_STEP_R = crate::FieldReader;
-#[doc = "Field `SRAM_STEP` writer - timing between the sram0 and sram1 power state machine steps  
- measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
+#[doc = "Field `SRAM_STEP` writer - timing between the sram0 and sram1 power state machine steps measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
 pub type SRAM_STEP_W<'a, REG> = crate::FieldWriter<'a, REG, 8>;
 impl R {
-    #[doc = "Bits 0:3 - timing between the swcore power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+    #[doc = "Bits 0:3 - timing between the swcore power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
     #[inline(always)]
     pub fn swcore_step(&self) -> SWCORE_STEP_R {
         SWCORE_STEP_R::new((self.bits & 0x0f) as u8)
     }
-    #[doc = "Bits 4:7 - timing between the xip power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+    #[doc = "Bits 4:7 - timing between the xip power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
     #[inline(always)]
     pub fn xip_step(&self) -> XIP_STEP_R {
         XIP_STEP_R::new(((self.bits >> 4) & 0x0f) as u8)
     }
-    #[doc = "Bits 8:15 - timing between the sram0 and sram1 power state machine steps  
- measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
+    #[doc = "Bits 8:15 - timing between the sram0 and sram1 power state machine steps measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
     #[inline(always)]
     pub fn sram_step(&self) -> SRAM_STEP_R {
         SRAM_STEP_R::new(((self.bits >> 8) & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = "Bits 0:3 - timing between the swcore power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+    #[doc = "Bits 0:3 - timing between the swcore power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
     #[inline(always)]
     #[must_use]
     pub fn swcore_step(&mut self) -> SWCORE_STEP_W<POW_DELAY_SPEC> {
         SWCORE_STEP_W::new(self, 0)
     }
-    #[doc = "Bits 4:7 - timing between the xip power state machine steps  
- measured in units of the lposc period, 0 gives a delay of 1 unit"]
+    #[doc = "Bits 4:7 - timing between the xip power state machine steps measured in units of the lposc period, 0 gives a delay of 1 unit"]
     #[inline(always)]
     #[must_use]
     pub fn xip_step(&mut self) -> XIP_STEP_W<POW_DELAY_SPEC> {
         XIP_STEP_W::new(self, 4)
     }
-    #[doc = "Bits 8:15 - timing between the sram0 and sram1 power state machine steps  
- measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
+    #[doc = "Bits 8:15 - timing between the sram0 and sram1 power state machine steps measured in units of the powman tick period (>=1us), 0 gives a delay of 1 unit"]
     #[inline(always)]
     #[must_use]
     pub fn sram_step(&mut self) -> SRAM_STEP_W<POW_DELAY_SPEC> {

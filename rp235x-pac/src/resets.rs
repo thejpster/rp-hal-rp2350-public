@@ -40,9 +40,9 @@ module"]
 pub type WDSEL = crate::Reg<wdsel::WDSEL_SPEC>;
 #[doc = ""]
 pub mod wdsel;
-#[doc = "RESET_DONE (r) register accessor:   
+#[doc = "RESET_DONE (rw) register accessor:   
 
-You can [`read`](crate::Reg::read) this register and get [`reset_done::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`reset_done::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`reset_done::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@reset_done`]
 module"]

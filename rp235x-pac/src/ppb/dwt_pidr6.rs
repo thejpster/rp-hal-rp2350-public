@@ -2,12 +2,25 @@
 pub type R = crate::R<DWT_PIDR6_SPEC>;
 #[doc = "Register `DWT_PIDR6` writer"]
 pub type W = crate::W<DWT_PIDR6_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `DWT_PIDR6` reader - "]
+pub type DWT_PIDR6_R = crate::FieldReader<u32>;
+#[doc = "Field `DWT_PIDR6` writer - "]
+pub type DWT_PIDR6_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn dwt_pidr6(&self) -> DWT_PIDR6_R {
+        DWT_PIDR6_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn dwt_pidr6(&mut self) -> DWT_PIDR6_W<DWT_PIDR6_SPEC> {
+        DWT_PIDR6_W::new(self, 0)
+    }
+}
 #[doc = "Provides CoreSight discovery information for the DWT  
 
 You can [`read`](crate::Reg::read) this register and get [`dwt_pidr6::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`dwt_pidr6::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

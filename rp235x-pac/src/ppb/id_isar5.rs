@@ -2,12 +2,25 @@
 pub type R = crate::R<ID_ISAR5_SPEC>;
 #[doc = "Register `ID_ISAR5` writer"]
 pub type W = crate::W<ID_ISAR5_SPEC>;
-impl core::fmt::Debug for R {
-    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        write!(f, "{}", self.bits())
+#[doc = "Field `ID_ISAR5` reader - "]
+pub type ID_ISAR5_R = crate::FieldReader<u32>;
+#[doc = "Field `ID_ISAR5` writer - "]
+pub type ID_ISAR5_W<'a, REG> = crate::FieldWriter<'a, REG, 32, u32>;
+impl R {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    pub fn id_isar5(&self) -> ID_ISAR5_R {
+        ID_ISAR5_R::new(self.bits)
     }
 }
-impl W {}
+impl W {
+    #[doc = "Bits 0:31"]
+    #[inline(always)]
+    #[must_use]
+    pub fn id_isar5(&mut self) -> ID_ISAR5_W<ID_ISAR5_SPEC> {
+        ID_ISAR5_W::new(self, 0)
+    }
+}
 #[doc = "Provides information about the instruction set implemented by the PE  
 
 You can [`read`](crate::Reg::read) this register and get [`id_isar5::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`id_isar5::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

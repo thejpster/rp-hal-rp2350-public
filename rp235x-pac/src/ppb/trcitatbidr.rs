@@ -21,7 +21,7 @@ impl W {
         ID_W::new(self, 0)
     }
 }
-#[doc = "Trace Intergration ATB Identification Register  
+#[doc = "Trace Integration ATB Identification Register  
 
 You can [`read`](crate::Reg::read) this register and get [`trcitatbidr::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`trcitatbidr::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct TRCITATBIDR_SPEC;

@@ -199,9 +199,7 @@ impl W {
         DEFAULT_W::new(self, 24)
     }
 }
-#[doc = "Adjust the sensitivity of glitch detectors to values other than their OTP-provided defaults.  
-
- This register is Secure read/write only.  
+#[doc = "Adjust the sensitivity of glitch detectors to values other than their OTP-provided defaults. This register is Secure read/write only.  
 
 You can [`read`](crate::Reg::read) this register and get [`sensitivity::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`sensitivity::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct SENSITIVITY_SPEC;

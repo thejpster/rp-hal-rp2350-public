@@ -55,9 +55,9 @@ module"]
 pub type WDSEL = crate::Reg<wdsel::WDSEL_SPEC>;
 #[doc = "Set to 1 if the watchdog should reset this"]
 pub mod wdsel;
-#[doc = "DONE (r) register accessor: Is the subsystem ready?  
+#[doc = "DONE (rw) register accessor: Is the subsystem ready?  
 
-You can [`read`](crate::Reg::read) this register and get [`done::R`]. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
+You can [`read`](crate::Reg::read) this register and get [`done::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`done::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).  
 
 For information about available fields see [`mod@done`]
 module"]

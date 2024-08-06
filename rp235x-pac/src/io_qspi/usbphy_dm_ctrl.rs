@@ -2,8 +2,7 @@
 pub type R = crate::R<USBPHY_DM_CTRL_SPEC>;
 #[doc = "Register `USBPHY_DM_CTRL` writer"]
 pub type W = crate::W<USBPHY_DM_CTRL_SPEC>;
-#[doc = "0-31 -> selects pin function according to the gpio table  
- 31 == NULL  
+#[doc = "0-31 -> selects pin function according to the gpio table 31 == NULL  
 
 Value on reset: 31"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -14,7 +13,7 @@ pub enum FUNCSEL_A {
     #[doc = "3: `11`"]
     I2C0_SCL = 3,
     #[doc = "5: `101`"]
-    SIO_57 = 5,
+    SIOB_PROC_57 = 5,
     #[doc = "31: `11111`"]
     NULL = 31,
 }
@@ -28,8 +27,7 @@ impl crate::FieldSpec for FUNCSEL_A {
     type Ux = u8;
 }
 impl crate::IsEnum for FUNCSEL_A {}
-#[doc = "Field `FUNCSEL` reader - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+#[doc = "Field `FUNCSEL` reader - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
 pub type FUNCSEL_R = crate::FieldReader<FUNCSEL_A>;
 impl FUNCSEL_R {
     #[doc = "Get enumerated values variant"]
@@ -38,7 +36,7 @@ impl FUNCSEL_R {
         match self.bits {
             2 => Some(FUNCSEL_A::UART1_RX),
             3 => Some(FUNCSEL_A::I2C0_SCL),
-            5 => Some(FUNCSEL_A::SIO_57),
+            5 => Some(FUNCSEL_A::SIOB_PROC_57),
             31 => Some(FUNCSEL_A::NULL),
             _ => None,
         }
@@ -55,8 +53,8 @@ impl FUNCSEL_R {
     }
     #[doc = "`101`"]
     #[inline(always)]
-    pub fn is_sio_57(&self) -> bool {
-        *self == FUNCSEL_A::SIO_57
+    pub fn is_siob_proc_57(&self) -> bool {
+        *self == FUNCSEL_A::SIOB_PROC_57
     }
     #[doc = "`11111`"]
     #[inline(always)]
@@ -64,8 +62,7 @@ impl FUNCSEL_R {
         *self == FUNCSEL_A::NULL
     }
 }
-#[doc = "Field `FUNCSEL` writer - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+#[doc = "Field `FUNCSEL` writer - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
 pub type FUNCSEL_W<'a, REG> = crate::FieldWriter<'a, REG, 5, FUNCSEL_A>;
 impl<'a, REG> FUNCSEL_W<'a, REG>
 where
@@ -84,8 +81,8 @@ where
     }
     #[doc = "`101`"]
     #[inline(always)]
-    pub fn sio_57(self) -> &'a mut crate::W<REG> {
-        self.variant(FUNCSEL_A::SIO_57)
+    pub fn siob_proc_57(self) -> &'a mut crate::W<REG> {
+        self.variant(FUNCSEL_A::SIOB_PROC_57)
     }
     #[doc = "`11111`"]
     #[inline(always)]
@@ -446,8 +443,7 @@ where
     }
 }
 impl R {
-    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
     #[inline(always)]
     pub fn funcsel(&self) -> FUNCSEL_R {
         FUNCSEL_R::new((self.bits & 0x1f) as u8)
@@ -474,8 +470,7 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
     #[inline(always)]
     #[must_use]
     pub fn funcsel(&mut self) -> FUNCSEL_W<USBPHY_DM_CTRL_SPEC> {

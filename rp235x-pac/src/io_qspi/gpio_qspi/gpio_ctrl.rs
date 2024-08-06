@@ -2,8 +2,7 @@
 pub type R = crate::R<GPIO_CTRL_SPEC>;
 #[doc = "Register `GPIO_CTRL` writer"]
 pub type W = crate::W<GPIO_CTRL_SPEC>;
-#[doc = "0-31 -> selects pin function according to the gpio table  
- 31 == NULL  
+#[doc = "0-31 -> selects pin function according to the gpio table 31 == NULL  
 
 Value on reset: 31"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -16,7 +15,7 @@ pub enum FUNCSEL_A {
     #[doc = "3: `11`"]
     I2C1_SDA = 3,
     #[doc = "5: `101`"]
-    SIO_58 = 5,
+    SIOB_PROC_58 = 5,
     #[doc = "11: `1011`"]
     UART1_TX = 11,
     #[doc = "31: `11111`"]
@@ -32,8 +31,7 @@ impl crate::FieldSpec for FUNCSEL_A {
     type Ux = u8;
 }
 impl crate::IsEnum for FUNCSEL_A {}
-#[doc = "Field `FUNCSEL` reader - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+#[doc = "Field `FUNCSEL` reader - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
 pub type FUNCSEL_R = crate::FieldReader<FUNCSEL_A>;
 impl FUNCSEL_R {
     #[doc = "Get enumerated values variant"]
@@ -43,7 +41,7 @@ impl FUNCSEL_R {
             0 => Some(FUNCSEL_A::XIP_SCLK),
             2 => Some(FUNCSEL_A::UART1_CTS),
             3 => Some(FUNCSEL_A::I2C1_SDA),
-            5 => Some(FUNCSEL_A::SIO_58),
+            5 => Some(FUNCSEL_A::SIOB_PROC_58),
             11 => Some(FUNCSEL_A::UART1_TX),
             31 => Some(FUNCSEL_A::NULL),
             _ => None,
@@ -66,8 +64,8 @@ impl FUNCSEL_R {
     }
     #[doc = "`101`"]
     #[inline(always)]
-    pub fn is_sio_58(&self) -> bool {
-        *self == FUNCSEL_A::SIO_58
+    pub fn is_siob_proc_58(&self) -> bool {
+        *self == FUNCSEL_A::SIOB_PROC_58
     }
     #[doc = "`1011`"]
     #[inline(always)]
@@ -80,8 +78,7 @@ impl FUNCSEL_R {
         *self == FUNCSEL_A::NULL
     }
 }
-#[doc = "Field `FUNCSEL` writer - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+#[doc = "Field `FUNCSEL` writer - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
 pub type FUNCSEL_W<'a, REG> = crate::FieldWriter<'a, REG, 5, FUNCSEL_A>;
 impl<'a, REG> FUNCSEL_W<'a, REG>
 where
@@ -105,8 +102,8 @@ where
     }
     #[doc = "`101`"]
     #[inline(always)]
-    pub fn sio_58(self) -> &'a mut crate::W<REG> {
-        self.variant(FUNCSEL_A::SIO_58)
+    pub fn siob_proc_58(self) -> &'a mut crate::W<REG> {
+        self.variant(FUNCSEL_A::SIOB_PROC_58)
     }
     #[doc = "`1011`"]
     #[inline(always)]
@@ -472,8 +469,7 @@ where
     }
 }
 impl R {
-    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
     #[inline(always)]
     pub fn funcsel(&self) -> FUNCSEL_R {
         FUNCSEL_R::new((self.bits & 0x1f) as u8)
@@ -500,8 +496,7 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table  
- 31 == NULL"]
+    #[doc = "Bits 0:4 - 0-31 -> selects pin function according to the gpio table 31 == NULL"]
     #[inline(always)]
     #[must_use]
     pub fn funcsel(&mut self) -> FUNCSEL_W<GPIO_CTRL_SPEC> {

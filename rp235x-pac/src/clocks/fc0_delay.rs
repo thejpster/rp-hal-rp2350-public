@@ -21,8 +21,7 @@ impl W {
         FC0_DELAY_W::new(self, 0)
     }
 }
-#[doc = "Delays the start of frequency counting to allow the mux to settle  
- Delay is measured in multiples of the reference clock period  
+#[doc = "Delays the start of frequency counting to allow the mux to settle Delay is measured in multiples of the reference clock period  
 
 You can [`read`](crate::Reg::read) this register and get [`fc0_delay::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`fc0_delay::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct FC0_DELAY_SPEC;

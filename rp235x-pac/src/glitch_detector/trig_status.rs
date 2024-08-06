@@ -66,11 +66,7 @@ impl W {
         DET3_W::new(self, 3)
     }
 }
-#[doc = "Set when a detector output triggers. Write-1-clear.  
-
- (May immediately return high if the detector remains in a failed state. Detectors can only be cleared by a full reset of the switched core power domain.)  
-
- This register is Secure read/write only.  
+#[doc = "Set when a detector output triggers. Write-1-clear. (May immediately return high if the detector remains in a failed state. Detectors can only be cleared by a full reset of the switched core power domain.) This register is Secure read/write only.  
 
 You can [`read`](crate::Reg::read) this register and get [`trig_status::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`trig_status::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct TRIG_STATUS_SPEC;

@@ -2,19 +2,13 @@
 pub type R = crate::R<CH_AL1_CTRL_SPEC>;
 #[doc = "Register `CH_AL1_CTRL` writer"]
 pub type W = crate::W<CH_AL1_CTRL_SPEC>;
-#[doc = "Field `EN` reader - DMA Channel Enable.  
- When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
+#[doc = "Field `EN` reader - DMA Channel Enable. When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
 pub type EN_R = crate::BitReader;
-#[doc = "Field `EN` writer - DMA Channel Enable.  
- When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
+#[doc = "Field `EN` writer - DMA Channel Enable. When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
 pub type EN_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `HIGH_PRIORITY` reader - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels.  
-
- This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
+#[doc = "Field `HIGH_PRIORITY` reader - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels. This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
 pub type HIGH_PRIORITY_R = crate::BitReader;
-#[doc = "Field `HIGH_PRIORITY` writer - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels.  
-
- This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
+#[doc = "Field `HIGH_PRIORITY` writer - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels. This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
 pub type HIGH_PRIORITY_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Set the size of each bus transfer (byte/halfword/word). READ_ADDR and WRITE_ADDR advance by this amount (1/2/4 bytes) with each transfer.  
 
@@ -91,41 +85,23 @@ where
         self.variant(DATA_SIZE_A::SIZE_WORD)
     }
 }
-#[doc = "Field `INCR_READ` reader - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address.  
-
- Generally this should be disabled for peripheral-to-memory transfers."]
+#[doc = "Field `INCR_READ` reader - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address. Generally this should be disabled for peripheral-to-memory transfers."]
 pub type INCR_READ_R = crate::BitReader;
-#[doc = "Field `INCR_READ` writer - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address.  
-
- Generally this should be disabled for peripheral-to-memory transfers."]
+#[doc = "Field `INCR_READ` writer - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address. Generally this should be disabled for peripheral-to-memory transfers."]
 pub type INCR_READ_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `INCR_READ_REV` reader - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+#[doc = "Field `INCR_READ_REV` reader - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer. If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
 pub type INCR_READ_REV_R = crate::BitReader;
-#[doc = "Field `INCR_READ_REV` writer - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+#[doc = "Field `INCR_READ_REV` writer - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer. If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
 pub type INCR_READ_REV_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `INCR_WRITE` reader - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address.  
-
- Generally this should be disabled for memory-to-peripheral transfers."]
+#[doc = "Field `INCR_WRITE` reader - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address. Generally this should be disabled for memory-to-peripheral transfers."]
 pub type INCR_WRITE_R = crate::BitReader;
-#[doc = "Field `INCR_WRITE` writer - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address.  
-
- Generally this should be disabled for memory-to-peripheral transfers."]
+#[doc = "Field `INCR_WRITE` writer - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address. Generally this should be disabled for memory-to-peripheral transfers."]
 pub type INCR_WRITE_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `INCR_WRITE_REV` reader - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+#[doc = "Field `INCR_WRITE_REV` reader - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer. If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
 pub type INCR_WRITE_REV_R = crate::BitReader;
-#[doc = "Field `INCR_WRITE_REV` writer - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+#[doc = "Field `INCR_WRITE_REV` writer - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer. If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
 pub type INCR_WRITE_REV_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers.  
-
- Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL.  
+#[doc = "Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers. Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL.  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -144,9 +120,7 @@ impl crate::FieldSpec for RING_SIZE_A {
     type Ux = u8;
 }
 impl crate::IsEnum for RING_SIZE_A {}
-#[doc = "Field `RING_SIZE` reader - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers.  
-
- Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
+#[doc = "Field `RING_SIZE` reader - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers. Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
 pub type RING_SIZE_R = crate::FieldReader<RING_SIZE_A>;
 impl RING_SIZE_R {
     #[doc = "Get enumerated values variant"]
@@ -163,9 +137,7 @@ impl RING_SIZE_R {
         *self == RING_SIZE_A::RING_NONE
     }
 }
-#[doc = "Field `RING_SIZE` writer - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers.  
-
- Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
+#[doc = "Field `RING_SIZE` writer - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers. Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
 pub type RING_SIZE_W<'a, REG> = crate::FieldWriter<'a, REG, 4, RING_SIZE_A>;
 impl<'a, REG> RING_SIZE_W<'a, REG>
 where
@@ -178,11 +150,9 @@ where
         self.variant(RING_SIZE_A::RING_NONE)
     }
 }
-#[doc = "Field `RING_SEL` reader - Select whether RING_SIZE applies to read or write addresses.  
- If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
+#[doc = "Field `RING_SEL` reader - Select whether RING_SIZE applies to read or write addresses. If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
 pub type RING_SEL_R = crate::BitReader;
-#[doc = "Field `RING_SEL` writer - Select whether RING_SIZE applies to read or write addresses.  
- If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
+#[doc = "Field `RING_SEL` writer - Select whether RING_SIZE applies to read or write addresses. If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
 pub type RING_SEL_W<'a, REG> = crate::BitWriter<'a, REG>;
 #[doc = "Field `CHAIN_TO` reader - When this channel completes, it will trigger the channel indicated by CHAIN_TO. Disable by setting CHAIN_TO = _(this channel)_.   
  Reset value is 0, which means for channels 1 and above the default will be to chain to channel 0 - set this field to avoid this behaviour."]
@@ -190,9 +160,7 @@ pub type CHAIN_TO_R = crate::FieldReader;
 #[doc = "Field `CHAIN_TO` writer - When this channel completes, it will trigger the channel indicated by CHAIN_TO. Disable by setting CHAIN_TO = _(this channel)_.   
  Reset value is 0, which means for channels 1 and above the default will be to chain to channel 0 - set this field to avoid this behaviour."]
 pub type CHAIN_TO_W<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Select a Transfer Request signal.  
- The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system).  
- 0x0 to 0x3a -> select DREQ n as TREQ  
+#[doc = "Select a Transfer Request signal. The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system). 0x0 to 0x3a -> select DREQ n as TREQ  
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -329,9 +297,7 @@ impl crate::FieldSpec for TREQ_SEL_A {
     type Ux = u8;
 }
 impl crate::IsEnum for TREQ_SEL_A {}
-#[doc = "Field `TREQ_SEL` reader - Select a Transfer Request signal.  
- The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system).  
- 0x0 to 0x3a -> select DREQ n as TREQ"]
+#[doc = "Field `TREQ_SEL` reader - Select a Transfer Request signal. The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system). 0x0 to 0x3a -> select DREQ n as TREQ"]
 pub type TREQ_SEL_R = crate::FieldReader<TREQ_SEL_A>;
 impl TREQ_SEL_R {
     #[doc = "Get enumerated values variant"]
@@ -702,9 +668,7 @@ impl TREQ_SEL_R {
         *self == TREQ_SEL_A::PERMANENT
     }
 }
-#[doc = "Field `TREQ_SEL` writer - Select a Transfer Request signal.  
- The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system).  
- 0x0 to 0x3a -> select DREQ n as TREQ"]
+#[doc = "Field `TREQ_SEL` writer - Select a Transfer Request signal. The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system). 0x0 to 0x3a -> select DREQ n as TREQ"]
 pub type TREQ_SEL_W<'a, REG> = crate::FieldWriter<'a, REG, 6, TREQ_SEL_A>;
 impl<'a, REG> TREQ_SEL_W<'a, REG>
 where
@@ -1012,56 +976,37 @@ where
         self.variant(TREQ_SEL_A::PERMANENT)
     }
 }
-#[doc = "Field `IRQ_QUIET` reader - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain.  
-
- This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
+#[doc = "Field `IRQ_QUIET` reader - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain. This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
 pub type IRQ_QUIET_R = crate::BitReader;
-#[doc = "Field `IRQ_QUIET` writer - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain.  
-
- This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
+#[doc = "Field `IRQ_QUIET` writer - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain. This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
 pub type IRQ_QUIET_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `BSWAP` reader - Apply byte-swap transformation to DMA data.  
- For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
+#[doc = "Field `BSWAP` reader - Apply byte-swap transformation to DMA data. For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
 pub type BSWAP_R = crate::BitReader;
-#[doc = "Field `BSWAP` writer - Apply byte-swap transformation to DMA data.  
- For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
+#[doc = "Field `BSWAP` writer - Apply byte-swap transformation to DMA data. For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
 pub type BSWAP_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `SNIFF_EN` reader - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected.  
-
- This allows checksum to be enabled or disabled on a per-control- block basis."]
+#[doc = "Field `SNIFF_EN` reader - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected. This allows checksum to be enabled or disabled on a per-control- block basis."]
 pub type SNIFF_EN_R = crate::BitReader;
-#[doc = "Field `SNIFF_EN` writer - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected.  
-
- This allows checksum to be enabled or disabled on a per-control- block basis."]
+#[doc = "Field `SNIFF_EN` writer - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected. This allows checksum to be enabled or disabled on a per-control- block basis."]
 pub type SNIFF_EN_W<'a, REG> = crate::BitWriter<'a, REG>;
-#[doc = "Field `BUSY` reader - This flag goes high when the channel starts a new transfer sequence, and low when the last transfer of that sequence completes. Clearing EN while BUSY is high pauses the channel, and BUSY will stay high while paused.  
-
- To terminate a sequence early (and clear the BUSY flag), see CHAN_ABORT."]
+#[doc = "Field `BUSY` reader - This flag goes high when the channel starts a new transfer sequence, and low when the last transfer of that sequence completes. Clearing EN while BUSY is high pauses the channel, and BUSY will stay high while paused. To terminate a sequence early (and clear the BUSY flag), see CHAN_ABORT."]
 pub type BUSY_R = crate::BitReader;
-#[doc = "Field `WRITE_ERROR` reader - If 1, the channel received a write bus error. Write one to clear.  
- WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
+#[doc = "Field `WRITE_ERROR` reader - If 1, the channel received a write bus error. Write one to clear. WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
 pub type WRITE_ERROR_R = crate::BitReader;
-#[doc = "Field `WRITE_ERROR` writer - If 1, the channel received a write bus error. Write one to clear.  
- WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
+#[doc = "Field `WRITE_ERROR` writer - If 1, the channel received a write bus error. Write one to clear. WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
 pub type WRITE_ERROR_W<'a, REG> = crate::BitWriter1C<'a, REG>;
-#[doc = "Field `READ_ERROR` reader - If 1, the channel received a read bus error. Write one to clear.  
- READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
+#[doc = "Field `READ_ERROR` reader - If 1, the channel received a read bus error. Write one to clear. READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
 pub type READ_ERROR_R = crate::BitReader;
-#[doc = "Field `READ_ERROR` writer - If 1, the channel received a read bus error. Write one to clear.  
- READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
+#[doc = "Field `READ_ERROR` writer - If 1, the channel received a read bus error. Write one to clear. READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
 pub type READ_ERROR_W<'a, REG> = crate::BitWriter1C<'a, REG>;
 #[doc = "Field `AHB_ERROR` reader - Logical OR of the READ_ERROR and WRITE_ERROR flags. The channel halts when it encounters any bus error, and always raises its channel IRQ flag."]
 pub type AHB_ERROR_R = crate::BitReader;
 impl R {
-    #[doc = "Bit 0 - DMA Channel Enable.  
- When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
+    #[doc = "Bit 0 - DMA Channel Enable. When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
     #[inline(always)]
     pub fn en(&self) -> EN_R {
         EN_R::new((self.bits & 1) != 0)
     }
-    #[doc = "Bit 1 - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels.  
-
- This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
+    #[doc = "Bit 1 - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels. This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
     #[inline(always)]
     pub fn high_priority(&self) -> HIGH_PRIORITY_R {
         HIGH_PRIORITY_R::new(((self.bits >> 1) & 1) != 0)
@@ -1071,43 +1016,32 @@ impl R {
     pub fn data_size(&self) -> DATA_SIZE_R {
         DATA_SIZE_R::new(((self.bits >> 2) & 3) as u8)
     }
-    #[doc = "Bit 4 - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address.  
-
- Generally this should be disabled for peripheral-to-memory transfers."]
+    #[doc = "Bit 4 - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address. Generally this should be disabled for peripheral-to-memory transfers."]
     #[inline(always)]
     pub fn incr_read(&self) -> INCR_READ_R {
         INCR_READ_R::new(((self.bits >> 4) & 1) != 0)
     }
-    #[doc = "Bit 5 - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+    #[doc = "Bit 5 - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer. If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
     #[inline(always)]
     pub fn incr_read_rev(&self) -> INCR_READ_REV_R {
         INCR_READ_REV_R::new(((self.bits >> 5) & 1) != 0)
     }
-    #[doc = "Bit 6 - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address.  
-
- Generally this should be disabled for memory-to-peripheral transfers."]
+    #[doc = "Bit 6 - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address. Generally this should be disabled for memory-to-peripheral transfers."]
     #[inline(always)]
     pub fn incr_write(&self) -> INCR_WRITE_R {
         INCR_WRITE_R::new(((self.bits >> 6) & 1) != 0)
     }
-    #[doc = "Bit 7 - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+    #[doc = "Bit 7 - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer. If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
     #[inline(always)]
     pub fn incr_write_rev(&self) -> INCR_WRITE_REV_R {
         INCR_WRITE_REV_R::new(((self.bits >> 7) & 1) != 0)
     }
-    #[doc = "Bits 8:11 - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers.  
-
- Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
+    #[doc = "Bits 8:11 - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers. Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
     #[inline(always)]
     pub fn ring_size(&self) -> RING_SIZE_R {
         RING_SIZE_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
-    #[doc = "Bit 12 - Select whether RING_SIZE applies to read or write addresses.  
- If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
+    #[doc = "Bit 12 - Select whether RING_SIZE applies to read or write addresses. If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
     #[inline(always)]
     pub fn ring_sel(&self) -> RING_SEL_R {
         RING_SEL_R::new(((self.bits >> 12) & 1) != 0)
@@ -1118,48 +1052,37 @@ impl R {
     pub fn chain_to(&self) -> CHAIN_TO_R {
         CHAIN_TO_R::new(((self.bits >> 13) & 0x0f) as u8)
     }
-    #[doc = "Bits 17:22 - Select a Transfer Request signal.  
- The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system).  
- 0x0 to 0x3a -> select DREQ n as TREQ"]
+    #[doc = "Bits 17:22 - Select a Transfer Request signal. The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system). 0x0 to 0x3a -> select DREQ n as TREQ"]
     #[inline(always)]
     pub fn treq_sel(&self) -> TREQ_SEL_R {
         TREQ_SEL_R::new(((self.bits >> 17) & 0x3f) as u8)
     }
-    #[doc = "Bit 23 - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain.  
-
- This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
+    #[doc = "Bit 23 - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain. This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
     #[inline(always)]
     pub fn irq_quiet(&self) -> IRQ_QUIET_R {
         IRQ_QUIET_R::new(((self.bits >> 23) & 1) != 0)
     }
-    #[doc = "Bit 24 - Apply byte-swap transformation to DMA data.  
- For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
+    #[doc = "Bit 24 - Apply byte-swap transformation to DMA data. For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
     #[inline(always)]
     pub fn bswap(&self) -> BSWAP_R {
         BSWAP_R::new(((self.bits >> 24) & 1) != 0)
     }
-    #[doc = "Bit 25 - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected.  
-
- This allows checksum to be enabled or disabled on a per-control- block basis."]
+    #[doc = "Bit 25 - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected. This allows checksum to be enabled or disabled on a per-control- block basis."]
     #[inline(always)]
     pub fn sniff_en(&self) -> SNIFF_EN_R {
         SNIFF_EN_R::new(((self.bits >> 25) & 1) != 0)
     }
-    #[doc = "Bit 26 - This flag goes high when the channel starts a new transfer sequence, and low when the last transfer of that sequence completes. Clearing EN while BUSY is high pauses the channel, and BUSY will stay high while paused.  
-
- To terminate a sequence early (and clear the BUSY flag), see CHAN_ABORT."]
+    #[doc = "Bit 26 - This flag goes high when the channel starts a new transfer sequence, and low when the last transfer of that sequence completes. Clearing EN while BUSY is high pauses the channel, and BUSY will stay high while paused. To terminate a sequence early (and clear the BUSY flag), see CHAN_ABORT."]
     #[inline(always)]
     pub fn busy(&self) -> BUSY_R {
         BUSY_R::new(((self.bits >> 26) & 1) != 0)
     }
-    #[doc = "Bit 29 - If 1, the channel received a write bus error. Write one to clear.  
- WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
+    #[doc = "Bit 29 - If 1, the channel received a write bus error. Write one to clear. WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
     #[inline(always)]
     pub fn write_error(&self) -> WRITE_ERROR_R {
         WRITE_ERROR_R::new(((self.bits >> 29) & 1) != 0)
     }
-    #[doc = "Bit 30 - If 1, the channel received a read bus error. Write one to clear.  
- READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
+    #[doc = "Bit 30 - If 1, the channel received a read bus error. Write one to clear. READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
     #[inline(always)]
     pub fn read_error(&self) -> READ_ERROR_R {
         READ_ERROR_R::new(((self.bits >> 30) & 1) != 0)
@@ -1171,16 +1094,13 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bit 0 - DMA Channel Enable.  
- When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
+    #[doc = "Bit 0 - DMA Channel Enable. When 1, the channel will respond to triggering events, which will cause it to become BUSY and start transferring data. When 0, the channel will ignore triggers, stop issuing transfers, and pause the current transfer sequence (i.e. BUSY will remain high if already high)"]
     #[inline(always)]
     #[must_use]
     pub fn en(&mut self) -> EN_W<CH_AL1_CTRL_SPEC> {
         EN_W::new(self, 0)
     }
-    #[doc = "Bit 1 - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels.  
-
- This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
+    #[doc = "Bit 1 - HIGH_PRIORITY gives a channel preferential treatment in issue scheduling: in each scheduling round, all high priority channels are considered first, and then only a single low priority channel, before returning to the high priority channels. This only affects the order in which the DMA schedules channels. The DMA's bus priority is not changed. If the DMA is not saturated then a low priority channel will see no loss of throughput."]
     #[inline(always)]
     #[must_use]
     pub fn high_priority(&mut self) -> HIGH_PRIORITY_W<CH_AL1_CTRL_SPEC> {
@@ -1192,48 +1112,37 @@ impl W {
     pub fn data_size(&mut self) -> DATA_SIZE_W<CH_AL1_CTRL_SPEC> {
         DATA_SIZE_W::new(self, 2)
     }
-    #[doc = "Bit 4 - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address.  
-
- Generally this should be disabled for peripheral-to-memory transfers."]
+    #[doc = "Bit 4 - If 1, the read address increments with each transfer. If 0, each read is directed to the same, initial address. Generally this should be disabled for peripheral-to-memory transfers."]
     #[inline(always)]
     #[must_use]
     pub fn incr_read(&mut self) -> INCR_READ_W<CH_AL1_CTRL_SPEC> {
         INCR_READ_W::new(self, 4)
     }
-    #[doc = "Bit 5 - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+    #[doc = "Bit 5 - If 1, and INCR_READ is 1, the read address is decremented rather than incremented with each transfer. If 1, and INCR_READ is 0, this otherwise-unused combination causes the read address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
     #[inline(always)]
     #[must_use]
     pub fn incr_read_rev(&mut self) -> INCR_READ_REV_W<CH_AL1_CTRL_SPEC> {
         INCR_READ_REV_W::new(self, 5)
     }
-    #[doc = "Bit 6 - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address.  
-
- Generally this should be disabled for memory-to-peripheral transfers."]
+    #[doc = "Bit 6 - If 1, the write address increments with each transfer. If 0, each write is directed to the same, initial address. Generally this should be disabled for memory-to-peripheral transfers."]
     #[inline(always)]
     #[must_use]
     pub fn incr_write(&mut self) -> INCR_WRITE_W<CH_AL1_CTRL_SPEC> {
         INCR_WRITE_W::new(self, 6)
     }
-    #[doc = "Bit 7 - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer.  
-
- If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
+    #[doc = "Bit 7 - If 1, and INCR_WRITE is 1, the write address is decremented rather than incremented with each transfer. If 1, and INCR_WRITE is 0, this otherwise-unused combination causes the write address to be incremented by twice the transfer size, i.e. skipping over alternate addresses."]
     #[inline(always)]
     #[must_use]
     pub fn incr_write_rev(&mut self) -> INCR_WRITE_REV_W<CH_AL1_CTRL_SPEC> {
         INCR_WRITE_REV_W::new(self, 7)
     }
-    #[doc = "Bits 8:11 - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers.  
-
- Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
+    #[doc = "Bits 8:11 - Size of address wrap region. If 0, don't wrap. For values n > 0, only the lower n bits of the address will change. This wraps the address on a (1 &lt;&lt; n) byte boundary, facilitating access to naturally-aligned ring buffers. Ring sizes between 2 and 32768 bytes are possible. This can apply to either read or write addresses, based on value of RING_SEL."]
     #[inline(always)]
     #[must_use]
     pub fn ring_size(&mut self) -> RING_SIZE_W<CH_AL1_CTRL_SPEC> {
         RING_SIZE_W::new(self, 8)
     }
-    #[doc = "Bit 12 - Select whether RING_SIZE applies to read or write addresses.  
- If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
+    #[doc = "Bit 12 - Select whether RING_SIZE applies to read or write addresses. If 0, read addresses are wrapped on a (1 &lt;&lt; RING_SIZE) boundary. If 1, write addresses are wrapped."]
     #[inline(always)]
     #[must_use]
     pub fn ring_sel(&mut self) -> RING_SEL_W<CH_AL1_CTRL_SPEC> {
@@ -1246,46 +1155,37 @@ impl W {
     pub fn chain_to(&mut self) -> CHAIN_TO_W<CH_AL1_CTRL_SPEC> {
         CHAIN_TO_W::new(self, 13)
     }
-    #[doc = "Bits 17:22 - Select a Transfer Request signal.  
- The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system).  
- 0x0 to 0x3a -> select DREQ n as TREQ"]
+    #[doc = "Bits 17:22 - Select a Transfer Request signal. The channel uses the transfer request signal to pace its data transfer rate. Sources for TREQ signals are internal (TIMERS) or external (DREQ, a Data Request from the system). 0x0 to 0x3a -> select DREQ n as TREQ"]
     #[inline(always)]
     #[must_use]
     pub fn treq_sel(&mut self) -> TREQ_SEL_W<CH_AL1_CTRL_SPEC> {
         TREQ_SEL_W::new(self, 17)
     }
-    #[doc = "Bit 23 - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain.  
-
- This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
+    #[doc = "Bit 23 - In QUIET mode, the channel does not generate IRQs at the end of every transfer block. Instead, an IRQ is raised when NULL is written to a trigger register, indicating the end of a control block chain. This reduces the number of interrupts to be serviced by the CPU when transferring a DMA chain of many small control blocks."]
     #[inline(always)]
     #[must_use]
     pub fn irq_quiet(&mut self) -> IRQ_QUIET_W<CH_AL1_CTRL_SPEC> {
         IRQ_QUIET_W::new(self, 23)
     }
-    #[doc = "Bit 24 - Apply byte-swap transformation to DMA data.  
- For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
+    #[doc = "Bit 24 - Apply byte-swap transformation to DMA data. For byte data, this has no effect. For halfword data, the two bytes of each halfword are swapped. For word data, the four bytes of each word are swapped to reverse order."]
     #[inline(always)]
     #[must_use]
     pub fn bswap(&mut self) -> BSWAP_W<CH_AL1_CTRL_SPEC> {
         BSWAP_W::new(self, 24)
     }
-    #[doc = "Bit 25 - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected.  
-
- This allows checksum to be enabled or disabled on a per-control- block basis."]
+    #[doc = "Bit 25 - If 1, this channel's data transfers are visible to the sniff hardware, and each transfer will advance the state of the checksum. This only applies if the sniff hardware is enabled, and has this channel selected. This allows checksum to be enabled or disabled on a per-control- block basis."]
     #[inline(always)]
     #[must_use]
     pub fn sniff_en(&mut self) -> SNIFF_EN_W<CH_AL1_CTRL_SPEC> {
         SNIFF_EN_W::new(self, 25)
     }
-    #[doc = "Bit 29 - If 1, the channel received a write bus error. Write one to clear.  
- WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
+    #[doc = "Bit 29 - If 1, the channel received a write bus error. Write one to clear. WRITE_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 5 transfers later)"]
     #[inline(always)]
     #[must_use]
     pub fn write_error(&mut self) -> WRITE_ERROR_W<CH_AL1_CTRL_SPEC> {
         WRITE_ERROR_W::new(self, 29)
     }
-    #[doc = "Bit 30 - If 1, the channel received a read bus error. Write one to clear.  
- READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
+    #[doc = "Bit 30 - If 1, the channel received a read bus error. Write one to clear. READ_ADDR shows the approximate address where the bus error was encountered (will not be earlier, or more than 3 transfers later)"]
     #[inline(always)]
     #[must_use]
     pub fn read_error(&mut self) -> READ_ERROR_W<CH_AL1_CTRL_SPEC> {
