@@ -41,6 +41,7 @@ mod inner {
     };
 
     /// Send Event
+    #[inline(always)]
     pub fn sev() {
         unsafe {
             // This is how h3.unblock is encoded.
@@ -64,15 +65,16 @@ mod inner {
         }
     }
 
-    /// Data synchronisation barrier
+    /// Data Synchronization Barrier
+    #[inline(always)]
     pub fn dsb() {
-        unsafe {
-            core::arch::asm!("fence");
-            core::sync::atomic::compiler_fence(core::sync::atomic::Ordering::SeqCst);
-        }
+        core::sync::atomic::compiler_fence(core::sync::atomic::Ordering::SeqCst);
+        unsafe { core::arch::asm!("fence", options(nostack, preserves_flags)) };
+        core::sync::atomic::compiler_fence(core::sync::atomic::Ordering::SeqCst);
     }
 
     /// Are interrupts current enabled?
+    #[inline(always)]
     pub fn interrupts_enabled() -> bool {
         riscv::register::mstatus::read().mie()
     }
