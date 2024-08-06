@@ -67,7 +67,8 @@ mod inner {
     /// Data synchronisation barrier
     pub fn dsb() {
         unsafe {
-            core::arch::asm!("sfence.vma");
+            core::arch::asm!("fence");
+            core::sync::atomic::compiler_fence(core::sync::atomic::Ordering::SeqCst);
         }
     }
 
