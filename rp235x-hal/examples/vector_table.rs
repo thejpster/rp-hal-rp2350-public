@@ -182,4 +182,15 @@ extern "C" fn timer_irq0_replacement() {
     });
 }
 
+/// Program metadata for `picotool info`
+#[link_section = ".bi_entries"]
+#[used]
+pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 5] = [
+    hal::binary_info_rp_cargo_bin_name!(),
+    hal::binary_info_rp_cargo_version!(),
+    hal::binary_info_rp_program_description!(c"Interrupt Vector Table Example"),
+    hal::binary_info_rp_cargo_homepage_url!(),
+    hal::binary_info_rp_program_build_attribute!(),
+];
+
 // End of file

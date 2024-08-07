@@ -208,4 +208,15 @@ fn IO_IRQ_BANK0() {
     }
 }
 
+/// Program metadata for `picotool info`
+#[link_section = ".bi_entries"]
+#[used]
+pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 5] = [
+    hal::binary_info_rp_cargo_bin_name!(),
+    hal::binary_info_rp_cargo_version!(),
+    hal::binary_info_rp_program_description!(c"PWM IRQ Input Example"),
+    hal::binary_info_rp_cargo_homepage_url!(),
+    hal::binary_info_rp_program_build_attribute!(),
+];
+
 // End of file
