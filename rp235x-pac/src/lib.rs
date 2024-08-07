@@ -1058,16 +1058,16 @@ impl core::fmt::Debug for QMI {
 #[doc = "QSPI Memory Interface. Provides a memory-mapped interface to up to two SPI/DSPI/QSPI flash or PSRAM devices. Also provides a serial interface for programming and configuration of the external device."]
 pub mod qmi;
 #[doc = "QSPI flash execute-in-place block"]
-pub struct XIP {
+pub struct XIP_CTRL {
     _marker: PhantomData<*const ()>,
 }
-unsafe impl Send for XIP {}
-impl XIP {
+unsafe impl Send for XIP_CTRL {}
+impl XIP_CTRL {
     #[doc = r"Pointer to the register block"]
-    pub const PTR: *const xip::RegisterBlock = 0x1000_0000 as *const _;
+    pub const PTR: *const xip_ctrl::RegisterBlock = 0x400c_8000 as *const _;
     #[doc = r"Return the pointer to the register block"]
     #[inline(always)]
-    pub const fn ptr() -> *const xip::RegisterBlock {
+    pub const fn ptr() -> *const xip_ctrl::RegisterBlock {
         Self::PTR
     }
     #[doc = r" Steal an instance of this peripheral"]
@@ -1089,20 +1089,20 @@ impl XIP {
         }
     }
 }
-impl Deref for XIP {
-    type Target = xip::RegisterBlock;
+impl Deref for XIP_CTRL {
+    type Target = xip_ctrl::RegisterBlock;
     #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*Self::PTR }
     }
 }
-impl core::fmt::Debug for XIP {
+impl core::fmt::Debug for XIP_CTRL {
     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-        f.debug_struct("XIP").finish()
+        f.debug_struct("XIP_CTRL").finish()
     }
 }
 #[doc = "QSPI flash execute-in-place block"]
-pub mod xip;
+pub mod xip_ctrl;
 #[doc = "Auxiliary DMA access to XIP FIFOs, via fast AHB bus access"]
 pub struct XIP_AUX {
     _marker: PhantomData<*const ()>,
@@ -2866,8 +2866,8 @@ pub struct Peripherals {
     pub WATCHDOG: WATCHDOG,
     #[doc = "XIP_AUX"]
     pub XIP_AUX: XIP_AUX,
-    #[doc = "XIP"]
-    pub XIP: XIP,
+    #[doc = "XIP_CTRL"]
+    pub XIP_CTRL: XIP_CTRL,
     #[doc = "XOSC"]
     pub XOSC: XOSC,
 }
@@ -2908,7 +2908,7 @@ impl Peripherals {
             PPB: PPB::steal(),
             PPB_NS: PPB_NS::steal(),
             QMI: QMI::steal(),
-            XIP: XIP::steal(),
+            XIP_CTRL: XIP_CTRL::steal(),
             XIP_AUX: XIP_AUX::steal(),
             SYSCFG: SYSCFG::steal(),
             XOSC: XOSC::steal(),

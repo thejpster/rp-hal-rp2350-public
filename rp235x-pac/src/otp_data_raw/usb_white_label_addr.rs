@@ -6,7 +6,7 @@ pub type W = crate::W<USB_WHITE_LABEL_ADDR_SPEC>;
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-#[repr(u16)]
+#[repr(u32)]
 pub enum USB_WHITE_LABEL_ADDR_A {
     #[doc = "0: `0`"]
     INDEX_USB_DEVICE_VID_VALUE = 0,
@@ -41,14 +41,14 @@ pub enum USB_WHITE_LABEL_ADDR_A {
     #[doc = "15: `1111`"]
     INDEX_INFO_UF2_TXT_BOARD_ID_STRDEF = 15,
 }
-impl From<USB_WHITE_LABEL_ADDR_A> for u16 {
+impl From<USB_WHITE_LABEL_ADDR_A> for u32 {
     #[inline(always)]
     fn from(variant: USB_WHITE_LABEL_ADDR_A) -> Self {
         variant as _
     }
 }
 impl crate::FieldSpec for USB_WHITE_LABEL_ADDR_A {
-    type Ux = u16;
+    type Ux = u32;
 }
 impl crate::IsEnum for USB_WHITE_LABEL_ADDR_A {}
 #[doc = "Field `USB_WHITE_LABEL_ADDR` reader - "]
@@ -159,10 +159,10 @@ impl USB_WHITE_LABEL_ADDR_R {
     }
 }
 impl R {
-    #[doc = "Bits 0:15"]
+    #[doc = "Bits 0:23"]
     #[inline(always)]
     pub fn usb_white_label_addr(&self) -> USB_WHITE_LABEL_ADDR_R {
-        USB_WHITE_LABEL_ADDR_R::new(self.bits)
+        USB_WHITE_LABEL_ADDR_R::new(self.bits & 0x00ff_ffff)
     }
 }
 impl W {}
@@ -171,17 +171,17 @@ impl W {}
 You can [`read`](crate::Reg::read) this register and get [`usb_white_label_addr::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`usb_white_label_addr::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct USB_WHITE_LABEL_ADDR_SPEC;
 impl crate::RegisterSpec for USB_WHITE_LABEL_ADDR_SPEC {
-    type Ux = u16;
+    type Ux = u32;
 }
 #[doc = "`read()` method returns [`usb_white_label_addr::R`](R) reader structure"]
 impl crate::Readable for USB_WHITE_LABEL_ADDR_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`usb_white_label_addr::W`](W) writer structure"]
 impl crate::Writable for USB_WHITE_LABEL_ADDR_SPEC {
     type Safety = crate::Unsafe;
-    const ZERO_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
-    const ONE_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
 #[doc = "`reset()` method sets USB_WHITE_LABEL_ADDR to value 0"]
 impl crate::Resettable for USB_WHITE_LABEL_ADDR_SPEC {
-    const RESET_VALUE: u16 = 0;
+    const RESET_VALUE: u32 = 0;
 }
