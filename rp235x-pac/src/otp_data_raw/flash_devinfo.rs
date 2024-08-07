@@ -142,7 +142,7 @@ impl CS0_SIZE_R {
 
 Value on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-#[repr(u8)]
+#[repr(u16)]
 pub enum CS1_SIZE_A {
     #[doc = "0: `0`"]
     NONE = 0,
@@ -171,14 +171,14 @@ pub enum CS1_SIZE_A {
     #[doc = "12: `1100`"]
     _16M = 12,
 }
-impl From<CS1_SIZE_A> for u8 {
+impl From<CS1_SIZE_A> for u16 {
     #[inline(always)]
     fn from(variant: CS1_SIZE_A) -> Self {
         variant as _
     }
 }
 impl crate::FieldSpec for CS1_SIZE_A {
-    type Ux = u8;
+    type Ux = u16;
 }
 impl crate::IsEnum for CS1_SIZE_A {}
 #[doc = "Field `CS1_SIZE` reader - The size of the flash/PSRAM device on chip select 1 (addressable at 0x11000000 through 0x11ffffff). A value of zero is decoded as a size of zero (no device). Nonzero values are decoded as 4kiB &lt;&lt; CS1_SIZE. For example, four megabytes is encoded with a CS1_SIZE value of 10, and 16 megabytes is encoded with a CS1_SIZE value of 12. When BOOT_FLAGS0_FLASH_DEVINFO_ENABLE is not set, a default of zero is used."]
@@ -286,10 +286,10 @@ impl R {
     pub fn cs0_size(&self) -> CS0_SIZE_R {
         CS0_SIZE_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
-    #[doc = "Bits 12:15 - The size of the flash/PSRAM device on chip select 1 (addressable at 0x11000000 through 0x11ffffff). A value of zero is decoded as a size of zero (no device). Nonzero values are decoded as 4kiB &lt;&lt; CS1_SIZE. For example, four megabytes is encoded with a CS1_SIZE value of 10, and 16 megabytes is encoded with a CS1_SIZE value of 12. When BOOT_FLAGS0_FLASH_DEVINFO_ENABLE is not set, a default of zero is used."]
+    #[doc = "Bits 12:23 - The size of the flash/PSRAM device on chip select 1 (addressable at 0x11000000 through 0x11ffffff). A value of zero is decoded as a size of zero (no device). Nonzero values are decoded as 4kiB &lt;&lt; CS1_SIZE. For example, four megabytes is encoded with a CS1_SIZE value of 10, and 16 megabytes is encoded with a CS1_SIZE value of 12. When BOOT_FLAGS0_FLASH_DEVINFO_ENABLE is not set, a default of zero is used."]
     #[inline(always)]
     pub fn cs1_size(&self) -> CS1_SIZE_R {
-        CS1_SIZE_R::new(((self.bits >> 12) & 0x0f) as u8)
+        CS1_SIZE_R::new(((self.bits >> 12) & 0x0fff) as u16)
     }
 }
 impl W {}
@@ -298,17 +298,17 @@ impl W {}
 You can [`read`](crate::Reg::read) this register and get [`flash_devinfo::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`flash_devinfo::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct FLASH_DEVINFO_SPEC;
 impl crate::RegisterSpec for FLASH_DEVINFO_SPEC {
-    type Ux = u16;
+    type Ux = u32;
 }
 #[doc = "`read()` method returns [`flash_devinfo::R`](R) reader structure"]
 impl crate::Readable for FLASH_DEVINFO_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`flash_devinfo::W`](W) writer structure"]
 impl crate::Writable for FLASH_DEVINFO_SPEC {
     type Safety = crate::Unsafe;
-    const ZERO_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
-    const ONE_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
 #[doc = "`reset()` method sets FLASH_DEVINFO to value 0"]
 impl crate::Resettable for FLASH_DEVINFO_SPEC {
-    const RESET_VALUE: u16 = 0;
+    const RESET_VALUE: u32 = 0;
 }

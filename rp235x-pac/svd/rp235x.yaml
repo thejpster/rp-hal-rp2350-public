@@ -418,3 +418,7 @@ USB_DPRAM:
         name: "EP_CONTROL%s"
         description: "TODO"
   
+OTP_DATA_RAW:
+  _modify:
+    "*":
+      size: 32

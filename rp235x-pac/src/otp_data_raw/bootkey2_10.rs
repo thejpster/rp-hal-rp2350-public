@@ -3,12 +3,12 @@ pub type R = crate::R<BOOTKEY2_10_SPEC>;
 #[doc = "Register `BOOTKEY2_10` writer"]
 pub type W = crate::W<BOOTKEY2_10_SPEC>;
 #[doc = "Field `BOOTKEY2_10` reader - "]
-pub type BOOTKEY2_10_R = crate::FieldReader<u16>;
+pub type BOOTKEY2_10_R = crate::FieldReader<u32>;
 impl R {
-    #[doc = "Bits 0:15"]
+    #[doc = "Bits 0:23"]
     #[inline(always)]
     pub fn bootkey2_10(&self) -> BOOTKEY2_10_R {
-        BOOTKEY2_10_R::new(self.bits)
+        BOOTKEY2_10_R::new(self.bits & 0x00ff_ffff)
     }
 }
 impl W {}
@@ -17,17 +17,17 @@ impl W {}
 You can [`read`](crate::Reg::read) this register and get [`bootkey2_10::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`bootkey2_10::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct BOOTKEY2_10_SPEC;
 impl crate::RegisterSpec for BOOTKEY2_10_SPEC {
-    type Ux = u16;
+    type Ux = u32;
 }
 #[doc = "`read()` method returns [`bootkey2_10::R`](R) reader structure"]
 impl crate::Readable for BOOTKEY2_10_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`bootkey2_10::W`](W) writer structure"]
 impl crate::Writable for BOOTKEY2_10_SPEC {
     type Safety = crate::Unsafe;
-    const ZERO_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
-    const ONE_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
 #[doc = "`reset()` method sets BOOTKEY2_10 to value 0"]
 impl crate::Resettable for BOOTKEY2_10_SPEC {
-    const RESET_VALUE: u16 = 0;
+    const RESET_VALUE: u32 = 0;
 }

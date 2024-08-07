@@ -9,12 +9,12 @@ pub type POSTDIV1_R = crate::FieldReader;
 #[doc = "Field `POSTDIV2` reader - PLL post-divide 2 divisor, in the range 1..7 inclusive."]
 pub type POSTDIV2_R = crate::FieldReader;
 #[doc = "Field `REFDIV` reader - PLL reference divisor, minus one. Programming a value of 0 means a reference divisor of 1. Programming a value of 1 means a reference divisor of 2 (for exceptionally fast XIN inputs)"]
-pub type REFDIV_R = crate::BitReader;
+pub type REFDIV_R = crate::FieldReader<u16>;
 impl R {
     #[doc = "Bits 0:8 - PLL feedback divisor, in the range 16..320 inclusive."]
     #[inline(always)]
     pub fn fbdiv(&self) -> FBDIV_R {
-        FBDIV_R::new(self.bits & 0x01ff)
+        FBDIV_R::new((self.bits & 0x01ff) as u16)
     }
     #[doc = "Bits 9:11 - PLL post-divide 1 divisor, in the range 1..7 inclusive."]
     #[inline(always)]
@@ -26,10 +26,10 @@ impl R {
     pub fn postdiv2(&self) -> POSTDIV2_R {
         POSTDIV2_R::new(((self.bits >> 12) & 7) as u8)
     }
-    #[doc = "Bit 15 - PLL reference divisor, minus one. Programming a value of 0 means a reference divisor of 1. Programming a value of 1 means a reference divisor of 2 (for exceptionally fast XIN inputs)"]
+    #[doc = "Bits 15:23 - PLL reference divisor, minus one. Programming a value of 0 means a reference divisor of 1. Programming a value of 1 means a reference divisor of 2 (for exceptionally fast XIN inputs)"]
     #[inline(always)]
     pub fn refdiv(&self) -> REFDIV_R {
-        REFDIV_R::new(((self.bits >> 15) & 1) != 0)
+        REFDIV_R::new(((self.bits >> 15) & 0x01ff) as u16)
     }
 }
 impl W {}
@@ -38,17 +38,17 @@ impl W {}
 You can [`read`](crate::Reg::read) this register and get [`bootsel_pll_cfg::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`bootsel_pll_cfg::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
 pub struct BOOTSEL_PLL_CFG_SPEC;
 impl crate::RegisterSpec for BOOTSEL_PLL_CFG_SPEC {
-    type Ux = u16;
+    type Ux = u32;
 }
 #[doc = "`read()` method returns [`bootsel_pll_cfg::R`](R) reader structure"]
 impl crate::Readable for BOOTSEL_PLL_CFG_SPEC {}
 #[doc = "`write(|w| ..)` method takes [`bootsel_pll_cfg::W`](W) writer structure"]
 impl crate::Writable for BOOTSEL_PLL_CFG_SPEC {
     type Safety = crate::Unsafe;
-    const ZERO_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
-    const ONE_TO_MODIFY_FIELDS_BITMAP: u16 = 0;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
 }
 #[doc = "`reset()` method sets BOOTSEL_PLL_CFG to value 0"]
 impl crate::Resettable for BOOTSEL_PLL_CFG_SPEC {
-    const RESET_VALUE: u16 = 0;
+    const RESET_VALUE: u32 = 0;
 }
