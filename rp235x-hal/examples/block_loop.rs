@@ -12,8 +12,6 @@ use panic_halt as _;
 // Alias for our HAL crate
 use rp235x_hal as hal;
 
-use hal::binary_info;
-
 // Some things we need
 use embedded_hal::delay::DelayNs;
 use embedded_hal::digital::OutputPin;
@@ -94,21 +92,17 @@ fn main() -> ! {
     }
 }
 
-/// This is a list of references to our table entries
-///
-/// They must be in the `.bi_entries` section as we tell picotool the start and
-/// end addresses of that section.
+/// Program metadata for `picotool info`
 #[link_section = ".bi_entries"]
 #[used]
-pub static PICOTOOL_ENTRIES: [binary_info::EntryAddr; 6] = [
-    hal::binary_info_rp_program_name!(c"rp235x-hal Block Loop Example"),
+pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 5] = [
+    hal::binary_info_rp_cargo_bin_name!(),
     hal::binary_info_rp_cargo_version!(),
     hal::binary_info_rp_program_description!(
         c"Blinks an LED, contains a Block Loop with two Blocks"
     ),
-    hal::binary_info_rp_program_url!(c"https://github.com/rp-rs/rp-hal"),
+    hal::binary_info_rp_cargo_homepage_url!(),
     hal::binary_info_rp_program_build_attribute!(),
-    hal::binary_info_rp_pico_board!(c"pico2"),
 ];
 
 // End of file

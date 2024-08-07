@@ -88,11 +88,11 @@ fn main() -> ! {
 /// end addresses of that section.
 #[link_section = ".bi_entries"]
 #[used]
-pub static PICOTOOL_ENTRIES: [binary_info::EntryAddr; 7] = [
-    hal::binary_info_rp_program_name!(c"rp235x-hal Binary Info Example"),
+pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 7] = [
+    hal::binary_info_rp_cargo_bin_name!(),
     hal::binary_info_rp_cargo_version!(),
     hal::binary_info_rp_program_description!(c"A GPIO blinky with extra metadata."),
-    hal::binary_info_rp_program_url!(c"https://github.com/rp-rs/rp-hal"),
+    hal::binary_info_rp_cargo_homepage_url!(),
     hal::binary_info_rp_program_build_attribute!(),
     hal::binary_info_rp_pico_board!(c"pico2"),
     // An example with a non-Raspberry-Pi tag
